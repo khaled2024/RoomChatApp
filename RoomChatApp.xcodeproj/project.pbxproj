@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EAD1E75328D4B64D00F81C20 /* FormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */; };
 		EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */; };
 		EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885328D4AA1200EB9AEE /* SceneDelegate.swift */; };
 		EAD4885628D4AA1200EB9AEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885528D4AA1200EB9AEE /* ViewController.swift */; };
 		EAD4885928D4AA1200EB9AEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885728D4AA1200EB9AEE /* Main.storyboard */; };
 		EAD4885B28D4AA1300EB9AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885A28D4AA1300EB9AEE /* Assets.xcassets */; };
 		EAD4885E28D4AA1300EB9AEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885C28D4AA1300EB9AEE /* LaunchScreen.storyboard */; };
+		EAD4886728D4AE0300EB9AEE /* Extension+UiLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCollectionViewCell.swift; sourceTree = "<group>"; };
 		EAD4884E28D4AA1200EB9AEE /* RoomChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAD4885328D4AA1200EB9AEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		EAD4885A28D4AA1300EB9AEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAD4885D28D4AA1300EB9AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAD4885F28D4AA1300EB9AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiLable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,25 @@
 		EAD4885028D4AA1200EB9AEE /* RoomChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				EAD4886528D4ADF100EB9AEE /* Extensions */,
 				EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */,
 				EAD4885328D4AA1200EB9AEE /* SceneDelegate.swift */,
 				EAD4885528D4AA1200EB9AEE /* ViewController.swift */,
+				EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */,
 				EAD4885728D4AA1200EB9AEE /* Main.storyboard */,
 				EAD4885A28D4AA1300EB9AEE /* Assets.xcassets */,
 				EAD4885C28D4AA1300EB9AEE /* LaunchScreen.storyboard */,
 				EAD4885F28D4AA1300EB9AEE /* Info.plist */,
 			);
 			path = RoomChatApp;
+			sourceTree = "<group>";
+		};
+		EAD4886528D4ADF100EB9AEE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD1E75328D4B64D00F81C20 /* FormCollectionViewCell.swift in Sources */,
+				EAD4886728D4AE0300EB9AEE /* Extension+UiLable.swift in Sources */,
 				EAD4885628D4AA1200EB9AEE /* ViewController.swift in Sources */,
 				EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */,
 				EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */,
@@ -289,6 +305,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RoomChatApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Chatomat;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -316,6 +333,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RoomChatApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Chatomat;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
