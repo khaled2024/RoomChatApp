@@ -15,8 +15,5 @@ class FormCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var slideButton: UIButton!
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var usernameView: UIView!
-    
-   
-    
 }
 

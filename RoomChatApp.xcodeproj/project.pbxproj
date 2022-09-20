@@ -7,27 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA4F154F28D4EFDF007A0DC8 /* Extension+UiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */; };
 		EAD1E75328D4B64D00F81C20 /* FormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */; };
 		EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */; };
 		EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885328D4AA1200EB9AEE /* SceneDelegate.swift */; };
-		EAD4885628D4AA1200EB9AEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885528D4AA1200EB9AEE /* ViewController.swift */; };
+		EAD4885628D4AA1200EB9AEE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885528D4AA1200EB9AEE /* AuthViewController.swift */; };
 		EAD4885928D4AA1200EB9AEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885728D4AA1200EB9AEE /* Main.storyboard */; };
 		EAD4885B28D4AA1300EB9AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885A28D4AA1300EB9AEE /* Assets.xcassets */; };
 		EAD4885E28D4AA1300EB9AEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885C28D4AA1300EB9AEE /* LaunchScreen.storyboard */; };
 		EAD4886728D4AE0300EB9AEE /* Extension+UiLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */; };
+		EAEF1B8228D4CFE3004B2489 /* Extension+UitextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */; };
+		EAEF1B8428D4DC54004B2489 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */; };
+		EAF0477028DA222F0041B4F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */; };
+		EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */; };
+		FEBEA7D06CD2CAA70F88F078 /* Pods_RoomChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70792813B0B5B00949747713 /* Pods_RoomChatApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCollectionViewCell.swift; sourceTree = "<group>"; };
+		3CD561A47B38490E3D99D3B8 /* Pods-RoomChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomChatApp.release.xcconfig"; path = "Target Support Files/Pods-RoomChatApp/Pods-RoomChatApp.release.xcconfig"; sourceTree = "<group>"; };
+		70792813B0B5B00949747713 /* Pods_RoomChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RoomChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC7E6E41A3003A16550E3475 /* Pods-RoomChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomChatApp.debug.xcconfig"; path = "Target Support Files/Pods-RoomChatApp/Pods-RoomChatApp.debug.xcconfig"; sourceTree = "<group>"; };
+		EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiView.swift"; sourceTree = "<group>"; };
+		EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormCollectionViewCell.swift; path = "../New Group/FormCollectionViewCell.swift"; sourceTree = "<group>"; };
 		EAD4884E28D4AA1200EB9AEE /* RoomChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAD4885328D4AA1200EB9AEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EAD4885528D4AA1200EB9AEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EAD4885528D4AA1200EB9AEE /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		EAD4885828D4AA1200EB9AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EAD4885A28D4AA1300EB9AEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAD4885D28D4AA1300EB9AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAD4885F28D4AA1300EB9AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiLable.swift"; sourceTree = "<group>"; };
+		EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UitextField.swift"; sourceTree = "<group>"; };
+		EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UitableView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +49,63 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEBEA7D06CD2CAA70F88F078 /* Pods_RoomChatApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19A93945D2037EFD935DA6C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC7E6E41A3003A16550E3475 /* Pods-RoomChatApp.debug.xcconfig */,
+				3CD561A47B38490E3D99D3B8 /* Pods-RoomChatApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9C9B91EB97E6E0FB199ADFC3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70792813B0B5B00949747713 /* Pods_RoomChatApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA4F155028D4F02F007A0DC8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */,
+				EAD4885328D4AA1200EB9AEE /* SceneDelegate.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EA5EEE3528D4E97A00192316 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		EA5EEE3628D4E98E00192316 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EAD4885528D4AA1200EB9AEE /* AuthViewController.swift */,
+				EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		EAD4884528D4AA1200EB9AEE = {
 			isa = PBXGroup;
 			children = (
 				EAD4885028D4AA1200EB9AEE /* RoomChatApp */,
 				EAD4884F28D4AA1200EB9AEE /* Products */,
+				19A93945D2037EFD935DA6C7 /* Pods */,
+				9C9B91EB97E6E0FB199ADFC3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,15 +120,15 @@
 		EAD4885028D4AA1200EB9AEE /* RoomChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				EA4F155028D4F02F007A0DC8 /* Resources */,
 				EAD4886528D4ADF100EB9AEE /* Extensions */,
-				EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */,
-				EAD4885328D4AA1200EB9AEE /* SceneDelegate.swift */,
-				EAD4885528D4AA1200EB9AEE /* ViewController.swift */,
-				EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */,
+				EA5EEE3528D4E97A00192316 /* Cells */,
+				EA5EEE3628D4E98E00192316 /* Views */,
 				EAD4885728D4AA1200EB9AEE /* Main.storyboard */,
 				EAD4885A28D4AA1300EB9AEE /* Assets.xcassets */,
 				EAD4885C28D4AA1300EB9AEE /* LaunchScreen.storyboard */,
 				EAD4885F28D4AA1300EB9AEE /* Info.plist */,
+				EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */,
 			);
 			path = RoomChatApp;
 			sourceTree = "<group>";
@@ -77,6 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */,
+				EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */,
+				EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */,
+				EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -88,9 +151,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAD4886228D4AA1300EB9AEE /* Build configuration list for PBXNativeTarget "RoomChatApp" */;
 			buildPhases = (
+				90A69FC3273F9A24E26A9326 /* [CP] Check Pods Manifest.lock */,
 				EAD4884A28D4AA1200EB9AEE /* Sources */,
 				EAD4884B28D4AA1200EB9AEE /* Frameworks */,
 				EAD4884C28D4AA1200EB9AEE /* Resources */,
+				7171293E0CDBF88A258E4A88 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -140,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD4885E28D4AA1300EB9AEE /* LaunchScreen.storyboard in Resources */,
+				EAEF1B8428D4DC54004B2489 /* GoogleService-Info.plist in Resources */,
 				EAD4885B28D4AA1300EB9AEE /* Assets.xcassets in Resources */,
 				EAD4885928D4AA1200EB9AEE /* Main.storyboard in Resources */,
 			);
@@ -147,16 +213,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7171293E0CDBF88A258E4A88 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RoomChatApp/Pods-RoomChatApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RoomChatApp/Pods-RoomChatApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RoomChatApp/Pods-RoomChatApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90A69FC3273F9A24E26A9326 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RoomChatApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EAD4884A28D4AA1200EB9AEE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA4F154F28D4EFDF007A0DC8 /* Extension+UiView.swift in Sources */,
 				EAD1E75328D4B64D00F81C20 /* FormCollectionViewCell.swift in Sources */,
 				EAD4886728D4AE0300EB9AEE /* Extension+UiLable.swift in Sources */,
-				EAD4885628D4AA1200EB9AEE /* ViewController.swift in Sources */,
+				EAF0477028DA222F0041B4F1 /* HomeViewController.swift in Sources */,
+				EAD4885628D4AA1200EB9AEE /* AuthViewController.swift in Sources */,
 				EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */,
 				EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */,
+				EAEF1B8228D4CFE3004B2489 /* Extension+UitextField.swift in Sources */,
+				EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +410,7 @@
 		};
 		EAD4886328D4AA1300EB9AEE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC7E6E41A3003A16550E3475 /* Pods-RoomChatApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -311,6 +424,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -326,6 +440,7 @@
 		};
 		EAD4886428D4AA1300EB9AEE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3CD561A47B38490E3D99D3B8 /* Pods-RoomChatApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -339,6 +454,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -15,11 +15,4 @@ extension UILabel {
         attributedText = string
     }
 }
-extension UITextField {
-    func changePlaceholderColor(text: String){
-        self.attributedPlaceholder = NSAttributedString(
-            string: text,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
-        )
-    }
-}
+

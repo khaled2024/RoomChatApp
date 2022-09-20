@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I6T-T7-kq6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Auth View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RoomChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthViewController" id="BYZ-38-t0r" customClass="AuthViewController" customModule="RoomChatApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,7 +45,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="formCell" id="kV4-qo-p7m" customClass="FormCollectionViewCell" customModule="RoomChatApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FormCollectionViewCell" id="kV4-qo-p7m" customClass="FormCollectionViewCell" customModule="RoomChatApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="83.5" width="414" height="454"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uOS-wb-S9f">
@@ -192,7 +194,140 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="92.753623188405811" y="-28.125"/>
+            <point key="canvasLocation" x="45" y="35"/>
+        </scene>
+        <!--Chat Rooms-->
+        <scene sceneID="J6o-Ge-MZq">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" id="2uK-vL-wcE" customClass="HomeViewController" customModule="RoomChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aku-W8-ddu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ywl-Wq-ey0">
+                                <rect key="frame" x="0.0" y="144" width="414" height="50"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dzl-dP-b6c">
+                                        <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Chat Room Name.." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GVl-Zg-6fa">
+                                                <rect key="frame" x="10" y="0.0" width="264" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="GVl-Zg-6fa" secondAttribute="trailing" constant="10" id="Jpa-wD-iqV"/>
+                                            <constraint firstItem="GVl-Zg-6fa" firstAttribute="leading" secondItem="Dzl-dP-b6c" secondAttribute="leading" constant="10" id="Mgj-mA-Krt"/>
+                                            <constraint firstAttribute="bottom" secondItem="GVl-Zg-6fa" secondAttribute="bottom" id="axj-LF-WlJ"/>
+                                            <constraint firstItem="GVl-Zg-6fa" firstAttribute="top" secondItem="Dzl-dP-b6c" secondAttribute="top" id="dNh-hU-OZP"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="auS-nM-Imb">
+                                        <rect key="frame" x="284" y="0.0" width="130" height="50"/>
+                                        <color key="backgroundColor" red="0.20392158630000001" green="0.39607840779999998" blue="0.40784314269999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="gZK-ST-daY"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Create Room">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="13"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="createRoomBtnTapped:" destination="2uK-vL-wcE" eventType="touchUpInside" id="hGw-xt-5cd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="OMh-Es-QR9"/>
+                                    <constraint firstItem="auS-nM-Imb" firstAttribute="leading" secondItem="Dzl-dP-b6c" secondAttribute="trailing" id="nr0-vB-3pD"/>
+                                </constraints>
+                            </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Irn-PS-w6e">
+                                <rect key="frame" x="0.0" y="194" width="414" height="702"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="roomCell" id="H0j-sA-3Uc">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H0j-sA-3Uc" id="yWs-zq-Ddl">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ORv-Ii-v9l"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ywl-Wq-ey0" firstAttribute="trailing" secondItem="ORv-Ii-v9l" secondAttribute="trailing" id="Dpe-QD-oke"/>
+                            <constraint firstItem="Irn-PS-w6e" firstAttribute="top" secondItem="Ywl-Wq-ey0" secondAttribute="bottom" id="NWc-DY-sZk"/>
+                            <constraint firstItem="Irn-PS-w6e" firstAttribute="trailing" secondItem="ORv-Ii-v9l" secondAttribute="trailing" id="PHS-Xb-esW"/>
+                            <constraint firstItem="Ywl-Wq-ey0" firstAttribute="top" secondItem="ORv-Ii-v9l" secondAttribute="top" id="VaP-fd-Pcg"/>
+                            <constraint firstItem="Ywl-Wq-ey0" firstAttribute="leading" secondItem="ORv-Ii-v9l" secondAttribute="leading" id="dKo-eG-6yC"/>
+                            <constraint firstItem="Irn-PS-w6e" firstAttribute="leading" secondItem="ORv-Ii-v9l" secondAttribute="leading" id="eOC-EX-zE8"/>
+                            <constraint firstAttribute="bottom" secondItem="Irn-PS-w6e" secondAttribute="bottom" id="x0M-d6-6ZG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Chat Rooms" id="MpY-gn-qWt">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="jQ1-HK-ryU">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="logoutBarButtonTapped:" destination="2uK-vL-wcE" id="MBk-hZ-Vg8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="roomChatNameTF" destination="GVl-Zg-6fa" id="WNe-Xp-7tr"/>
+                        <outlet property="roomsTableView" destination="Irn-PS-w6e" id="8U5-Y3-bTd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y5h-t7-2gc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1842.0289855072465" y="34.821428571428569"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="CFJ-gc-NZw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="I6T-T7-kq6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="WFz-9R-dNm">
+                        <rect key="frame" x="0.0" y="48" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" white="0.34188988095238093" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textAttributes key="titleTextAttributes">
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2uK-vL-wcE" kind="relationship" relationship="rootViewController" id="xEE-ej-ysf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ieY-QZ-UCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="931.88405797101461" y="34.821428571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
