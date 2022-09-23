@@ -7,16 +7,19 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseDatabase
 class HomeViewController: UIViewController {
     //MARK: - vars & outlets
     @IBOutlet weak var roomsTableView: UITableView!
     @IBOutlet weak var roomChatNameTF: UITextField!
     
+    var rooms = [Room]()
     //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         roomsTableView.delegate = self
         roomsTableView.dataSource = self
+        observeRooms()
     }
     override func viewWillAppear(_ animated: Bool) {
         roomsTableView.reloadWithAnimation()
@@ -30,9 +33,7 @@ class HomeViewController: UIViewController {
         }else{
             
         }
-        
     }
-    
     //MARK: - private functions
     func presentAuthScreen(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -43,6 +44,20 @@ class HomeViewController: UIViewController {
         print("exit")
         
     }
+    func observeRooms(){
+        let ref = Database.database().reference()
+        ref.child("rooms").observe(.childAdded) { snapShot in
+            if let dataArray = snapShot.value as? [String:Any] {
+                if let roomName = dataArray["roomName"]as? String{
+                    let room = Room(roomName: roomName)
+                    self.rooms.append(room)
+                    DispatchQueue.main.async {
+                        self.roomsTableView.reloadWithAnimation()
+                    }
+                }
+            }
+        }
+    }
     //MARK: - actions
     @IBAction func logoutBarButtonTapped(_ sender: UIBarButtonItem) {
         try! Auth.auth().signOut()
@@ -50,18 +65,35 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func createRoomBtnTapped(_ sender: UIButton) {
-        
+        guard let roomName = roomChatNameTF.text  , !roomName.isEmpty else{
+            print("Please filed the Room Name.!")
+            return
+        }
+        let databaseRef = Database.database().reference()
+        // create child called "rooms" to put the rooms name we will create and give a random key
+        let room = databaseRef.child("rooms").childByAutoId()
+        let dataArray: [String:Any] = ["roomName" : roomName]
+        // here  set the value of new room name :)
+        room.setValue(dataArray) { error, ref in
+            if error == nil {
+                DispatchQueue.main.async {
+                    self.roomChatNameTF.text = ""
+                }
+            }else{
+                //
+            }
+        }
     }
 }
 //MARK: - UITableViewDelegate , UITableViewDataSource
 extension HomeViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return rooms.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "roomCell")!
-        cell.textLabel?.text = "hello"
+        cell.textLabel?.text = rooms[indexPath.row].roomName
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -69,6 +101,8 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource {
     }
     
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
 }
