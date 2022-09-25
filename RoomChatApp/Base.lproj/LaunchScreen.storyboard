@@ -31,7 +31,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.11372549830000001" green="0.11372549830000001" blue="0.11372549830000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.13333332540000001" green="0.1215686351" blue="0.12549020350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="4OM-0v-WXk" firstAttribute="centerX" secondItem="NlS-Cx-yWK" secondAttribute="centerX" id="0h0-Pe-cMG"/>
                             <constraint firstItem="NlS-Cx-yWK" firstAttribute="top" secondItem="4OM-0v-WXk" secondAttribute="bottom" constant="30" id="AUt-ho-ejq"/>
@@ -46,6 +46,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chatLogo" width="800" height="600"/>
+        <image name="chatLogo" width="360" height="360"/>
     </resources>
 </document>

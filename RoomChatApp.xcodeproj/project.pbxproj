@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		EA4F154F28D4EFDF007A0DC8 /* Extension+UiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */; };
 		EA51CCF728DFC9EA00CEEE08 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA51CCF628DFC9EA00CEEE08 /* ChatViewController.swift */; };
+		EA847D4C28E081F600E3A7AC /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA847D4B28E081F600E3A7AC /* ChatTableViewCell.swift */; };
+		EA847D4E28E085C200E3A7AC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA847D4D28E085C200E3A7AC /* Message.swift */; };
 		EAA399AD28DE65130033B90A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA399AC28DE65130033B90A /* Room.swift */; };
 		EAD1E75328D4B64D00F81C20 /* FormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */; };
 		EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */; };
@@ -31,6 +33,8 @@
 		AC7E6E41A3003A16550E3475 /* Pods-RoomChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomChatApp.debug.xcconfig"; path = "Target Support Files/Pods-RoomChatApp/Pods-RoomChatApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiView.swift"; sourceTree = "<group>"; };
 		EA51CCF628DFC9EA00CEEE08 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		EA847D4B28E081F600E3A7AC /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
+		EA847D4D28E085C200E3A7AC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		EAA399AC28DE65130033B90A /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormCollectionViewCell.swift; path = "../New Group/FormCollectionViewCell.swift"; sourceTree = "<group>"; };
 		EAD4884E28D4AA1200EB9AEE /* RoomChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */,
+				EA847D4B28E081F600E3A7AC /* ChatTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				EAA399AC28DE65130033B90A /* Room.swift */,
+				EA847D4D28E085C200E3A7AC /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,6 +289,8 @@
 				EAD4885628D4AA1200EB9AEE /* AuthViewController.swift in Sources */,
 				EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */,
 				EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */,
+				EA847D4E28E085C200E3A7AC /* Message.swift in Sources */,
+				EA847D4C28E081F600E3A7AC /* ChatTableViewCell.swift in Sources */,
 				EAEF1B8228D4CFE3004B2489 /* Extension+UitextField.swift in Sources */,
 				EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */,
 			);
@@ -432,6 +440,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3TWF5CMBRA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RoomChatApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Chatomat;
@@ -462,6 +471,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3TWF5CMBRA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RoomChatApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Chatomat;

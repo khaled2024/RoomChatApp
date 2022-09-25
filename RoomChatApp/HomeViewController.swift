@@ -12,7 +12,6 @@ class HomeViewController: UIViewController {
     //MARK: - vars & outlets
     @IBOutlet weak var roomsTableView: UITableView!
     @IBOutlet weak var roomChatNameTF: UITextField!
-    
     var rooms = [Room]()
     //MARK: - life cycle
     override func viewDidLoad() {
