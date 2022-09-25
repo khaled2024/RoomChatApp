@@ -22,7 +22,8 @@ class HomeViewController: UIViewController {
         observeRooms()
     }
     override func viewWillAppear(_ animated: Bool) {
-        roomsTableView.reloadWithAnimation()
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        roomsTableView.reloadData()
     }
     //الفانكشن دي بتشتغل كل مره الفيو بيظهر عكس ال view will appear
     override func viewDidAppear(_ animated: Bool) {
@@ -49,7 +50,7 @@ class HomeViewController: UIViewController {
         ref.child("rooms").observe(.childAdded) { snapShot in
             if let dataArray = snapShot.value as? [String:Any] {
                 if let roomName = dataArray["roomName"]as? String{
-                    let room = Room(roomName: roomName)
+                    let room = Room(roomId: snapShot.key, roomName: roomName)
                     self.rooms.append(room)
                     DispatchQueue.main.async {
                         self.roomsTableView.reloadWithAnimation()
@@ -103,6 +104,10 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let selectedRoom = rooms[indexPath.row]
+        let controller = storyboard?.instantiateViewController(withIdentifier: "ChatViewController")as! ChatViewController
+        controller.room = selectedRoom
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
 }

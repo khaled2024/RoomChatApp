@@ -8,6 +8,7 @@
 import Foundation
 
 struct Room{
+    var roomId: String?
     var roomName: String?
     
 }
