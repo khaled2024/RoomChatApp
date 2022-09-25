@@ -60,8 +60,8 @@ class HomeViewController: UIViewController {
     }
     //MARK: - actions
     @IBAction func logoutBarButtonTapped(_ sender: UIBarButtonItem) {
-        try! Auth.auth().signOut()
-        self.presentAuthScreen()
+        let controller = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController")as! ProfileViewController
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     @IBAction func createRoomBtnTapped(_ sender: UIButton) {

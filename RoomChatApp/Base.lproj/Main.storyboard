@@ -274,7 +274,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chat Rooms" id="MpY-gn-qWt">
-                        <barButtonItem key="leftBarButtonItem" title="Log out" id="jQ1-HK-ryU">
+                        <barButtonItem key="leftBarButtonItem" image="person.fill" catalog="system" id="jQ1-HK-ryU">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="logoutBarButtonTapped:" destination="2uK-vL-wcE" id="MBk-hZ-Vg8"/>
@@ -420,6 +420,46 @@
             </objects>
             <point key="canvasLocation" x="2569.5652173913045" y="34.821428571428569"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="elh-9a-x9h">
+            <objects>
+                <viewController storyboardIdentifier="ProfileViewController" id="4Vy-xc-2sD" customClass="ProfileViewController" customModule="RoomChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y66-mn-4Td">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4rg-dX-CeY">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileTableViewCell" id="FUn-ns-7FR" customClass="ProfileTableViewCell" customModule="RoomChatApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FUn-ns-7FR" id="Pma-F9-nxz">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OLE-1c-yhj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="OLE-1c-yhj" firstAttribute="trailing" secondItem="4rg-dX-CeY" secondAttribute="trailing" id="4ZB-qb-QFc"/>
+                            <constraint firstItem="4rg-dX-CeY" firstAttribute="top" secondItem="OLE-1c-yhj" secondAttribute="top" id="6nQ-tE-wFf"/>
+                            <constraint firstItem="OLE-1c-yhj" firstAttribute="bottom" secondItem="4rg-dX-CeY" secondAttribute="bottom" id="DCZ-gi-Zbx"/>
+                            <constraint firstItem="4rg-dX-CeY" firstAttribute="leading" secondItem="OLE-1c-yhj" secondAttribute="leading" id="f6x-kc-dHQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="profileTableView" destination="4rg-dX-CeY" id="n7l-Vx-fBY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lmP-Oc-HLn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3296" y="35"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="CFJ-gc-NZw">
             <objects>
@@ -454,6 +494,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
