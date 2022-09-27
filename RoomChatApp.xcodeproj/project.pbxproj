@@ -22,6 +22,7 @@
 		EAD4885B28D4AA1300EB9AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885A28D4AA1300EB9AEE /* Assets.xcassets */; };
 		EAD4885E28D4AA1300EB9AEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885C28D4AA1300EB9AEE /* LaunchScreen.storyboard */; };
 		EAD4886728D4AE0300EB9AEE /* Extension+UiLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */; };
+		EAE9EAF028E290DF000DCF84 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE9EAEF28E290DF000DCF84 /* Setting.swift */; };
 		EAEF1B8228D4CFE3004B2489 /* Extension+UitextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */; };
 		EAEF1B8428D4DC54004B2489 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */; };
 		EAF0477028DA222F0041B4F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */; };
@@ -50,6 +51,7 @@
 		EAD4885D28D4AA1300EB9AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAD4885F28D4AA1300EB9AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiLable.swift"; sourceTree = "<group>"; };
+		EAE9EAEF28E290DF000DCF84 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UitextField.swift"; sourceTree = "<group>"; };
 		EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				EAA399AC28DE65130033B90A /* Room.swift */,
 				EA847D4D28E085C200E3A7AC /* Message.swift */,
+				EAE9EAEF28E290DF000DCF84 /* Setting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				EA847D5428E0A72500E3A7AC /* ProfileTableViewCell.swift in Sources */,
 				EAD4886728D4AE0300EB9AEE /* Extension+UiLable.swift in Sources */,
 				EA847D5028E0A1EA00E3A7AC /* ProfileViewController.swift in Sources */,
+				EAE9EAF028E290DF000DCF84 /* Setting.swift in Sources */,
 				EAF0477028DA222F0041B4F1 /* HomeViewController.swift in Sources */,
 				EAA399AD28DE65130033B90A /* Room.swift in Sources */,
 				EAD4885628D4AA1200EB9AEE /* AuthViewController.swift in Sources */,

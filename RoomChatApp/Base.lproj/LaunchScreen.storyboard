@@ -17,25 +17,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatLogo" translatesAutoresizingMaskIntoConstraints="NO" id="NlS-Cx-yWK">
-                                <rect key="frame" x="75" y="302" width="240" height="240"/>
+                                <rect key="frame" x="65" y="302" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="DVR-W4-HiK"/>
                                     <constraint firstAttribute="height" constant="240" id="f1r-oC-jmU"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatomat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OM-0v-WXk">
-                                <rect key="frame" x="92.666666666666686" y="209" width="205" height="63"/>
+                                <rect key="frame" x="82.666666666666686" y="239" width="205" height="63"/>
                                 <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="45"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.13333332540000001" green="0.1215686351" blue="0.12549020350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.13725490870000001" green="0.12549020350000001" blue="0.12549020350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="4OM-0v-WXk" firstAttribute="centerX" secondItem="NlS-Cx-yWK" secondAttribute="centerX" id="0h0-Pe-cMG"/>
-                            <constraint firstItem="NlS-Cx-yWK" firstAttribute="top" secondItem="4OM-0v-WXk" secondAttribute="bottom" constant="30" id="AUt-ho-ejq"/>
-                            <constraint firstItem="NlS-Cx-yWK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LMe-m1-6iz"/>
+                            <constraint firstItem="NlS-Cx-yWK" firstAttribute="top" secondItem="4OM-0v-WXk" secondAttribute="bottom" id="AUt-ho-ejq"/>
+                            <constraint firstItem="NlS-Cx-yWK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-10" id="LMe-m1-6iz"/>
                             <constraint firstItem="NlS-Cx-yWK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="cnf-wK-uKP"/>
                         </constraints>
                     </view>
@@ -46,6 +46,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chatLogo" width="360" height="360"/>
+        <image name="chatLogo" width="300" height="300"/>
     </resources>
 </document>

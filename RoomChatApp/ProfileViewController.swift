@@ -8,52 +8,49 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-struct Setting {
-    let title: String
-    let option: [Option]
-}
-struct Option{
-    let title: String
-    let handler: ()->Void
-}
+
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profileTableView: UITableView!
+    private var userName: String = ""
     private var sections = [Setting]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        configSetting()
         profileTableView.delegate = self
         profileTableView.dataSource = self
-        configSetting()
-        
-        profileTableView.tableHeaderView = headerView()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = false
+        configUserName()
     }
     
-    private func headerView()-> UIView{
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.width / 1.5))
-        let lable = UILabel(frame: .init(x: 10, y: 20, width: headerView.frame.size.width, height: 20))
-        lable.center = headerView.center
-        lable.textColor = #colorLiteral(red: 0.1165452674, green: 0.4018504918, blue: 0.4115763307, alpha: 1)
-        lable.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+    //MARK: - Private functions
+    private func configSetting(){
+        //profile
+        sections.append(Setting(title: "Profile", option: [Option(title: "View your profile", handler: { [weak self] in
+            self?.showProfileName()
+        })]))
+        //account (sign out)
+        sections.append(Setting(title: "Account", option: [Option(title: "Sign out", handler: { [weak self] in
+            self?.signOutTapped()
+        })]))
         
+    }
+    private func configUserName(){
         let ref = Database.database().reference()
         if let id = Auth.auth().currentUser?.uid { ref.child("users").child(id).child("userName").observeSingleEvent(of: .value) { snapShot in
-                if let userName = snapShot.value as? String{
-                    lable.text = "Name: \(userName)"
+            if let userName = snapShot.value as? String{
+                self.userName = userName
                 }
             }
         }
-        
-        view.addSubview(lable)
-        return headerView
     }
-    private func configSetting(){
-        sections.append(Setting(title: "Account", option: [Option(title: "Log out", handler: {[weak self] in
-            self?.signOutTapped()
-        })]))
+    private func showProfileName(){
+        let alert = UIAlertController(title: "Profile", message: "Name: \(self.userName)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     private func signOutTapped(){
         // sign out
@@ -73,16 +70,18 @@ class ProfileViewController: UIViewController {
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
         print("exit")
-        
     }
     
 }
+
 //MARK: - tableView delegate
 extension ProfileViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections.count
+        return sections[section].option.count
     }
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileTableViewCell") as! ProfileTableViewCell
         let model = sections[indexPath.section].option[indexPath.row]
@@ -99,7 +98,5 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource{
         let model = sections[section]
         return model.title
     }
-    
-    
     
 }

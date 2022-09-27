@@ -22,7 +22,7 @@ class HomeViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        roomsTableView.reloadData()
+//        roomsTableView.reloadData()
     }
     //الفانكشن دي بتشتغل كل مره الفيو بيظهر عكس ال view will appear
     override func viewDidAppear(_ animated: Bool) {
@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
         if currentUser == nil {
             self.presentAuthScreen()
         }else{
-            
+            // present Home Screen :)
         }
     }
     //MARK: - private functions
@@ -99,8 +99,6 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedRoom = rooms[indexPath.row]
@@ -108,5 +106,4 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource {
         controller.room = selectedRoom
         self.navigationController?.pushViewController(controller, animated: true)
     }
-    
 }

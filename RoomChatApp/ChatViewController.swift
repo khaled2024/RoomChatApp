@@ -9,11 +9,12 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 class ChatViewController: UIViewController {
-    
+    //MARK: - Vars & Outlets
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var messageTF: UITextField!
     var room: Room?
     var chatMessages = [Message]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = room?.roomName

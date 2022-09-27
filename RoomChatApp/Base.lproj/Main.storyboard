@@ -299,7 +299,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ByU-cO-lxF">
-                                <rect key="frame" x="0.0" y="807" width="414" height="55"/>
+                                <rect key="frame" x="0.0" y="841" width="414" height="55"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pug-7e-XYv">
                                         <rect key="frame" x="0.0" y="0.0" width="314" height="55"/>
@@ -338,7 +338,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lVK-Pa-ZpX">
-                                <rect key="frame" x="0.0" y="48" width="414" height="759"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="793"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatTableViewCell" rowHeight="109" id="Ah2-Dj-Gzr" customClass="ChatTableViewCell" customModule="RoomChatApp" customModuleProvider="target">
@@ -406,7 +406,7 @@
                             <constraint firstItem="lVK-Pa-ZpX" firstAttribute="trailing" secondItem="BeW-k7-ly4" secondAttribute="trailing" id="EO1-iy-eAo"/>
                             <constraint firstItem="lVK-Pa-ZpX" firstAttribute="leading" secondItem="BeW-k7-ly4" secondAttribute="leading" id="GWD-OB-bn0"/>
                             <constraint firstItem="ByU-cO-lxF" firstAttribute="leading" secondItem="BeW-k7-ly4" secondAttribute="leading" id="LWs-Ws-HDg"/>
-                            <constraint firstItem="BeW-k7-ly4" firstAttribute="bottom" secondItem="ByU-cO-lxF" secondAttribute="bottom" id="Xds-T0-kcr"/>
+                            <constraint firstAttribute="bottom" secondItem="ByU-cO-lxF" secondAttribute="bottom" id="Xds-T0-kcr"/>
                             <constraint firstItem="ByU-cO-lxF" firstAttribute="top" secondItem="lVK-Pa-ZpX" secondAttribute="bottom" id="eIJ-UC-pRA"/>
                             <constraint firstItem="lVK-Pa-ZpX" firstAttribute="top" secondItem="BeW-k7-ly4" secondAttribute="top" id="nXQ-9h-a1g"/>
                         </constraints>
@@ -447,8 +447,8 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="OLE-1c-yhj" firstAttribute="trailing" secondItem="4rg-dX-CeY" secondAttribute="trailing" id="4ZB-qb-QFc"/>
-                            <constraint firstItem="4rg-dX-CeY" firstAttribute="top" secondItem="OLE-1c-yhj" secondAttribute="top" id="6nQ-tE-wFf"/>
                             <constraint firstItem="OLE-1c-yhj" firstAttribute="bottom" secondItem="4rg-dX-CeY" secondAttribute="bottom" id="DCZ-gi-Zbx"/>
+                            <constraint firstItem="4rg-dX-CeY" firstAttribute="top" secondItem="OLE-1c-yhj" secondAttribute="top" id="HBa-77-sbi"/>
                             <constraint firstItem="4rg-dX-CeY" firstAttribute="leading" secondItem="OLE-1c-yhj" secondAttribute="leading" id="f6x-kc-dHQ"/>
                         </constraints>
                     </view>

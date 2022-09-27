@@ -20,7 +20,6 @@ class AuthViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    
     //MARK: - private functions
     @objc func slideToNextSlide(_ sender: UIButton){
         let indexPath = IndexPath(row: 1, section: 0)
@@ -35,7 +34,7 @@ class AuthViewController: UIViewController {
         let cell = self.collectionView.cellForItem(at: indexPath)as! FormCollectionViewCell
         guard let email = cell.emailTF.text , !email.isEmpty ,
               let pass = cell.passwordTF.text, !pass.isEmpty ,
-        let userName = cell.userNameTF.text, !userName.isEmpty  else{
+              let userName = cell.userNameTF.text, !userName.isEmpty  else{
             self.displayError(errorText: "Please fill empty fields")
             return
         }
@@ -51,7 +50,6 @@ class AuthViewController: UIViewController {
             let dataArray: [String:Any] = ["userName" : userName]
             user.setValue(dataArray)
         }
-        
     }
     @objc func signInTapped(){
         let indecPath = IndexPath(row: 0, section: 0)
