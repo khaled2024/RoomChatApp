@@ -10,6 +10,8 @@ import FirebaseAuth
 import FirebaseDatabase
 class ChatViewController: UIViewController {
     //MARK: - Vars & Outlets
+    
+    
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var messageTF: UITextField!
     var room: Room?
@@ -25,6 +27,7 @@ class ChatViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = false
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     //MARK: -  functions

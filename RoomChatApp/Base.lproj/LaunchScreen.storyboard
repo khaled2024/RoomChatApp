@@ -17,25 +17,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatLogo" translatesAutoresizingMaskIntoConstraints="NO" id="NlS-Cx-yWK">
-                                <rect key="frame" x="65" y="302" width="240" height="240"/>
+                                <rect key="frame" x="75" y="302" width="240" height="240"/>
+                                <color key="tintColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="DVR-W4-HiK"/>
                                     <constraint firstAttribute="height" constant="240" id="f1r-oC-jmU"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatomat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OM-0v-WXk">
-                                <rect key="frame" x="82.666666666666686" y="239" width="205" height="63"/>
-                                <fontDescription key="fontDescription" name="PingFangHK-Regular" family="PingFang HK" pointSize="45"/>
+                                <rect key="frame" x="89.666666666666671" y="250" width="210.66666666666663" height="52"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="45"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.13725490870000001" green="0.12549020350000001" blue="0.12549020350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.1019607931" green="0.1019607931" blue="0.1019607931" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="4OM-0v-WXk" firstAttribute="centerX" secondItem="NlS-Cx-yWK" secondAttribute="centerX" id="0h0-Pe-cMG"/>
                             <constraint firstItem="NlS-Cx-yWK" firstAttribute="top" secondItem="4OM-0v-WXk" secondAttribute="bottom" id="AUt-ho-ejq"/>
-                            <constraint firstItem="NlS-Cx-yWK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="-10" id="LMe-m1-6iz"/>
+                            <constraint firstItem="NlS-Cx-yWK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="LMe-m1-6iz"/>
                             <constraint firstItem="NlS-Cx-yWK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="cnf-wK-uKP"/>
                         </constraints>
                     </view>

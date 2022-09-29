@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profileTableView: UITableView!
     private var userName: String = ""
+    
     private var sections = [Setting]()
     override func viewDidLoad() {
         super.viewDidLoad()

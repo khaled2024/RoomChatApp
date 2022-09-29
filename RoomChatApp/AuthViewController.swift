@@ -14,7 +14,6 @@ class AuthViewController: UIViewController {
     //MARK: - outlets & vars
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleeLable: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -54,6 +53,7 @@ class AuthViewController: UIViewController {
     @objc func signInTapped(){
         let indecPath = IndexPath(row: 0, section: 0)
         let cell = self.collectionView.cellForItem(at: indecPath)as! FormCollectionViewCell
+        
         guard let email = cell.emailTF.text , !email.isEmpty ,
               let pass = cell.passwordTF.text, !pass.isEmpty else{
             self.displayError(errorText: "Please fill empty fields")
@@ -88,7 +88,7 @@ extension AuthViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.emailTF.changePlaceholderColor(text: "Email")
         cell.passwordTF.changePlaceholderColor(text: "Password")
         cell.userNameTF.changePlaceholderColor(text: "User Name")
-        
+        cell.configDesign()
         if indexPath.row == 0 { // signIn cell
             cell.usernameView.isHidden = true
             cell.actionButton.setTitle("Login", for: .normal)
