@@ -17,6 +17,7 @@
 		EA85ED2628E612D900B03B2A /* RoomsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA85ED2428E612D900B03B2A /* RoomsTableViewCell.xib */; };
 		EA85ED2928E6211700B03B2A /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85ED2828E6211700B03B2A /* UsersViewController.swift */; };
 		EAA399AD28DE65130033B90A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA399AC28DE65130033B90A /* Room.swift */; };
+		EACBC9A028E6357F00428BBA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBC99F28E6357F00428BBA /* User.swift */; };
 		EAD1E75328D4B64D00F81C20 /* FormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */; };
 		EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */; };
 		EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885328D4AA1200EB9AEE /* SceneDelegate.swift */; };
@@ -47,6 +48,7 @@
 		EA85ED2428E612D900B03B2A /* RoomsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomsTableViewCell.xib; sourceTree = "<group>"; };
 		EA85ED2828E6211700B03B2A /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		EAA399AC28DE65130033B90A /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		EACBC99F28E6357F00428BBA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormCollectionViewCell.swift; path = "../New Group/FormCollectionViewCell.swift"; sourceTree = "<group>"; };
 		EAD4884E28D4AA1200EB9AEE /* RoomChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				EAA399AC28DE65130033B90A /* Room.swift */,
 				EA847D4D28E085C200E3A7AC /* Message.swift */,
 				EAE9EAEF28E290DF000DCF84 /* Setting.swift */,
+				EACBC99F28E6357F00428BBA /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				EA847D4C28E081F600E3A7AC /* ChatTableViewCell.swift in Sources */,
 				EAEF1B8228D4CFE3004B2489 /* Extension+UitextField.swift in Sources */,
 				EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */,
+				EACBC9A028E6357F00428BBA /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

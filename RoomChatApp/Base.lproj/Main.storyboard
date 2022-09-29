@@ -455,9 +455,34 @@
                     <view key="view" contentMode="scaleToFill" id="Hhl-et-mTT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c1p-Tw-zfu">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="usersCell" id="Bq6-c0-Bfd">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Bq6-c0-Bfd" id="pPj-xX-shr">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Scs-SP-iXM"/>
                         <color key="backgroundColor" name="mainColor"/>
+                        <constraints>
+                            <constraint firstItem="c1p-Tw-zfu" firstAttribute="top" secondItem="Scs-SP-iXM" secondAttribute="top" id="8BJ-SH-IiP"/>
+                            <constraint firstItem="Scs-SP-iXM" firstAttribute="bottom" secondItem="c1p-Tw-zfu" secondAttribute="bottom" id="Lzj-yw-8SL"/>
+                            <constraint firstItem="Scs-SP-iXM" firstAttribute="trailing" secondItem="c1p-Tw-zfu" secondAttribute="trailing" id="gUd-Gs-z8J"/>
+                            <constraint firstItem="c1p-Tw-zfu" firstAttribute="leading" secondItem="Scs-SP-iXM" secondAttribute="leading" id="wT9-Xl-hdn"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="usersTableView" destination="c1p-Tw-zfu" id="HDy-P4-IQe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVS-ZK-bnN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
