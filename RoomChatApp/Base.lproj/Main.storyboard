@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -24,6 +25,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="I6T-T7-kq6" kind="relationship" relationship="viewControllers" id="NdR-5J-irH"/>
+                        <segue destination="bTY-yj-sp0" kind="relationship" relationship="viewControllers" id="xqG-s1-Mhu"/>
                         <segue destination="4Vy-xc-2sD" kind="relationship" relationship="viewControllers" id="F6t-Nv-Jk3"/>
                     </connections>
                 </tabBarController>
@@ -295,7 +297,15 @@
                             <constraint firstAttribute="bottom" secondItem="Irn-PS-w6e" secondAttribute="bottom" id="x0M-d6-6ZG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Chats" id="MpY-gn-qWt"/>
+                    <navigationItem key="navigationItem" title="Chats" id="MpY-gn-qWt">
+                        <barButtonItem key="rightBarButtonItem" id="jNX-0B-qeh">
+                            <imageReference key="image" image="person.fill.badge.plus" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="newFriendBtnTapped:" destination="2uK-vL-wcE" id="0EL-7h-gX9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="createRoomBtn" destination="auS-nM-Imb" id="V0r-Vf-Pgp"/>
                         <outlet property="createRoomStack" destination="Ywl-Wq-ey0" id="eBB-bC-5pC"/>
@@ -438,6 +448,21 @@
             </objects>
             <point key="canvasLocation" x="2569.5652173913045" y="34.821428571428569"/>
         </scene>
+        <!--Users View Controller-->
+        <scene sceneID="gU3-u6-2oA">
+            <objects>
+                <viewController storyboardIdentifier="UsersViewController" id="WOj-h3-cyn" customClass="UsersViewController" customModule="RoomChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hhl-et-mTT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Scs-SP-iXM"/>
+                        <color key="backgroundColor" name="mainColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fVS-ZK-bnN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3268" y="35"/>
+        </scene>
         <!--Setting-->
         <scene sceneID="elh-9a-x9h">
             <objects>
@@ -497,20 +522,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lmP-Oc-HLn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="932" y="753"/>
+            <point key="canvasLocation" x="1842.0289855072465" y="760.71428571428567"/>
         </scene>
-        <!--Chats-->
+        <!--Your Chats-->
+        <scene sceneID="vsG-vo-JWE">
+            <objects>
+                <viewController id="fLa-vj-ZTK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SEQ-op-anG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5yb-df-OXP">
+                                <rect key="frame" x="0.0" y="92" width="414" height="804"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="r8M-vm-EZV"/>
+                        <color key="backgroundColor" name="mainColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="5yb-df-OXP" secondAttribute="bottom" id="NAQ-ta-dIl"/>
+                            <constraint firstItem="5yb-df-OXP" firstAttribute="leading" secondItem="r8M-vm-EZV" secondAttribute="leading" id="SWR-FA-Qne"/>
+                            <constraint firstItem="5yb-df-OXP" firstAttribute="top" secondItem="r8M-vm-EZV" secondAttribute="top" id="Wnl-hm-nci"/>
+                            <constraint firstItem="5yb-df-OXP" firstAttribute="trailing" secondItem="r8M-vm-EZV" secondAttribute="trailing" id="hNS-X3-uji"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Your Chats" largeTitleDisplayMode="always" id="C2J-yL-jc3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IOe-K8-CR1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-604.34782608695662" y="1461.8303571428571"/>
+        </scene>
+        <!--Rooms Chat-->
         <scene sceneID="CFJ-gc-NZw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="I6T-T7-kq6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" image="message.fill" catalog="system" id="IPI-8J-Zky"/>
+                    <tabBarItem key="tabBarItem" title="Rooms Chat" image="message.fill" catalog="system" id="IPI-8J-Zky"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="WFz-9R-dNm">
                         <rect key="frame" x="0.0" y="48" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="32"/>
+                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
@@ -519,7 +572,7 @@
                         <navigationBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" white="0.34188988095238093" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <textAttributes key="titleTextAttributes">
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="32"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </textAttributes>
                             <textAttributes key="largeTitleTextAttributes">
@@ -537,10 +590,42 @@
             </objects>
             <point key="canvasLocation" x="931.88405797101461" y="34.821428571428569"/>
         </scene>
+        <!--Chats-->
+        <scene sceneID="5dy-01-L90">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bTY-yj-sp0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chats" image="person.line.dotted.person.fill" catalog="system" id="7Ax-fv-4tS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="hha-N7-Yg9">
+                        <rect key="frame" x="0.0" y="48" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="18"/>
+                            <color key="textColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </textAttributes>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" red="0.34117650989999998" green="0.34117650989999998" blue="0.34117650989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="32"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fLa-vj-ZTK" kind="relationship" relationship="rootViewController" id="YKD-wn-79X"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LbY-A2-o7C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-604.34782608695662" y="760.71428571428567"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="message.fill" catalog="system" width="128" height="114"/>
+        <image name="person.fill.badge.plus" catalog="system" width="128" height="125"/>
+        <image name="person.line.dotted.person.fill" catalog="system" width="128" height="58"/>
         <namedColor name="mainColor">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

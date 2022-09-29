@@ -103,6 +103,11 @@ class HomeViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func newFriendBtnTapped(_ sender: UIBarButtonItem) {
+        let controller = storyboard?.instantiateViewController(withIdentifier: "UsersViewController")as! UsersViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
 //MARK: - UITableViewDelegate , UITableViewDataSource
 extension HomeViewController : UITableViewDelegate , UITableViewDataSource {

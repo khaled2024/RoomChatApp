@@ -10,15 +10,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="KGk-i7-Jjw" customClass="RoomsTableViewCell" customModule="RoomChatApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="387" height="115"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="KGk-i7-Jjw" customClass="RoomsTableViewCell" customModule="RoomChatApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="387" height="115"/>
+                <rect key="frame" x="0.0" y="0.0" width="392" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G99-h2-8dW">
-                        <rect key="frame" x="0.0" y="0.0" width="387" height="115"/>
+                        <rect key="frame" x="0.0" y="0.0" width="392" height="100"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatLogo" translatesAutoresizingMaskIntoConstraints="NO" id="SWb-jQ-dvi">
                                 <rect key="frame" x="20" y="32.666666666666664" width="50" height="49.999999999999993"/>
@@ -28,7 +28,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PK6-m2-0Qj">
-                                <rect key="frame" x="90" y="45" width="277" height="25.333333333333329"/>
+                                <rect key="frame" x="90" y="45" width="282" height="25.333333333333329"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,11 +37,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="SWb-jQ-dvi" firstAttribute="leading" secondItem="G99-h2-8dW" secondAttribute="leading" constant="20" id="FnD-g0-2eG"/>
-                            <constraint firstItem="SWb-jQ-dvi" firstAttribute="top" secondItem="G99-h2-8dW" secondAttribute="top" constant="32.666666666666657" id="L7T-ad-SF3"/>
                             <constraint firstAttribute="trailing" secondItem="PK6-m2-0Qj" secondAttribute="trailing" constant="20" id="LQQ-l5-Iug"/>
-                            <constraint firstAttribute="bottom" secondItem="SWb-jQ-dvi" secondAttribute="bottom" constant="32.333333333333343" id="c1h-Jq-Ti6"/>
+                            <constraint firstItem="SWb-jQ-dvi" firstAttribute="top" secondItem="G99-h2-8dW" secondAttribute="top" constant="32.670000000000002" id="REl-bv-yVr"/>
                             <constraint firstItem="PK6-m2-0Qj" firstAttribute="leading" secondItem="SWb-jQ-dvi" secondAttribute="trailing" constant="20" id="iXS-b1-gZ2"/>
                             <constraint firstItem="PK6-m2-0Qj" firstAttribute="centerY" secondItem="SWb-jQ-dvi" secondAttribute="centerY" id="qqa-lN-a9o"/>
+                            <constraint firstAttribute="bottom" secondItem="SWb-jQ-dvi" secondAttribute="bottom" constant="17.329999999999998" id="wGn-k7-yj3"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -57,7 +57,7 @@
                 <outlet property="roomChatName" destination="PK6-m2-0Qj" id="XhM-M2-dHG"/>
                 <outlet property="roomImageView" destination="SWb-jQ-dvi" id="wGS-Nl-Xbl"/>
             </connections>
-            <point key="canvasLocation" x="56.153846153846153" y="13.151658767772512"/>
+            <point key="canvasLocation" x="60" y="7.8199052132701414"/>
         </tableViewCell>
     </objects>
     <resources>
