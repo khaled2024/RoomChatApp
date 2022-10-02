@@ -29,6 +29,7 @@ class ChatTableViewCell: UITableViewCell {
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var userNameLable: UILabel!
     
+    static let identifier = String(describing: ChatTableViewCell.self)
     override func awakeFromNib() {
         super.awakeFromNib()
         messageView.layer.cornerRadius = 7
