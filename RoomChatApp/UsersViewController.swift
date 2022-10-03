@@ -24,6 +24,23 @@ class UsersViewController: UIViewController {
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configData()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = false
+        tabBarController?.tabBar.isHidden = true
+//        self.checkForUserExist()
+    }
+    override func viewDidAppear(_ animated: Bool){
+        spinner.show(in: view)
+        self.checkForUserExist()
+//        print(self.usersId)
+//        print(filteredUsers)
+        self.FilterChats()
+        self.spinner.dismiss(animated: true)
+    }
+    //MARK: - private function
+    private func configData(){
         title = "Users"
         DispatchQueue.global().async {
             self.getUsers()
@@ -31,27 +48,13 @@ class UsersViewController: UIViewController {
         usersTableView.delegate = self
         usersTableView.dataSource = self
         usersSearchbar.delegate = self
+        
         nodataImageView.isHidden = true
         usersTableView.isHidden = false
         
         usersTableView.register(UINib(nibName: RoomsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RoomsTableViewCell.identifier)
     }
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.navigationBar.prefersLargeTitles = false
-        tabBarController?.tabBar.isHidden = true
-        
-        spinner.show(in: view)
-    }
-    override func viewDidAppear(_ animated: Bool){
-        if self.filteredUsers.count == 0{
-            usersTableView.isHidden = true
-            nodataImageView.isHidden = false
-            let alert = UIAlertController(title: "Error", message: "There is no Users to check your personal Chats", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
-            self.present(alert, animated: true)
-        }
-        print(self.usersId)
-        print(filteredUsers)
+    private func FilterChats(){
         guard let currentUserId = Auth.auth().currentUser?.uid else{return}
         let ref = Database.database().reference()
         for id in usersId {
@@ -70,10 +73,16 @@ class UsersViewController: UIViewController {
                 }
             }
         }
-        self.spinner.dismiss(animated: true)
-        
     }
-    //MARK: - private function
+    private func checkForUserExist(){
+        if self.filteredUsers.count == 0{
+            usersTableView.isHidden = true
+            nodataImageView.isHidden = false
+            let alert = UIAlertController(title: "Error", message: "There is no Users to check your personal Chats", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            self.present(alert, animated: true)
+        }
+    }
     private func getUsers(){
         let ref = Database.database().reference()
         ref.child("users").observe(.value) {snapshot in
@@ -159,7 +168,6 @@ extension UsersViewController: UISearchBarDelegate{
         self.filteredUsers = self.users
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("tapped")
         self.filteredUsers = searchText.isEmpty ? users : users.filter({ model in
             return model.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
         })
