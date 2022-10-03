@@ -466,7 +466,16 @@
                                     <constraint firstAttribute="width" constant="240" id="gHl-eS-kBJ"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c1p-Tw-zfu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is no Users go check your personal Chats" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MGA-DY-h8h">
+                                <rect key="frame" x="40" y="588" width="334" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="vvb-BT-6Hq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="0.36277636050000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="c1p-Tw-zfu">
                                 <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
@@ -499,15 +508,19 @@
                             <constraint firstItem="nue-uW-nAO" firstAttribute="centerX" secondItem="Hhl-et-mTT" secondAttribute="centerX" id="DRI-UY-eMN"/>
                             <constraint firstItem="Jle-dF-Eeh" firstAttribute="top" secondItem="Scs-SP-iXM" secondAttribute="top" id="Ecp-QD-c7b"/>
                             <constraint firstItem="Jle-dF-Eeh" firstAttribute="leading" secondItem="Scs-SP-iXM" secondAttribute="leading" id="IGg-UK-7rD"/>
+                            <constraint firstItem="Scs-SP-iXM" firstAttribute="trailing" secondItem="MGA-DY-h8h" secondAttribute="trailing" constant="40" id="KEK-8h-jpV"/>
                             <constraint firstItem="Scs-SP-iXM" firstAttribute="bottom" secondItem="c1p-Tw-zfu" secondAttribute="bottom" id="Lzj-yw-8SL"/>
                             <constraint firstItem="c1p-Tw-zfu" firstAttribute="top" secondItem="Jle-dF-Eeh" secondAttribute="bottom" id="Mlk-f3-5Tp"/>
                             <constraint firstItem="Jle-dF-Eeh" firstAttribute="trailing" secondItem="Scs-SP-iXM" secondAttribute="trailing" id="PbD-Fd-Qpu"/>
                             <constraint firstItem="nue-uW-nAO" firstAttribute="centerY" secondItem="Hhl-et-mTT" secondAttribute="centerY" id="c4v-X0-23s"/>
                             <constraint firstItem="Scs-SP-iXM" firstAttribute="trailing" secondItem="c1p-Tw-zfu" secondAttribute="trailing" id="gUd-Gs-z8J"/>
+                            <constraint firstItem="MGA-DY-h8h" firstAttribute="leading" secondItem="Scs-SP-iXM" secondAttribute="leading" constant="40" id="hEV-pk-jNj"/>
+                            <constraint firstItem="nue-uW-nAO" firstAttribute="bottom" secondItem="MGA-DY-h8h" secondAttribute="top" constant="-20" id="kR1-iJ-ZcP"/>
                             <constraint firstItem="c1p-Tw-zfu" firstAttribute="leading" secondItem="Scs-SP-iXM" secondAttribute="leading" id="wT9-Xl-hdn"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="noDataLbl" destination="MGA-DY-h8h" id="7HL-Gr-4zC"/>
                         <outlet property="nodataImageView" destination="nue-uW-nAO" id="NCX-zN-8tT"/>
                         <outlet property="usersSearchbar" destination="Jle-dF-Eeh" id="9Xp-wc-Rms"/>
                         <outlet property="usersTableView" destination="c1p-Tw-zfu" id="HDy-P4-IQe"/>

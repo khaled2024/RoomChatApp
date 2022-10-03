@@ -8,9 +8,9 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
-import JGProgressHUD
 class UsersViewController: UIViewController {
     
+    @IBOutlet weak var noDataLbl: UILabel!
     @IBOutlet weak var nodataImageView: UIImageView!
     @IBOutlet weak var usersSearchbar: UISearchBar!
     @IBOutlet weak var usersTableView: UITableView!
@@ -20,7 +20,6 @@ class UsersViewController: UIViewController {
     var filteredUsers: [User] = []
     var ristUsers: [User] = []
     var usersId = [String]()
-    let spinner = JGProgressHUD(style: .dark)
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,15 +28,19 @@ class UsersViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = false
         tabBarController?.tabBar.isHidden = true
-//        self.checkForUserExist()
+        if UserDefaults.standard.object(forKey: "noUsers")as? Bool == true{
+            self.usersTableView.isHidden = true
+            self.nodataImageView.isHidden = false
+            self.noDataLbl.isHidden = false
+        }else{
+            self.usersTableView.isHidden = false
+            self.nodataImageView.isHidden = true
+            self.noDataLbl.isHidden = true
+        }
     }
     override func viewDidAppear(_ animated: Bool){
-        spinner.show(in: view)
         self.checkForUserExist()
-//        print(self.usersId)
-//        print(filteredUsers)
         self.FilterChats()
-        self.spinner.dismiss(animated: true)
     }
     //MARK: - private function
     private func configData(){
@@ -50,7 +53,9 @@ class UsersViewController: UIViewController {
         usersSearchbar.delegate = self
         
         nodataImageView.isHidden = true
+        self.noDataLbl.isHidden = true
         usersTableView.isHidden = false
+        
         
         usersTableView.register(UINib(nibName: RoomsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RoomsTableViewCell.identifier)
     }
@@ -78,9 +83,8 @@ class UsersViewController: UIViewController {
         if self.filteredUsers.count == 0{
             usersTableView.isHidden = true
             nodataImageView.isHidden = false
-            let alert = UIAlertController(title: "Error", message: "There is no Users to check your personal Chats", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
-            self.present(alert, animated: true)
+            self.noDataLbl.isHidden = false
+            UserDefaults.standard.set(true, forKey: "noUsers")
         }
     }
     private func getUsers(){
@@ -174,42 +178,3 @@ extension UsersViewController: UISearchBarDelegate{
         usersTableView.reloadData()
     }
 }
-//MARK: - comments
-//private func isChatExist(userId: String , completion: @escaping (Bool)->Void){
-//    guard let currentUserId = Auth.auth().currentUser?.uid else{return}
-//    let chatName = "\(currentUserId)To\(userId)"
-//    let ref = Database.database().reference()
-//    ref.child("privateChats").child(currentUserId).child(chatName).child("chatName").observeSingleEvent(of: .value) { snapShot in
-//        if let privateChatName = snapShot.value as? String {
-//            print("privateChatName\(privateChatName)")
-//            //                if privateChatName == chatName{
-//            //                    completion(true)
-//            //                }else{
-//            //                    completion(false)
-//            //                }
-//            completion(true)
-//        }
-//        else{
-//            if let index:Int = self.users.firstIndex(where: {$0.id == userId}) {
-//                self.users.remove(at: index)
-//                DispatchQueue.main.async {
-//                    self.usersTableView.reloadData()
-//                }
-//            }
-//            completion(false)
-//        }
-//    }
-//}
-//private func checkForMessageExist(userId: String,completion:@escaping (Bool)->Void){
-//    guard let currentUserId = Auth.auth().currentUser?.uid else{return}
-//    let chatName = "\(currentUserId)To\(userId)"
-//    let ref = Database.database().reference()
-//    ref.child("privateChats").child(currentUserId).child(chatName).child("chatName").child("Messages").observeSingleEvent(of: .value) { snapShot in
-//        if let messages = snapShot.value as? [String:Any] {
-//            print(messages)
-//            completion(true)
-//        }else{
-//            completion(false)
-//        }
-//    }
-//}
