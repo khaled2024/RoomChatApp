@@ -11,7 +11,6 @@ import FirebaseDatabase
 class ChatViewController: UIViewController {
     //MARK: - Vars & Outlets
     @IBOutlet weak var sendButton: UIButton!
-    
     @IBOutlet weak var chatMessageView: UIView!
     
     @IBOutlet weak var chatTableView: UITableView!
@@ -26,8 +25,7 @@ class ChatViewController: UIViewController {
         chatTableView.delegate = self
         chatTableView.dataSource = self
         chatTableView.allowsSelection = false
-        chatMessageView.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
-        sendButton.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
+        setDesign()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = false
@@ -35,6 +33,11 @@ class ChatViewController: UIViewController {
     }
     
     //MARK: -  functions
+    func setDesign(){
+        messageTF.changePlaceholderColor(text: "Type your message here.")
+        chatMessageView.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
+        sendButton.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
+    }
     ///get user with id
     private func getUserWithId(_ id: String , completion: @escaping (_ userName: String?)-> Void){
         let ref = Database.database().reference()
@@ -83,8 +86,6 @@ class ChatViewController: UIViewController {
                 }
             }
         }
-        
-        
         
     }
     //MARK: - actions

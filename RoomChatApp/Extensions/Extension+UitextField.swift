@@ -11,7 +11,7 @@ extension UITextField {
     func changePlaceholderColor(text: String){
         self.attributedPlaceholder = NSAttributedString(
             string: text,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor(named: "placeholderColor")!]
         )
     }
 }

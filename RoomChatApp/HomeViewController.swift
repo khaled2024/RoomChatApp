@@ -99,7 +99,7 @@ class HomeViewController: UIViewController {
                     self.roomChatNameTF.text = ""
                 }
             }else{
-                //
+                print("error of creating room")
             }
         }
     }
