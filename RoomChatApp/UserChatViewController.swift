@@ -56,7 +56,7 @@ class UserChatViewController: UIViewController {
         guard let currentUserId = Auth.auth().currentUser?.uid , let user = self.user else{return}
         let privateChatName = "\(currentUserId)To\(user.id)"
         let ref = Database.database().reference()
-        let message = ref.child("privateChats").child(currentUserId).child(privateChatName).child("chatName")
+        let message = ref.child("privateChats").child(currentUserId).child(privateChatName).child("Chat")
         getUserWithId(currentUserId) { userName in
             if let userName = userName , let msg = self.msgTextField.text , !msg.isEmpty {
                 let dataArray: [String:Any] = ["SenderID":currentUserId , "SenderName":userName,"ReciverID":user.id, "ReciverName":user.name, "Msg":msg]

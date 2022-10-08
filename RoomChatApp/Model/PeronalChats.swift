@@ -6,6 +6,10 @@
 //
 
 import Foundation
-struct PersonalChats{
-//    var 
+struct PersonalChat{
+    var msg: String
+    var reciverId: String
+    var reciverName: String
+    var senderId: String
+    var senderrName: String
 }

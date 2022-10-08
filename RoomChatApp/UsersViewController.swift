@@ -18,29 +18,16 @@ class UsersViewController: UIViewController {
     let currentUserid = Auth.auth().currentUser?.uid
     var users: [User] = []
     var filteredUsers: [User] = []
-    var ristUsers: [User] = []
     var usersId = [String]()
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configData()
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool){
+        self.FilterChats()
         navigationController?.navigationBar.prefersLargeTitles = false
         tabBarController?.tabBar.isHidden = true
-        if UserDefaults.standard.object(forKey: "noUsers")as? Bool == true{
-            self.usersTableView.isHidden = true
-            self.nodataImageView.isHidden = false
-            self.noDataLbl.isHidden = false
-        }else{
-            self.usersTableView.isHidden = false
-            self.nodataImageView.isHidden = true
-            self.noDataLbl.isHidden = true
-        }
-    }
-    override func viewDidAppear(_ animated: Bool){
-        self.checkForUserExist()
-        self.FilterChats()
     }
     //MARK: - private function
     private func configData(){
@@ -55,7 +42,6 @@ class UsersViewController: UIViewController {
         nodataImageView.isHidden = true
         self.noDataLbl.isHidden = true
         usersTableView.isHidden = false
-        
         
         usersTableView.register(UINib(nibName: RoomsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RoomsTableViewCell.identifier)
     }
@@ -78,13 +64,16 @@ class UsersViewController: UIViewController {
                 }
             }
         }
-    }
-    private func checkForUserExist(){
-        if self.filteredUsers.count == 0{
+        if users.count == 0 {
             usersTableView.isHidden = true
             nodataImageView.isHidden = false
             self.noDataLbl.isHidden = false
             UserDefaults.standard.set(true, forKey: "noUsers")
+        }else{
+            nodataImageView.isHidden = true
+            self.noDataLbl.isHidden = true
+            usersTableView.isHidden = false
+            UserDefaults.standard.set(false, forKey: "noUsers")
         }
     }
     private func getUsers(){
@@ -95,6 +84,7 @@ class UsersViewController: UIViewController {
                 if let index = self.usersId.firstIndex(of: self.currentUserid!){
                     self.usersId.remove(at: index)
                 }
+                print(self.usersId)
                 self.getUsersNames()
             }
         }
@@ -113,13 +103,13 @@ class UsersViewController: UIViewController {
             }
         }
     }
-    private func createPrivateChat(userId: String,completion: @escaping (Bool)->Void){
+    private func createPrivateChat(reciverName: String,userId: String,completion: @escaping (Bool)->Void){
         guard let currentUserId = Auth.auth().currentUser?.uid else{return}
         let privateChatName = "\(currentUserId)To\(userId)"
         let ref = Database.database().reference()
         // create child called "privateChats" to put the chats name we will create and give a random key
         let privateChats = ref.child("privateChats").child(currentUserId).child(privateChatName)
-        let dataArray: [String:Any] = ["chatName" : privateChatName]
+        let dataArray: [String:Any] = ["chatName" : privateChatName, "Reciver":reciverName]
         // here  set the value of new room name :)
         privateChats.setValue(dataArray) { error, ref in
             if error == nil {
@@ -144,7 +134,7 @@ extension UsersViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let user = filteredUsers[indexPath.row]
-        createPrivateChat(userId: user.id) { success in
+        createPrivateChat(reciverName: user.name,userId: user.id) { success in
             if success {
                 print("successfuly created private chat :)")
                 if let index:Int = self.filteredUsers.firstIndex(where: {$0.id == user.id}) {

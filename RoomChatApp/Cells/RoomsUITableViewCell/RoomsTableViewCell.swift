@@ -30,5 +30,9 @@ class RoomsTableViewCell: UITableViewCell {
         self.roomImageView.tintColor = .darkGray
         self.roomChatName.font = UIFont(name: "American Typewriter", size: 20)
     }
+    func configForPrivateChat(model: PersonalChat){
+        self.roomChatName.text = model.reciverName
+        self.roomImageView.image = UIImage(named: "chatLogo")
+    }
     
 }

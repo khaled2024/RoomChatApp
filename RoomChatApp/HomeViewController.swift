@@ -69,17 +69,17 @@ class HomeViewController: UIViewController {
                     self.rooms.append(room)
                     DispatchQueue.main.async {
                         self.roomsTableView.reloadWithAnimation()
-                        self.spinner.dismiss(animated: true)
                     }
                 }
             }else{
-                self.spinner.dismiss(animated: true)
+                
                 let alert = UIAlertController(title: "Error", message: "Some server issues :(", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cancle", style: .cancel))
                 self.present(alert, animated: true)
                 
             }
         }
+        self.spinner.dismiss(animated: true)
     }
     //MARK: - actions
     
