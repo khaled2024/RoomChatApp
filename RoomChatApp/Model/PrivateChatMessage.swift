@@ -1,13 +1,12 @@
 //
-//  PeronalChats.swift
+//  PrivateChatMessage.swift
 //  RoomChatApp
 //
-//  Created by KhaleD HuSsien on 02/10/2022.
+//  Created by KhaleD HuSsien on 08/10/2022.
 //
 
 import Foundation
-struct PersonalChat{
-    var chatID: String
+struct PrivateChatMessage{
     var msg: String
     var reciverId: String
     var reciverName: String

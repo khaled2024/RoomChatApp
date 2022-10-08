@@ -44,6 +44,10 @@ class ChatTableViewCell: UITableViewCell {
         userNameLable.text = " \(message.messageSender!)"
         messageTextView.text = message.messageText
     }
+    func setMessageDataForPrivateChat(message: PrivateChatMessage){
+        userNameLable.text = " \(message.senderrName)"
+        messageTextView.text = message.msg
+    }
     func setBubbleType(type: messageType){
         if type == .incoming{
             chatStack.alignment = .leading

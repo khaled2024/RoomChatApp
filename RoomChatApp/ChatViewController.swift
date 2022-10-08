@@ -17,7 +17,6 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var messageTF: UITextField!
     var room: Room?
     var chatMessages = [Message]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = room?.roomName
@@ -26,6 +25,7 @@ class ChatViewController: UIViewController {
         chatTableView.dataSource = self
         chatTableView.allowsSelection = false
         setDesign()
+
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = false
@@ -119,7 +119,6 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
         }else{
             cell.setBubbleType(type: .incoming)
         }
-        
         return cell
     }
     

@@ -13,27 +13,35 @@ class UserChatViewController: UIViewController {
     @IBOutlet weak var msgView: UIView!
     @IBOutlet weak var userChatTableView: UITableView!
     @IBOutlet weak var sendBtn: UIButton!
-    
     @IBOutlet weak var msgTextField: UITextField!
+    
     var user: User? = nil
+    var privateChat: PersonalChat?
+    var messages = [PrivateChatMessage]()
+    var privateChatID: String? = nil
+    
     //MARK: - vars
     var msgs: [Message] = [Message(messageKey: "khaled", messageSender: "khaled", messageText: "hello", userId: "ksksksk"),Message(messageKey: "You", messageSender: "You", messageText: "hi.!", userId: "ksksksk"),Message(messageKey: "khaled", messageSender: "khaled", messageText: "how are you?", userId: "ksksksk"),Message(messageKey: "khaled", messageSender: "You", messageText: "I am fine ty", userId: "ksksksk"),Message(messageKey: "khaled", messageSender: "khaled", messageText: "nice to meet you", userId: "ksksksk")]
-    var userTitle: String = ""
+//    var userTitle: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = userTitle
         setDesign()
         userChatTableView.delegate = self
         userChatTableView.dataSource = self
         print(user?.name ?? "" , user?.id ?? "")
+        print(self.privateChat)
+        print(self.privateChatID!)
+
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         tabBarController?.tabBar.isHidden = true
-        
+        self.navigationController?.navigationBar.tintColor = .white
+        observeMessage()
     }
     //MARK: - private functions
-    func setDesign(){
+    private func setDesign(){
         msgView.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
         sendBtn.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
         
@@ -51,10 +59,32 @@ class UserChatViewController: UIViewController {
             }
         }
     }
-    
+    /// observe messages
+    func observeMessage(){
+        guard let privateChatName = self.privateChatID else{return}
+        guard let currentUserId = Auth.auth().currentUser?.uid else{return}
+        let ref = Database.database().reference()
+        ref.child("privateChats").child(currentUserId).child(privateChatName).child("Chat").child("Messages").observe(.childAdded) { snapShot in
+            if let dataArray = snapShot.value as? [String: Any]{
+                guard let messageText = dataArray["Msg"]as? String,
+                      let ReciverID = dataArray["ReciverID"]as? String,
+                      let ReciverName = dataArray["ReciverName"]as? String ,
+                      let SenderID = dataArray["SenderID"]as? String,
+                      let SenderName = dataArray["SenderName"]as? String  else{return}
+                
+                let message = PrivateChatMessage( msg: messageText, reciverId: ReciverID, reciverName: ReciverName, senderId: SenderID, senderrName: SenderName)
+                self.messages.append(message)
+                DispatchQueue.main.async {
+                    self.userChatTableView.reloadData()
+                }
+            }
+        }
+    }
     private func sendMsg(completion: @escaping (Bool)->Void){
         guard let currentUserId = Auth.auth().currentUser?.uid , let user = self.user else{return}
-        let privateChatName = "\(currentUserId)To\(user.id)"
+//        guard let privateChatName = self.privateChat?.chatID else{return}
+//         let privateChatName = "\(currentUserId)To\(user.id)"
+        guard let privateChatName = self.privateChatID else{return}
         let ref = Database.database().reference()
         let message = ref.child("privateChats").child(currentUserId).child(privateChatName).child("Chat")
         getUserWithId(currentUserId) { userName in
@@ -70,6 +100,7 @@ class UserChatViewController: UIViewController {
             }
         }
     }
+    
     //MARK: - Action
     @IBAction func sendMsgBtn(_ sender: UIButton) {
         sendMsg { success in
@@ -85,13 +116,13 @@ class UserChatViewController: UIViewController {
 //MARK: - UITableViewDelegate
 extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return msgs.count
+        return messages.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.identifier, for: indexPath)as! ChatTableViewCell
-        let message = msgs[indexPath.row]
-        cell.setMessageData(message: message)
-        if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 4){
+        let message = messages[indexPath.row]
+        cell.setMessageDataForPrivateChat(message: message)
+        if message.senderId == Auth.auth().currentUser?.uid {
             cell.setBubbleType(type: .outgoing)
         }else{
             cell.setBubbleType(type: .incoming)

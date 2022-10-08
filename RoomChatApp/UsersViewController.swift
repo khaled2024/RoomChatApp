@@ -19,6 +19,7 @@ class UsersViewController: UIViewController {
     var users: [User] = []
     var filteredUsers: [User] = []
     var usersId = [String]()
+    var privateChatID: String? = nil
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,33 @@ class UsersViewController: UIViewController {
         usersTableView.isHidden = false
         
         usersTableView.register(UINib(nibName: RoomsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RoomsTableViewCell.identifier)
+    }
+    private func getUsers(){
+        let ref = Database.database().reference()
+        ref.child("users").observe(.value) {snapshot in
+            if let dataArray = snapshot.value as? [String: Any]{
+                self.usersId.append(contentsOf: dataArray.keys)
+                if let index = self.usersId.firstIndex(of: self.currentUserid!){
+                    self.usersId.remove(at: index)
+                }
+                print(self.usersId)
+                self.getUsersNames()
+            }
+        }
+    }
+    private func getUsersNames(){
+        for id in usersId {
+            let ref = Database.database().reference()
+            ref.child("users").child(id).child("userName").observeSingleEvent(of: .value) { [weak self] snapShot in
+                if let userName = snapShot.value as? String {
+                    self?.users.append(User(name: userName, id: id))
+                    self?.filteredUsers.append(User(name: userName, id: id))
+                    DispatchQueue.main.async {
+                        self?.usersTableView.reloadWithAnimation()
+                    }
+                }
+            }
+        }
     }
     private func FilterChats(){
         guard let currentUserId = Auth.auth().currentUser?.uid else{return}
@@ -76,36 +104,10 @@ class UsersViewController: UIViewController {
             UserDefaults.standard.set(false, forKey: "noUsers")
         }
     }
-    private func getUsers(){
-        let ref = Database.database().reference()
-        ref.child("users").observe(.value) {snapshot in
-            if let dataArray = snapshot.value as? [String: Any]{
-                self.usersId.append(contentsOf: dataArray.keys)
-                if let index = self.usersId.firstIndex(of: self.currentUserid!){
-                    self.usersId.remove(at: index)
-                }
-                print(self.usersId)
-                self.getUsersNames()
-            }
-        }
-    }
-    private func getUsersNames(){
-        for id in usersId {
-            let ref = Database.database().reference()
-            ref.child("users").child(id).child("userName").observeSingleEvent(of: .value) { [weak self] snapShot in
-                if let userName = snapShot.value as? String {
-                    self?.users.append(User(name: userName, id: id))
-                    self?.filteredUsers.append(User(name: userName, id: id))
-                    DispatchQueue.main.async {
-                        self?.usersTableView.reloadWithAnimation()
-                    }
-                }
-            }
-        }
-    }
     private func createPrivateChat(reciverName: String,userId: String,completion: @escaping (Bool)->Void){
         guard let currentUserId = Auth.auth().currentUser?.uid else{return}
         let privateChatName = "\(currentUserId)To\(userId)"
+        self.privateChatID = privateChatName
         let ref = Database.database().reference()
         // create child called "privateChats" to put the chats name we will create and give a random key
         let privateChats = ref.child("privateChats").child(currentUserId).child(privateChatName)
@@ -144,8 +146,9 @@ extension UsersViewController: UITableViewDelegate,UITableViewDataSource{
                     }
                 }
                 let controller = self.storyboard?.instantiateViewController(withIdentifier: "UserChatViewController")as! UserChatViewController
-                controller.userTitle = user.name
+                controller.title = user.name
                 controller.user = user
+                controller.privateChatID = self.privateChatID
                 self.navigationController?.pushViewController(controller, animated: true)
                 self.navigationController?.navigationBar.prefersLargeTitles = false
             }else{

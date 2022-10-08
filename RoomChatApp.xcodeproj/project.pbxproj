@@ -34,6 +34,7 @@
 		EAEF1B8428D4DC54004B2489 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */; };
 		EAF0477028DA222F0041B4F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */; };
 		EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */; };
+		EAFA718728F1ED9F005A3C98 /* PrivateChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA718628F1ED9E005A3C98 /* PrivateChatMessage.swift */; };
 		FEBEA7D06CD2CAA70F88F078 /* Pods_RoomChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70792813B0B5B00949747713 /* Pods_RoomChatApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UitableView.swift"; sourceTree = "<group>"; };
+		EAFA718628F1ED9E005A3C98 /* PrivateChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				EAE9EAEF28E290DF000DCF84 /* Setting.swift */,
 				EACBC99F28E6357F00428BBA /* User.swift */,
 				EAE411C228EA3D3C007A68A3 /* PeronalChats.swift */,
+				EAFA718628F1ED9E005A3C98 /* PrivateChatMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				EAF0477028DA222F0041B4F1 /* HomeViewController.swift in Sources */,
 				EAA399AD28DE65130033B90A /* Room.swift in Sources */,
 				EAD4885628D4AA1200EB9AEE /* AuthViewController.swift in Sources */,
+				EAFA718728F1ED9F005A3C98 /* PrivateChatMessage.swift in Sources */,
 				EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */,
 				EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */,
 				EA847D4E28E085C200E3A7AC /* Message.swift in Sources */,
