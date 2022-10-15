@@ -9,7 +9,6 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-
 class AuthViewController: UIViewController {
     //MARK: - outlets & vars
     @IBOutlet weak var collectionView: UICollectionView!
@@ -46,7 +45,7 @@ class AuthViewController: UIViewController {
             self.dismiss(animated: true,completion: nil)
             let refrence = Database.database().reference()
             let user = refrence.child("users").child(result.user.uid)
-            let dataArray: [String:Any] = ["userName" : userName]
+            let dataArray: [String:Any] = ["name" : userName,"email":email]
             user.setValue(dataArray)
         }
     }

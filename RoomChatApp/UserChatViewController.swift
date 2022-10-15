@@ -105,7 +105,6 @@ class UserChatViewController: UIViewController {
             }
         }
     }
-    
     //MARK: - Action
     @IBAction func sendMsgBtn(_ sender: UIButton) {
         sendMsg { success in

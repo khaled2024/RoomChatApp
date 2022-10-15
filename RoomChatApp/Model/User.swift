@@ -5,8 +5,11 @@
 //  Created by KhaleD HuSsien on 29/09/2022.
 //
 
-import Foundation
+import UIKit
+
 struct User{
-    var name: String
-    var id: String
+    var email: String?
+    var name: String?
+    
+    
 }

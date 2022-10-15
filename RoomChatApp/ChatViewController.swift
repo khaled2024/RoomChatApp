@@ -41,7 +41,7 @@ class ChatViewController: UIViewController {
     private func getUserWithId(_ id: String , completion: @escaping (_ userName: String?)-> Void){
         let ref = Database.database().reference()
         let user = ref.child("users").child(id)
-        user.child("userName").observeSingleEvent(of: .value) { snapShot in
+        user.child("name").observeSingleEvent(of: .value) { snapShot in
             if let userName = snapShot.value as? String{
                 completion(userName)
             }else{

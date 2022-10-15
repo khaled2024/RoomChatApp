@@ -11,6 +11,7 @@ class RoomsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var roomChatName: UILabel!
     @IBOutlet weak var roomImageView: UIImageView!
+    
     static let identifier = "RoomsTableViewCell"
     override func awakeFromNib() {
         super.awakeFromNib()

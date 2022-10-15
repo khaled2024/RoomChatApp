@@ -18,6 +18,8 @@
 		EA85ED2928E6211700B03B2A /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85ED2828E6211700B03B2A /* UsersViewController.swift */; };
 		EA8F4C9728FAB394008744FD /* PrivateChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F4C9628FAB394008744FD /* PrivateChat.swift */; };
 		EAA399AD28DE65130033B90A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA399AC28DE65130033B90A /* Room.swift */; };
+		EAC215D728FB654200CBA4AF /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC215D528FB654200CBA4AF /* UserTableViewCell.swift */; };
+		EAC215D828FB654200CBA4AF /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC215D628FB654200CBA4AF /* UserTableViewCell.xib */; };
 		EACBC9A028E6357F00428BBA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBC99F28E6357F00428BBA /* User.swift */; };
 		EAD1E75328D4B64D00F81C20 /* FormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */; };
 		EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4885128D4AA1200EB9AEE /* AppDelegate.swift */; };
@@ -54,6 +56,8 @@
 		EA85ED2828E6211700B03B2A /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		EA8F4C9628FAB394008744FD /* PrivateChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChat.swift; sourceTree = "<group>"; };
 		EAA399AC28DE65130033B90A /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		EAC215D528FB654200CBA4AF /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		EAC215D628FB654200CBA4AF /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		EACBC99F28E6357F00428BBA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormCollectionViewCell.swift; path = "../New Group/FormCollectionViewCell.swift"; sourceTree = "<group>"; };
 		EAD4884E28D4AA1200EB9AEE /* RoomChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +143,7 @@
 				EA847D4B28E081F600E3A7AC /* ChatTableViewCell.swift */,
 				EA847D5328E0A72500E3A7AC /* ProfileTableViewCell.swift */,
 				EA85ED2728E612DE00B03B2A /* RoomsUITableViewCell */,
+				EAC215D428FB651700CBA4AF /* UsersUitableViewCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -176,6 +181,15 @@
 				EA8F4C9628FAB394008744FD /* PrivateChat.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		EAC215D428FB651700CBA4AF /* UsersUitableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				EAC215D528FB654200CBA4AF /* UserTableViewCell.swift */,
+				EAC215D628FB654200CBA4AF /* UserTableViewCell.xib */,
+			);
+			path = UsersUitableViewCell;
 			sourceTree = "<group>";
 		};
 		EAD4884528D4AA1200EB9AEE = {
@@ -288,6 +302,7 @@
 				EA85ED2628E612D900B03B2A /* RoomsTableViewCell.xib in Resources */,
 				EAEF1B8428D4DC54004B2489 /* GoogleService-Info.plist in Resources */,
 				EAD4885B28D4AA1300EB9AEE /* Assets.xcassets in Resources */,
+				EAC215D828FB654200CBA4AF /* UserTableViewCell.xib in Resources */,
 				EAD4885928D4AA1200EB9AEE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +370,7 @@
 				EAF0477028DA222F0041B4F1 /* HomeViewController.swift in Sources */,
 				EAA399AD28DE65130033B90A /* Room.swift in Sources */,
 				EAD4885628D4AA1200EB9AEE /* AuthViewController.swift in Sources */,
+				EAC215D728FB654200CBA4AF /* UserTableViewCell.swift in Sources */,
 				EAFA718728F1ED9F005A3C98 /* PrivateChatMessage.swift in Sources */,
 				EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */,
 				EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */,

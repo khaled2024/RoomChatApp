@@ -82,7 +82,6 @@ class HomeViewController: UIViewController {
         self.spinner.dismiss(animated: true)
     }
     //MARK: - actions
-    
     @IBAction func createRoomBtnTapped(_ sender: UIButton) {
         guard let roomName = roomChatNameTF.text  , !roomName.isEmpty else{
             print("Please filed the Room Name.!")
