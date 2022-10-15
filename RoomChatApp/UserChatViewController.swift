@@ -14,25 +14,24 @@ class UserChatViewController: UIViewController {
     @IBOutlet weak var userChatTableView: UITableView!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var msgTextField: UITextField!
-    
+    //MARK: - vars
     var user: User? = nil
     var privateChat: PersonalChat?
     var messages = [PrivateChatMessage]()
     var privateChatID: String? = nil
+    var chat: PrivateChat?
     
-    //MARK: - vars
-    var msgs: [Message] = [Message(messageKey: "khaled", messageSender: "khaled", messageText: "hello", userId: "ksksksk"),Message(messageKey: "You", messageSender: "You", messageText: "hi.!", userId: "ksksksk"),Message(messageKey: "khaled", messageSender: "khaled", messageText: "how are you?", userId: "ksksksk"),Message(messageKey: "khaled", messageSender: "You", messageText: "I am fine ty", userId: "ksksksk"),Message(messageKey: "khaled", messageSender: "khaled", messageText: "nice to meet you", userId: "ksksksk")]
-//    var userTitle: String = ""
-    
+    //MARK: - life cycle
+    //    var userTitle: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         setDesign()
         userChatTableView.delegate = self
         userChatTableView.dataSource = self
-        print(user?.name ?? "" , user?.id ?? "")
-        print(self.privateChat)
-        print(self.privateChatID!)
-
+        //        print(user?.name ?? "" , user?.id ?? "")
+        //        print(self.privateChat)
+        //        print(self.privateChatID!)
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -47,6 +46,7 @@ class UserChatViewController: UIViewController {
         
         msgTextField.changePlaceholderColor(text: "Type your message here.")
     }
+    
     ///get user with id
     private func getUserWithId(_ id: String , completion: @escaping (_ userName: String?)-> Void){
         let ref = Database.database().reference()
@@ -61,7 +61,7 @@ class UserChatViewController: UIViewController {
     }
     /// observe messages
     func observeMessage(){
-        guard let privateChatName = self.privateChatID else{return}
+        guard let privateChatName = chat?.chatId else{return}
         guard let currentUserId = Auth.auth().currentUser?.uid else{return}
         let ref = Database.database().reference()
         ref.child("privateChats").child(currentUserId).child(privateChatName).child("Chat").child("Messages").observe(.childAdded) { snapShot in
@@ -81,15 +81,20 @@ class UserChatViewController: UIViewController {
         }
     }
     private func sendMsg(completion: @escaping (Bool)->Void){
-        guard let currentUserId = Auth.auth().currentUser?.uid , let user = self.user else{return}
-//        guard let privateChatName = self.privateChat?.chatID else{return}
-//         let privateChatName = "\(currentUserId)To\(user.id)"
-        guard let privateChatName = self.privateChatID else{return}
+        guard let currentUserId = Auth.auth().currentUser?.uid , let reciverName = self.chat?.reciver,let reciverID = chat?.chatId.substring(from: String.Index(encodedOffset: 30)) else{return}
+        print("reciver id is \(reciverID)")
+        //        guard let privateChatName = self.privateChat?.chatID else{return}
+        //         let privateChatName = "\(currentUserId)To\(user.id)"
+        guard let privateChatName = self.chat?.chatId else{return}
         let ref = Database.database().reference()
         let message = ref.child("privateChats").child(currentUserId).child(privateChatName).child("Chat")
         getUserWithId(currentUserId) { userName in
             if let userName = userName , let msg = self.msgTextField.text , !msg.isEmpty {
-                let dataArray: [String:Any] = ["SenderID":currentUserId , "SenderName":userName,"ReciverID":user.id, "ReciverName":user.name, "Msg":msg]
+                let dataArray: [String:Any] = ["SenderID":currentUserId,
+                                               "SenderName":userName,
+                                               "ReciverID":reciverID,
+                                               "ReciverName":reciverName,
+                                               "Msg":msg]
                 message.child("Messages").childByAutoId().setValue(dataArray) { error, ref in
                     guard error == nil else{
                         completion(false)

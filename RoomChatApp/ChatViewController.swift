@@ -12,7 +12,6 @@ class ChatViewController: UIViewController {
     //MARK: - Vars & Outlets
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var chatMessageView: UIView!
-    
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var messageTF: UITextField!
     var room: Room?
@@ -25,7 +24,7 @@ class ChatViewController: UIViewController {
         chatTableView.dataSource = self
         chatTableView.allowsSelection = false
         setDesign()
-
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.prefersLargeTitles = false
@@ -86,7 +85,6 @@ class ChatViewController: UIViewController {
                 }
             }
         }
-        
     }
     //MARK: - actions
     @IBAction func sendBtnTapped(_ sender: UIButton) {

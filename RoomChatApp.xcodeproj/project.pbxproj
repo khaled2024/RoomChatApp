@@ -16,6 +16,7 @@
 		EA85ED2528E612D900B03B2A /* RoomsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85ED2328E612D900B03B2A /* RoomsTableViewCell.swift */; };
 		EA85ED2628E612D900B03B2A /* RoomsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA85ED2428E612D900B03B2A /* RoomsTableViewCell.xib */; };
 		EA85ED2928E6211700B03B2A /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85ED2828E6211700B03B2A /* UsersViewController.swift */; };
+		EA8F4C9728FAB394008744FD /* PrivateChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F4C9628FAB394008744FD /* PrivateChat.swift */; };
 		EAA399AD28DE65130033B90A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA399AC28DE65130033B90A /* Room.swift */; };
 		EACBC9A028E6357F00428BBA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACBC99F28E6357F00428BBA /* User.swift */; };
 		EAD1E75328D4B64D00F81C20 /* FormCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */; };
@@ -51,6 +52,7 @@
 		EA85ED2328E612D900B03B2A /* RoomsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsTableViewCell.swift; sourceTree = "<group>"; };
 		EA85ED2428E612D900B03B2A /* RoomsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomsTableViewCell.xib; sourceTree = "<group>"; };
 		EA85ED2828E6211700B03B2A /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		EA8F4C9628FAB394008744FD /* PrivateChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChat.swift; sourceTree = "<group>"; };
 		EAA399AC28DE65130033B90A /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		EACBC99F28E6357F00428BBA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormCollectionViewCell.swift; path = "../New Group/FormCollectionViewCell.swift"; sourceTree = "<group>"; };
@@ -112,6 +114,24 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		EA5DFC9428F9870600E42D56 /* PrivateChats */ = {
+			isa = PBXGroup;
+			children = (
+				EA85ED2828E6211700B03B2A /* UsersViewController.swift */,
+				EAE411C028EA3C82007A68A3 /* YourChatsViewController.swift */,
+				EADED58D28E94DAB004E1856 /* UserChatViewController.swift */,
+			);
+			name = PrivateChats;
+			sourceTree = "<group>";
+		};
+		EA5DFC9528F9871700E42D56 /* RoomsChat */ = {
+			isa = PBXGroup;
+			children = (
+				EA51CCF628DFC9EA00CEEE08 /* ChatViewController.swift */,
+			);
+			name = RoomsChat;
+			sourceTree = "<group>";
+		};
 		EA5EEE3528D4E97A00192316 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,11 +148,9 @@
 			children = (
 				EAD4885528D4AA1200EB9AEE /* AuthViewController.swift */,
 				EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */,
-				EA51CCF628DFC9EA00CEEE08 /* ChatViewController.swift */,
+				EA5DFC9528F9871700E42D56 /* RoomsChat */,
 				EA847D4F28E0A1EA00E3A7AC /* ProfileViewController.swift */,
-				EA85ED2828E6211700B03B2A /* UsersViewController.swift */,
-				EADED58D28E94DAB004E1856 /* UserChatViewController.swift */,
-				EAE411C028EA3C82007A68A3 /* YourChatsViewController.swift */,
+				EA5DFC9428F9870600E42D56 /* PrivateChats */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -155,6 +173,7 @@
 				EACBC99F28E6357F00428BBA /* User.swift */,
 				EAE411C228EA3D3C007A68A3 /* PeronalChats.swift */,
 				EAFA718628F1ED9E005A3C98 /* PrivateChatMessage.swift */,
+				EA8F4C9628FAB394008744FD /* PrivateChat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,6 +364,7 @@
 				EADED58E28E94DAB004E1856 /* UserChatViewController.swift in Sources */,
 				EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */,
 				EACBC9A028E6357F00428BBA /* User.swift in Sources */,
+				EA8F4C9728FAB394008744FD /* PrivateChat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

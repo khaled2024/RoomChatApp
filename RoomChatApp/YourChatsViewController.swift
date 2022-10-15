@@ -11,22 +11,26 @@ import FirebaseDatabase
 class YourChatsViewController: UIViewController {
     
     @IBOutlet weak var yourChatsTableView: UITableView!
-    
     var usersId = [String]()
     var privateChat = [String]()
     var privateUserIds = [String]()
+    var myChats = [PrivateChat]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         yourChatsTableView.delegate = self
         yourChatsTableView.dataSource = self
         yourChatsTableView.register(UINib(nibName: RoomsTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: RoomsTableViewCell.identifier)
+//        getUsersChats()
+        getPrivateChats()
+
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        getUsersChats()
-        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+//        self.myChats = []
     }
     //MARK: - private func
     private func getUsersChats(){
@@ -38,6 +42,7 @@ class YourChatsViewController: UIViewController {
                 }
                 self.getPrivateChatsIDs()
                 self.observeChats()
+//                self.getMessage()
             }
         }
     }
@@ -50,11 +55,44 @@ class YourChatsViewController: UIViewController {
     }
     private func observeChats(){
         guard let currentID = Auth.auth().currentUser?.uid else{return}
+        for id in privateUserIds {
+            let ref = Database.database().reference().child("privateChats").child(currentID).child(id).child("chatName")
+            ref.observe(.value) { snapShot in
+                if let snap = snapShot.value as? String{
+                    print(snap)
+                }
+            }
+        }
+    }
+    private func getMessage(){
+        guard let currentID = Auth.auth().currentUser?.uid else{return}
         let ref = Database.database().reference()
         for id in privateUserIds {
-            ref.child("privateChats").child(currentID).child(id).child("Reciver").observe(.value) { snapShot in
-                if let name = snapShot.value as? String{
-                    self.privateChat.append(name)
+            ref.child("privateChats").child(currentID).child(id).child("Chat").child("Messages").observe(.value) { snapShot in
+                if let msg = snapShot.value as? [String:Any]{
+                   print(msg)
+                }
+            }
+        }
+    }
+    
+//    private func getUserIDChat(){
+//        guard let currentID = Auth.auth().currentUser?.uid else{return}
+//        let ref = Database.database().reference().child("privateChats").child(currentID).observe(.value) { snapShot in
+//            if let cha
+//        }
+//    }
+    
+    private func getPrivateChats(){
+        guard let currentID = Auth.auth().currentUser?.uid else{return}
+        DispatchQueue.global().async {
+            let ref = Database.database().reference().child("privateChats").child(currentID)
+            ref.observe(.childAdded) { snapShot in
+                if let dataArray = snapShot.value as? [String:Any]{
+                    if let chatName = dataArray["chatName"]as? String , let reciver = dataArray["Reciver"]as? String{
+                        let chat = PrivateChat(chatId: snapShot.key, chatName: chatName, reciver: reciver)
+                        self.myChats.append(chat)
+                    }
                 }
                 DispatchQueue.main.async {
                     self.yourChatsTableView.reloadWithAnimation()
@@ -62,34 +100,42 @@ class YourChatsViewController: UIViewController {
             }
         }
     }
-    
+    func getMoreChats(){
+        guard let currentID = Auth.auth().currentUser?.uid else{return}
+        let ref = Database.database().reference().child("privateChats").child(currentID)
+    }
 }
 //MARK: - UITableViewDelegate,UITableViewDataSource
 extension YourChatsViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return privateChat.count
+        return myChats.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RoomsTableViewCell.identifier, for: indexPath)as? RoomsTableViewCell else{
             return UITableViewCell()
         }
-        let selectedPrivateChat = privateChat[indexPath.row]
+//        let selectedPrivateChat = privateChat[indexPath.row]
+//        print(selectedPrivateChat)
+        
         //        let model = self.privateChat[indexPath.row]
         //        cell.configForPrivateChat(model: model)
+        let selectedPrivateChat = myChats[indexPath.row].reciver
         cell.roomChatName.text = selectedPrivateChat
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let selectedPrivateChat = privateChat[indexPath.row]
+        let selectedPrivateChat = myChats[indexPath.row]
+        print("tapped")
         let controller = storyboard?.instantiateViewController(withIdentifier: "UserChatViewController")as! UserChatViewController
-        controller.title = selectedPrivateChat
+        controller.title = selectedPrivateChat.reciver
+        controller.chat = selectedPrivateChat
         self.navigationController?.pushViewController(controller, animated: true)
         self.navigationController?.navigationBar.prefersLargeTitles = false
         
     }
 }
-
+//MARK: - Comments
 //let ref = Database.database().reference().child("privateChats").child(currentUserID).child(privateUserId).child("Chat").child("Messages")
 //ref.observe(.value) { [weak self] snapShot in
 //    for snap in snapShot.children {

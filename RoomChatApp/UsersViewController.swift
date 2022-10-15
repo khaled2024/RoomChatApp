@@ -136,21 +136,26 @@ extension UsersViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let user = filteredUsers[indexPath.row]
+        
         createPrivateChat(reciverName: user.name,userId: user.id) { success in
             if success {
                 print("successfuly created private chat :)")
-                if let index:Int = self.filteredUsers.firstIndex(where: {$0.id == user.id}) {
-                    self.filteredUsers.remove(at: index)
-                    DispatchQueue.main.async {
-                        self.usersTableView.reloadData()
+                let alert = UIAlertController(title: "Congratulations", message: "Your chat with name '\(user.name)' created Successfuly👌", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default,handler: { _ in
+                    if let index:Int = self.filteredUsers.firstIndex(where: {$0.id == user.id}) {
+                        self.filteredUsers.remove(at: index)
+                        DispatchQueue.main.async {
+                            self.usersTableView.reloadData()
+                        }
                     }
-                }
-                let controller = self.storyboard?.instantiateViewController(withIdentifier: "UserChatViewController")as! UserChatViewController
-                controller.title = user.name
-                controller.user = user
-                controller.privateChatID = self.privateChatID
-                self.navigationController?.pushViewController(controller, animated: true)
-                self.navigationController?.navigationBar.prefersLargeTitles = false
+                }))
+                self.present(alert, animated: true)
+//                let controller = self.storyboard?.instantiateViewController(withIdentifier: "UserChatViewController")as! UserChatViewController
+//                controller.title = user.name
+//                controller.user = user
+//                controller.privateChatID = self.privateChatID
+//                self.navigationController?.pushViewController(controller, animated: true)
+//                self.navigationController?.navigationBar.prefersLargeTitles = false
             }else{
                 print("error of creating chat :(")
             }
