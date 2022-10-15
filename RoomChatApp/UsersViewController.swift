@@ -17,8 +17,9 @@ class UsersViewController: UIViewController {
     
     let currentUserid = Auth.auth().currentUser?.uid
     var users = [User]()
-    
     var filteredUsers: [User] = []
+    
+    
     var usersId = [String]()
     var privateChatID: String? = nil
     //MARK: - Life cycle
@@ -54,6 +55,7 @@ class UsersViewController: UIViewController {
                 if let email = dictionary["email"]as? String , let name = dictionary["name"]as?String{
                     let user = User(email: email, name: name)
                     self.users.append(user)
+                    self.filteredUsers.append(user)
                     DispatchQueue.main.async {
                         self.usersTableView.reloadWithAnimation()
                     }
@@ -140,11 +142,11 @@ class UsersViewController: UIViewController {
 //MARK: - UITableViewDelegate
 extension UsersViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return filteredUsers.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UserTableViewCell.identifier, for: indexPath)as? UserTableViewCell else{return UITableViewCell() }
-        let user = users[indexPath.row]
+        let user = filteredUsers[indexPath.row]
         cell.config(user: user)
         return cell
     }
@@ -182,12 +184,12 @@ extension UsersViewController: UISearchBarDelegate{
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchBar.endEditing(true)
-//        self.filteredUsers = self.users
+        self.filteredUsers = self.users
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        self.filteredUsers = searchText.isEmpty ? users : users.filter({ model in
-//            return model.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-//        })
-//        usersTableView.reloadData()
+        self.filteredUsers = searchText.isEmpty ? users : users.filter({ model in
+            return model.name?.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+        })
+        usersTableView.reloadWithAnimation()
     }
 }
