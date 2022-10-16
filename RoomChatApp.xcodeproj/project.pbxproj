@@ -230,6 +230,7 @@
 			children = (
 				EAA399AB28DE65050033B90A /* Model */,
 				EA4F155028D4F02F007A0DC8 /* Resources */,
+				EAE9314128FC367E00521235 /* Helper */,
 				EAD4886528D4ADF100EB9AEE /* Extensions */,
 				EA5EEE3528D4E97A00192316 /* Cells */,
 				EA5EEE3628D4E98E00192316 /* Views */,
@@ -250,9 +251,16 @@
 				EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */,
 				EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */,
 				EAD7677128FC198500951DCE /* Extension+UiimageView.swift */,
-				EA52382328FB8E7000A21A59 /* Helper.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EAE9314128FC367E00521235 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				EA52382328FB8E7000A21A59 /* Helper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
