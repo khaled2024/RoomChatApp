@@ -10,6 +10,6 @@ import UIKit
 struct User{
     var email: String?
     var name: String?
-    
+    var profileImageURL: String?
     
 }

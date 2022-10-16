@@ -72,7 +72,6 @@ class ProfileViewController: UIViewController {
         self.present(controller, animated: true)
         print("exit")
     }
-    
 }
 
 //MARK: - tableView delegate

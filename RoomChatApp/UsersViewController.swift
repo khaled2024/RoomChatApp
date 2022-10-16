@@ -19,7 +19,6 @@ class UsersViewController: UIViewController {
     var users = [User]()
     var filteredUsers: [User] = []
     
-    
     var usersId = [String]()
     var privateChatID: String? = nil
     //MARK: - Life cycle
@@ -52,8 +51,8 @@ class UsersViewController: UIViewController {
         Database.database().reference().child("users").observe(.childAdded, with: { snapShot in
             print(snapShot)
             if let dictionary = snapShot.value as? [String:AnyObject] {
-                if let email = dictionary["email"]as? String , let name = dictionary["name"]as?String{
-                    let user = User(email: email, name: name)
+                if let email = dictionary["email"]as? String , let name = dictionary["name"]as?String , let imageURL = dictionary["profileImageURL"]as? String{
+                    let user = User(email: email, name: name,profileImageURL: imageURL)
                     self.users.append(user)
                     self.filteredUsers.append(user)
                     DispatchQueue.main.async {

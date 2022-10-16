@@ -31,6 +31,7 @@
 		EAD4885B28D4AA1300EB9AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885A28D4AA1300EB9AEE /* Assets.xcassets */; };
 		EAD4885E28D4AA1300EB9AEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAD4885C28D4AA1300EB9AEE /* LaunchScreen.storyboard */; };
 		EAD4886728D4AE0300EB9AEE /* Extension+UiLable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */; };
+		EAD7677228FC198500951DCE /* Extension+UiimageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7677128FC198500951DCE /* Extension+UiimageView.swift */; };
 		EADED58E28E94DAB004E1856 /* UserChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADED58D28E94DAB004E1856 /* UserChatViewController.swift */; };
 		EAE411C128EA3C82007A68A3 /* YourChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE411C028EA3C82007A68A3 /* YourChatsViewController.swift */; };
 		EAE411C328EA3D3C007A68A3 /* PeronalChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE411C228EA3D3C007A68A3 /* PeronalChats.swift */; };
@@ -73,6 +74,7 @@
 		EAD4885D28D4AA1300EB9AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EAD4885F28D4AA1300EB9AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EAD4886628D4AE0300EB9AEE /* Extension+UiLable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiLable.swift"; sourceTree = "<group>"; };
+		EAD7677128FC198500951DCE /* Extension+UiimageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiimageView.swift"; sourceTree = "<group>"; };
 		EADED58D28E94DAB004E1856 /* UserChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChatViewController.swift; sourceTree = "<group>"; };
 		EAE411C028EA3C82007A68A3 /* YourChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourChatsViewController.swift; sourceTree = "<group>"; };
 		EAE411C228EA3D3C007A68A3 /* PeronalChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeronalChats.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 				EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */,
 				EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */,
 				EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */,
+				EAD7677128FC198500951DCE /* Extension+UiimageView.swift */,
 				EA52382328FB8E7000A21A59 /* Helper.swift */,
 			);
 			path = Extensions;
@@ -395,6 +398,7 @@
 				EA847D4E28E085C200E3A7AC /* Message.swift in Sources */,
 				EA847D4C28E081F600E3A7AC /* ChatTableViewCell.swift in Sources */,
 				EAEF1B8228D4CFE3004B2489 /* Extension+UitextField.swift in Sources */,
+				EAD7677228FC198500951DCE /* Extension+UiimageView.swift in Sources */,
 				EADED58E28E94DAB004E1856 /* UserChatViewController.swift in Sources */,
 				EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */,
 				EACBC9A028E6357F00428BBA /* User.swift in Sources */,
