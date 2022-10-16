@@ -672,7 +672,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4rg-dX-CeY">
-                                <rect key="frame" x="0.0" y="135" width="414" height="678"/>
+                                <rect key="frame" x="0.0" y="315" width="414" height="498"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ProfileTableViewCell" id="FUn-ns-7FR" customClass="ProfileTableViewCell" customModule="RoomChatApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="43.5"/>
@@ -701,6 +702,13 @@
                                     <constraint firstAttribute="bottom" secondItem="a0h-6L-cnE" secondAttribute="bottom" constant="10" id="wlh-Iz-OzE"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="JAV-XD-A5w">
+                                <rect key="frame" x="132" y="155" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="3Lk-jk-i21"/>
+                                    <constraint firstAttribute="height" constant="150" id="Uos-C5-ZDx"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OLE-1c-yhj"/>
                         <color key="backgroundColor" name="mainColor"/>
@@ -708,15 +716,18 @@
                             <constraint firstItem="fSU-tv-fwL" firstAttribute="top" secondItem="Y66-mn-4Td" secondAttribute="top" id="2Z5-n9-s5B"/>
                             <constraint firstItem="OLE-1c-yhj" firstAttribute="trailing" secondItem="4rg-dX-CeY" secondAttribute="trailing" id="4ZB-qb-QFc"/>
                             <constraint firstItem="fSU-tv-fwL" firstAttribute="leading" secondItem="OLE-1c-yhj" secondAttribute="leading" id="5sJ-Y5-AOm"/>
+                            <constraint firstItem="JAV-XD-A5w" firstAttribute="centerX" secondItem="Y66-mn-4Td" secondAttribute="centerX" id="7qW-oR-cqd"/>
                             <constraint firstItem="OLE-1c-yhj" firstAttribute="bottom" secondItem="4rg-dX-CeY" secondAttribute="bottom" id="DCZ-gi-Zbx"/>
-                            <constraint firstItem="4rg-dX-CeY" firstAttribute="top" secondItem="fSU-tv-fwL" secondAttribute="bottom" id="UcV-gi-Y2q"/>
+                            <constraint firstItem="JAV-XD-A5w" firstAttribute="top" secondItem="fSU-tv-fwL" secondAttribute="bottom" constant="20" id="SGd-lO-aLV"/>
                             <constraint firstItem="fSU-tv-fwL" firstAttribute="trailing" secondItem="OLE-1c-yhj" secondAttribute="trailing" id="VR9-Na-zAN"/>
+                            <constraint firstItem="4rg-dX-CeY" firstAttribute="top" secondItem="JAV-XD-A5w" secondAttribute="bottom" constant="10" id="Zv2-pt-NLl"/>
                             <constraint firstItem="4rg-dX-CeY" firstAttribute="leading" secondItem="OLE-1c-yhj" secondAttribute="leading" id="f6x-kc-dHQ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Setting" image="gearshape.fill" catalog="system" id="b7D-gO-Uov"/>
                     <connections>
                         <outlet property="profileTableView" destination="4rg-dX-CeY" id="n7l-Vx-fBY"/>
+                        <outlet property="userProfile" destination="JAV-XD-A5w" id="jiG-eQ-WD9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lmP-Oc-HLn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

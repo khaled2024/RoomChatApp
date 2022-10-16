@@ -32,7 +32,7 @@ class AuthViewController: UIViewController {
     @objc func signUpTapped(_ sender: UIButton){
         let indexPath = IndexPath(row: 1, section: 0)
         let cell = self.collectionView.cellForItem(at: indexPath)as! FormCollectionViewCell
-
+        
         guard let email = cell.emailTF.text , !email.isEmpty ,
               let pass = cell.passwordTF.text, !pass.isEmpty ,
               let userName = cell.userNameTF.text, !userName.isEmpty  else{
@@ -44,8 +44,9 @@ class AuthViewController: UIViewController {
                 self.displayError(errorText: error!.localizedDescription)
                 return
             }
-            if let image = self.userProfileImage.image, let imageData = image.pngData(){
-                let fileName = "\(uid)_\(email)_profile_picture.png"
+            // make it jpg to can upload the image with small size is firebase storage
+            if let image = self.userProfileImage.image, let imageData = image.jpegData(compressionQuality: 0.1){
+                let fileName = "\(uid)_\(email)_profile_picture.jpg"
                 Helper.shared.uploadProfilePicture(with: imageData, fileName: fileName) { result in
                     switch result{
                     case.success(let downloadURL):
@@ -88,7 +89,9 @@ class AuthViewController: UIViewController {
                 return
             }
             // هنا بعمل dismiss للاسكرين عشان ال home vc هيا ال intial controller عندي فلما اضغط علي logout بروح ل home دي ولما احب ادخل تاني بعمل dismiss بقي عشان هما فوق بعض كده.
-            self.dismiss(animated: true,completion: nil)
+//         ######or   self.dismiss(animated: true,completion: nil)
+            self.presentHomeScreen()
+            
             print(result)
         }
     }

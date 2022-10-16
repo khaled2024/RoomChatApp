@@ -12,7 +12,6 @@ public enum StorageError : Error{
     case failedToUpload
     case failedToGetReference
 }
-
 class Helper{
     static let shared = Helper()
     private let storage = Storage.storage().reference()

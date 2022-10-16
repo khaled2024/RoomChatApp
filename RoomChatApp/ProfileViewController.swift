@@ -11,19 +11,22 @@ import FirebaseDatabase
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var userProfile: UIImageView!
     @IBOutlet weak var profileTableView: UITableView!
     private var userName: String = ""
     private var email: String = ""
     private var sections = [Setting]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configSetting()
         profileTableView.delegate = self
         profileTableView.dataSource = self
+        self.userProfile.layer.cornerRadius = userProfile.frame.size.height/2
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = false
-        configUserName()
+        configUserData()
     }
     
     //MARK: - Private functions
@@ -37,15 +40,19 @@ class ProfileViewController: UIViewController {
             self?.signOutTapped()
         })]))
     }
-    private func configUserName(){
+    private func configUserData(){
         let ref = Database.database().reference()
         if let id = Auth.auth().currentUser?.uid { ref.child("users").child(id).observeSingleEvent(of: .value) { snapShot in
-            if let dataArray = snapShot.value as? [String:Any] , let name = dataArray["name"]as? String , let email = dataArray["email"]as? String{
+            if let dataArray = snapShot.value as? [String:Any] , let name = dataArray["name"]as? String , let email = dataArray["email"]as? String,let profileImageURL = dataArray["profileImageURL"]as? String{
                 self.userName = name
                 self.email = email
+                self.configProfileImage(with: profileImageURL)
+                }
             }
         }
-        }
+    }
+    private func configProfileImage(with urlString: String){
+        self.userProfile.loadDataUsingCacheWithUrlString(urlString: urlString)
     }
     private func showProfileName(){
         let alert = UIAlertController(title: "Profile", message: "Name: \(self.userName)🧟‍♂️ \n Email: \(self.email)✉️", preferredStyle: .alert)
