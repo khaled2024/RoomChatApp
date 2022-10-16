@@ -13,7 +13,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profileTableView: UITableView!
     private var userName: String = ""
-    
+    private var email: String = ""
     private var sections = [Setting]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,19 +36,19 @@ class ProfileViewController: UIViewController {
         sections.append(Setting(title: "Account", option: [Option(title: "Sign out", handler: { [weak self] in
             self?.signOutTapped()
         })]))
-        
     }
     private func configUserName(){
         let ref = Database.database().reference()
-        if let id = Auth.auth().currentUser?.uid { ref.child("users").child(id).child("userName").observeSingleEvent(of: .value) { snapShot in
-            if let userName = snapShot.value as? String{
-                self.userName = userName
-                }
+        if let id = Auth.auth().currentUser?.uid { ref.child("users").child(id).observeSingleEvent(of: .value) { snapShot in
+            if let dataArray = snapShot.value as? [String:Any] , let name = dataArray["name"]as? String , let email = dataArray["email"]as? String{
+                self.userName = name
+                self.email = email
             }
+        }
         }
     }
     private func showProfileName(){
-        let alert = UIAlertController(title: "Profile", message: "Name: \(self.userName)", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Profile", message: "Name: \(self.userName)🧟‍♂️ \n Email: \(self.email)✉️", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)

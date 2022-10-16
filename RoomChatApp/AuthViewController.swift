@@ -8,15 +8,18 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-
 class AuthViewController: UIViewController {
     //MARK: - outlets & vars
+    @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleeLable: UILabel!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        configProfileImage()
     }
     //MARK: - private functions
     @objc func slideToNextSlide(_ sender: UIButton){
@@ -27,9 +30,11 @@ class AuthViewController: UIViewController {
         let indexPath = IndexPath(row: 0, section: 0)
         self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
+    
     @objc func signUpTapped(_ sender: UIButton){
         let indexPath = IndexPath(row: 1, section: 0)
         let cell = self.collectionView.cellForItem(at: indexPath)as! FormCollectionViewCell
+
         guard let email = cell.emailTF.text , !email.isEmpty ,
               let pass = cell.passwordTF.text, !pass.isEmpty ,
               let userName = cell.userNameTF.text, !userName.isEmpty  else{
@@ -37,17 +42,30 @@ class AuthViewController: UIViewController {
             return
         }
         Auth.auth().createUser(withEmail: email, password: pass) { result, error in
-            guard error == nil , let result = result else{
+            guard error == nil , let uid = result?.user.uid , let email = result?.user.email else{
                 self.displayError(errorText: error!.localizedDescription)
                 return
             }
-            print("result: \(result)")
+            if let image = self.userProfileImage.image, let imageData = image.pngData(){
+                let fileName = "\(uid)_\(email)_profile_picture.png"
+                Helper.shared.uploadProfilePicture(with: imageData, fileName: fileName) { result in
+                    switch result{
+                    case.success(let downloadURL):
+                        print(downloadURL)
+                        let values: [String:Any] = ["name" : userName,"email":email,"profileImageURL": downloadURL]
+                        self.registerUserIntoDBWithID(uid: uid, values: values)
+                    case.failure(let error):
+                        print(print("storage manager error\(error)"))
+                    }
+                }
+            }
             self.dismiss(animated: true,completion: nil)
-            let refrence = Database.database().reference()
-            let user = refrence.child("users").child(result.user.uid)
-            let dataArray: [String:Any] = ["name" : userName,"email":email]
-            user.setValue(dataArray)
         }
+    }
+    private func registerUserIntoDBWithID(uid: String , values: [String:Any]){
+        let refrence = Database.database().reference()
+        let user = refrence.child("users").child(uid)
+        user.setValue(values)
     }
     @objc func signInTapped(){
         let indecPath = IndexPath(row: 0, section: 0)
@@ -68,7 +86,6 @@ class AuthViewController: UIViewController {
             print(result)
         }
     }
-    
     private func displayError(errorText: String){
         let alert = UIAlertController(title: "Error ❌", message: errorText, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss 👌", style: .cancel, handler: nil))
@@ -94,6 +111,7 @@ extension AuthViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.slideButton.setTitle("Sign up 👉🏻", for: .normal)
             cell.slideButton.addTarget(self, action: #selector(slideToNextSlide), for: .touchUpInside)
             cell.actionButton.addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
+            self.userProfileImage.isUserInteractionEnabled = false
         }else{
             // signUp cell
             cell.usernameView.isHidden = false
@@ -101,6 +119,7 @@ extension AuthViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.slideButton.setTitle("👈🏻 Sign in", for: .normal)
             cell.slideButton.addTarget(self, action: #selector(slideToPrviousSlide), for: .touchUpInside)
             cell.actionButton.addTarget(self, action: #selector(signUpTapped), for: .touchUpInside)
+            self.userProfileImage.isUserInteractionEnabled = true
         }
         return cell
     }

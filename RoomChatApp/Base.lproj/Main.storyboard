@@ -42,7 +42,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gJ5-CM-gSk">
-                                <rect key="frame" x="41.5" y="98" width="331" height="77"/>
+                                <rect key="frame" x="41.5" y="78" width="331" height="77"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chatomat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gY5-ar-tGK">
                                         <rect key="frame" x="0.0" y="0.0" width="331" height="50"/>
@@ -58,8 +58,15 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatLogo" translatesAutoresizingMaskIntoConstraints="NO" id="PxE-n9-YkH">
+                                <rect key="frame" x="142" y="175" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="Tml-J6-H8h"/>
+                                    <constraint firstAttribute="width" constant="130" id="wSA-OH-NnN"/>
+                                </constraints>
+                            </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7z0-eA-6MK">
-                                <rect key="frame" x="0.0" y="225" width="414" height="671"/>
+                                <rect key="frame" x="0.0" y="305" width="414" height="591"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="csr-R8-2X0">
                                     <size key="itemSize" width="414" height="454"/>
@@ -69,7 +76,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FormCollectionViewCell" id="kV4-qo-p7m" customClass="FormCollectionViewCell" customModule="RoomChatApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="108.5" width="414" height="454"/>
+                                        <rect key="frame" x="0.0" y="68.5" width="414" height="454"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uOS-wb-S9f">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="454"/>
@@ -207,14 +214,17 @@
                             <constraint firstAttribute="bottom" secondItem="7z0-eA-6MK" secondAttribute="bottom" id="6BO-NY-odm"/>
                             <constraint firstItem="7z0-eA-6MK" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Axe-lV-w5E"/>
                             <constraint firstItem="gJ5-CM-gSk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="Dsr-uO-cod"/>
-                            <constraint firstItem="7z0-eA-6MK" firstAttribute="top" secondItem="gJ5-CM-gSk" secondAttribute="bottom" constant="50" id="emq-QA-IoI"/>
-                            <constraint firstItem="gJ5-CM-gSk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="hI0-oY-iPv"/>
+                            <constraint firstItem="PxE-n9-YkH" firstAttribute="top" secondItem="gJ5-CM-gSk" secondAttribute="bottom" constant="20" id="GY4-8P-rMT"/>
+                            <constraint firstItem="PxE-n9-YkH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jts-TM-BuS"/>
+                            <constraint firstItem="gJ5-CM-gSk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="hI0-oY-iPv"/>
+                            <constraint firstItem="7z0-eA-6MK" firstAttribute="top" secondItem="PxE-n9-YkH" secondAttribute="bottom" id="uml-4T-5IX"/>
                             <constraint firstItem="7z0-eA-6MK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vb8-AH-s6a"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="7z0-eA-6MK" id="cUb-RO-2gd"/>
                         <outlet property="titleeLable" destination="gY5-ar-tGK" id="NmS-eg-98B"/>
+                        <outlet property="userProfileImage" destination="PxE-n9-YkH" id="SD6-wi-KBl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -828,6 +838,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chatLogo" width="300" height="300"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="message.fill" catalog="system" width="128" height="114"/>
         <image name="noDataFound" width="447" height="559"/>

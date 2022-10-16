@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		EA4F154F28D4EFDF007A0DC8 /* Extension+UiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */; };
 		EA51CCF728DFC9EA00CEEE08 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA51CCF628DFC9EA00CEEE08 /* ChatViewController.swift */; };
+		EA52382428FB8E7000A21A59 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA52382328FB8E7000A21A59 /* Helper.swift */; };
+		EA559D9828FB7505003004B0 /* AuthViewController+handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA559D9728FB7505003004B0 /* AuthViewController+handler.swift */; };
 		EA847D4C28E081F600E3A7AC /* ChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA847D4B28E081F600E3A7AC /* ChatTableViewCell.swift */; };
 		EA847D4E28E085C200E3A7AC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA847D4D28E085C200E3A7AC /* Message.swift */; };
 		EA847D5028E0A1EA00E3A7AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA847D4F28E0A1EA00E3A7AC /* ProfileViewController.swift */; };
@@ -47,6 +49,8 @@
 		AC7E6E41A3003A16550E3475 /* Pods-RoomChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoomChatApp.debug.xcconfig"; path = "Target Support Files/Pods-RoomChatApp/Pods-RoomChatApp.debug.xcconfig"; sourceTree = "<group>"; };
 		EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UiView.swift"; sourceTree = "<group>"; };
 		EA51CCF628DFC9EA00CEEE08 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		EA52382328FB8E7000A21A59 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		EA559D9728FB7505003004B0 /* AuthViewController+handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthViewController+handler.swift"; sourceTree = "<group>"; };
 		EA847D4B28E081F600E3A7AC /* ChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableViewCell.swift; sourceTree = "<group>"; };
 		EA847D4D28E085C200E3A7AC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		EA847D4F28E0A1EA00E3A7AC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +122,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		EA52382228FB848500A21A59 /* AuthViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EAD4885528D4AA1200EB9AEE /* AuthViewController.swift */,
+				EA559D9728FB7505003004B0 /* AuthViewController+handler.swift */,
+			);
+			name = AuthViewController;
+			sourceTree = "<group>";
+		};
 		EA5DFC9428F9870600E42D56 /* PrivateChats */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +164,7 @@
 		EA5EEE3628D4E98E00192316 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EAD4885528D4AA1200EB9AEE /* AuthViewController.swift */,
+				EA52382228FB848500A21A59 /* AuthViewController */,
 				EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */,
 				EA5DFC9528F9871700E42D56 /* RoomsChat */,
 				EA847D4F28E0A1EA00E3A7AC /* ProfileViewController.swift */,
@@ -234,6 +247,7 @@
 				EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */,
 				EA4F154E28D4EFDF007A0DC8 /* Extension+UiView.swift */,
 				EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */,
+				EA52382328FB8E7000A21A59 /* Helper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -284,6 +298,9 @@
 				Base,
 			);
 			mainGroup = EAD4884528D4AA1200EB9AEE;
+			packageReferences = (
+				EA52382128FB807200A21A59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = EAD4884F28D4AA1200EB9AEE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -361,6 +378,7 @@
 				EA51CCF728DFC9EA00CEEE08 /* ChatViewController.swift in Sources */,
 				EA847D5428E0A72500E3A7AC /* ProfileTableViewCell.swift in Sources */,
 				EAD4886728D4AE0300EB9AEE /* Extension+UiLable.swift in Sources */,
+				EA52382428FB8E7000A21A59 /* Helper.swift in Sources */,
 				EA847D5028E0A1EA00E3A7AC /* ProfileViewController.swift in Sources */,
 				EAE411C128EA3C82007A68A3 /* YourChatsViewController.swift in Sources */,
 				EA85ED2528E612D900B03B2A /* RoomsTableViewCell.swift in Sources */,
@@ -380,6 +398,7 @@
 				EADED58E28E94DAB004E1856 /* UserChatViewController.swift in Sources */,
 				EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */,
 				EACBC9A028E6357F00428BBA /* User.swift in Sources */,
+				EA559D9828FB7505003004B0 /* AuthViewController+handler.swift in Sources */,
 				EA8F4C9728FAB394008744FD /* PrivateChat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,6 +623,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA52382128FB807200A21A59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = EAD4884628D4AA1200EB9AEE /* Project object */;
 }
