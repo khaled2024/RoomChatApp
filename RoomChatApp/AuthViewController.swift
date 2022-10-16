@@ -13,8 +13,6 @@ class AuthViewController: UIViewController {
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleeLable: UILabel!
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -59,8 +57,16 @@ class AuthViewController: UIViewController {
                     }
                 }
             }
-            self.dismiss(animated: true,completion: nil)
+            self.presentHomeScreen()
+            //  ######or  self.dismiss(animated: true)
         }
+    }
+    private func presentHomeScreen(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "MainTabBar")as! UITabBarController
+        controller.modalTransitionStyle = .flipHorizontal
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true)
     }
     private func registerUserIntoDBWithID(uid: String , values: [String:Any]){
         let refrence = Database.database().reference()
@@ -98,14 +104,14 @@ extension AuthViewController: UICollectionViewDelegate, UICollectionViewDataSour
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }
-    
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FormCollectionViewCell", for: indexPath) as! FormCollectionViewCell
         cell.emailTF.changePlaceholderColor(text: "Email")
         cell.passwordTF.changePlaceholderColor(text: "Password")
         cell.userNameTF.changePlaceholderColor(text: "User Name")
         cell.configDesign()
-        if indexPath.row == 0 { // signIn cell
+        if indexPath.row == 0 {
+            // SignIn cell
             cell.usernameView.isHidden = true
             cell.actionButton.setTitle("Login", for: .normal)
             cell.slideButton.setTitle("Sign up 👉🏻", for: .normal)
@@ -113,7 +119,7 @@ extension AuthViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.actionButton.addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
             self.userProfileImage.isUserInteractionEnabled = false
         }else{
-            // signUp cell
+            // SignUp Cell
             cell.usernameView.isHidden = false
             cell.actionButton.setTitle("Sign up", for: .normal)
             cell.slideButton.setTitle("👈🏻 Sign in", for: .normal)

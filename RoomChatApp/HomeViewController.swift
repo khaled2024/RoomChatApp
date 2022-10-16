@@ -26,11 +26,10 @@ class HomeViewController: UIViewController {
         roomsTableView.dataSource = self
         registerTableView()
         observeRooms()
-        configDesign()
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+        configDesign()
+
     }
     //الفانكشن دي بتشتغل كل مره الفيو بيظهر عكس ال view will appear
     override func viewDidAppear(_ animated: Bool) {
@@ -49,6 +48,8 @@ class HomeViewController: UIViewController {
     private func configDesign(){
         self.createRoomView.addLayer(cornerRadius: 15, shadowColor: .darkGray, shadowOffsetWidth: 0, shadowOffsetHeight: 0, shadowOpacity: 0)
         self.createRoomBtn.addLayer(cornerRadius: 15, shadowColor: .darkGray, shadowOffsetWidth: 0, shadowOffsetHeight: 0, shadowOpacity: 0)
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     func presentAuthScreen(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -72,7 +73,6 @@ class HomeViewController: UIViewController {
                     }
                 }
             }else{
-                
                 let alert = UIAlertController(title: "Error", message: "Some server issues :(", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cancle", style: .cancel))
                 self.present(alert, animated: true)
@@ -115,15 +115,11 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "roomCell")!
         let room = rooms[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: RoomsTableViewCell.identifier, for: indexPath)as! RoomsTableViewCell
         cell.config(model: room)
         return cell
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 50
-//    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedRoom = rooms[indexPath.row]

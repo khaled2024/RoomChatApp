@@ -71,6 +71,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="user" width="256" height="256"/>
+        <image name="user" width="170.66667175292969" height="170.66667175292969"/>
     </resources>
 </document>

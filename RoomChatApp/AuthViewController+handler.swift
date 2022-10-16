@@ -8,7 +8,7 @@
 import UIKit
 extension AuthViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     func configProfileImage(){
-        userProfileImage.isUserInteractionEnabled = true
+        self.userProfileImage.isUserInteractionEnabled = true
         userProfileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profileImageTapped)))
         userProfileImage.layer.cornerRadius = userProfileImage.frame.size.height/2
     }

@@ -58,15 +58,15 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatLogo" translatesAutoresizingMaskIntoConstraints="NO" id="PxE-n9-YkH">
-                                <rect key="frame" x="142" y="175" width="130" height="130"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="6nd-7o-t9z">
+                                <rect key="frame" x="147" y="175" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="Tml-J6-H8h"/>
-                                    <constraint firstAttribute="width" constant="130" id="wSA-OH-NnN"/>
+                                    <constraint firstAttribute="width" constant="120" id="Sha-pz-7c3"/>
+                                    <constraint firstAttribute="height" constant="120" id="Wfx-rb-V6X"/>
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7z0-eA-6MK">
-                                <rect key="frame" x="0.0" y="305" width="414" height="591"/>
+                                <rect key="frame" x="0.0" y="265" width="414" height="631"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="csr-R8-2X0">
                                     <size key="itemSize" width="414" height="454"/>
@@ -76,7 +76,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FormCollectionViewCell" id="kV4-qo-p7m" customClass="FormCollectionViewCell" customModule="RoomChatApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="68.5" width="414" height="454"/>
+                                        <rect key="frame" x="0.0" y="88.5" width="414" height="454"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uOS-wb-S9f">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="454"/>
@@ -214,17 +214,17 @@
                             <constraint firstAttribute="bottom" secondItem="7z0-eA-6MK" secondAttribute="bottom" id="6BO-NY-odm"/>
                             <constraint firstItem="7z0-eA-6MK" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Axe-lV-w5E"/>
                             <constraint firstItem="gJ5-CM-gSk" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="Dsr-uO-cod"/>
-                            <constraint firstItem="PxE-n9-YkH" firstAttribute="top" secondItem="gJ5-CM-gSk" secondAttribute="bottom" constant="20" id="GY4-8P-rMT"/>
-                            <constraint firstItem="PxE-n9-YkH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Jts-TM-BuS"/>
+                            <constraint firstItem="6nd-7o-t9z" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XHx-J5-wSt"/>
                             <constraint firstItem="gJ5-CM-gSk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="hI0-oY-iPv"/>
-                            <constraint firstItem="7z0-eA-6MK" firstAttribute="top" secondItem="PxE-n9-YkH" secondAttribute="bottom" id="uml-4T-5IX"/>
+                            <constraint firstItem="7z0-eA-6MK" firstAttribute="top" secondItem="6nd-7o-t9z" secondAttribute="bottom" constant="-30" id="nhP-R7-Fpe"/>
+                            <constraint firstItem="6nd-7o-t9z" firstAttribute="top" secondItem="gJ5-CM-gSk" secondAttribute="bottom" constant="20" id="uOf-yT-sZZ"/>
                             <constraint firstItem="7z0-eA-6MK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vb8-AH-s6a"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="7z0-eA-6MK" id="cUb-RO-2gd"/>
                         <outlet property="titleeLable" destination="gY5-ar-tGK" id="NmS-eg-98B"/>
-                        <outlet property="userProfileImage" destination="PxE-n9-YkH" id="SD6-wi-KBl"/>
+                        <outlet property="userProfileImage" destination="6nd-7o-t9z" id="qvJ-hV-dsm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -284,16 +284,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Irn-PS-w6e">
                                 <rect key="frame" x="0.0" y="199" width="414" height="697"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="roomCell" id="H0j-sA-3Uc">
-                                        <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H0j-sA-3Uc" id="yWs-zq-Ddl">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ORv-Ii-v9l"/>
@@ -838,13 +828,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chatLogo" width="300" height="300"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="message.fill" catalog="system" width="128" height="114"/>
         <image name="noDataFound" width="447" height="559"/>
         <image name="person.fill.badge.plus" catalog="system" width="128" height="125"/>
         <image name="person.line.dotted.person.fill" catalog="system" width="128" height="58"/>
         <image name="send" width="20" height="20"/>
+        <image name="user" width="170.66667175292969" height="170.66667175292969"/>
         <namedColor name="mainColor">
             <color red="0.94900000095367432" green="0.94900000095367432" blue="0.96899998188018799" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
