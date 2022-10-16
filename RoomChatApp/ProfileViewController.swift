@@ -8,14 +8,18 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import JGProgressHUD
 
 class ProfileViewController: UIViewController {
     
+    @IBOutlet weak var editBtn: UIButton!
     @IBOutlet weak var userProfile: UIImageView!
     @IBOutlet weak var profileTableView: UITableView!
     private var userName: String = ""
     private var email: String = ""
     private var sections = [Setting]()
+    var isInteractionEnabled: Bool = false
+    let spinner = JGProgressHUD(style: .dark)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +27,14 @@ class ProfileViewController: UIViewController {
         profileTableView.delegate = self
         profileTableView.dataSource = self
         self.userProfile.layer.cornerRadius = userProfile.frame.size.height/2
+        updataProfileImage()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = false
         configUserData()
+        self.userProfile.isUserInteractionEnabled = false
+        self.userProfile.layer.borderColor = UIColor.clear.cgColor
+        self.userProfile.layer.borderWidth = 0
     }
     
     //MARK: - Private functions
@@ -78,6 +86,20 @@ class ProfileViewController: UIViewController {
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
         print("exit")
+    }
+    @IBAction func editButtonTapped(_ sender: UIButton) {
+        isInteractionEnabled = !isInteractionEnabled
+        if isInteractionEnabled{
+            self.userProfile.isUserInteractionEnabled = true
+            self.userProfile.layer.borderColor = #colorLiteral(red: 0.007948002778, green: 0.708705008, blue: 0.9307365417, alpha: 1)
+            self.userProfile.layer.borderWidth = 4
+            self.userProfile.layer.masksToBounds = true
+        }else{
+            self.userProfile.isUserInteractionEnabled = false
+            self.userProfile.layer.borderColor = UIColor.clear.cgColor
+            self.userProfile.layer.borderWidth = 0
+        }
+        
     }
 }
 

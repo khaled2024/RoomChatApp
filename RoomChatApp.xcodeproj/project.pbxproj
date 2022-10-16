@@ -35,9 +35,10 @@
 		EADED58E28E94DAB004E1856 /* UserChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADED58D28E94DAB004E1856 /* UserChatViewController.swift */; };
 		EAE411C128EA3C82007A68A3 /* YourChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE411C028EA3C82007A68A3 /* YourChatsViewController.swift */; };
 		EAE411C328EA3D3C007A68A3 /* PeronalChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE411C228EA3D3C007A68A3 /* PeronalChats.swift */; };
+		EAE9314328FCA60500521235 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAE9314228FCA60500521235 /* GoogleService-Info.plist */; };
+		EAE9314528FCAB4600521235 /* ProfileViewController+PickerImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE9314428FCAB4600521235 /* ProfileViewController+PickerImageController.swift */; };
 		EAE9EAF028E290DF000DCF84 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE9EAEF28E290DF000DCF84 /* Setting.swift */; };
 		EAEF1B8228D4CFE3004B2489 /* Extension+UitextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */; };
-		EAEF1B8428D4DC54004B2489 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */; };
 		EAF0477028DA222F0041B4F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */; };
 		EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */; };
 		EAFA718728F1ED9F005A3C98 /* PrivateChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA718628F1ED9E005A3C98 /* PrivateChatMessage.swift */; };
@@ -78,9 +79,10 @@
 		EADED58D28E94DAB004E1856 /* UserChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChatViewController.swift; sourceTree = "<group>"; };
 		EAE411C028EA3C82007A68A3 /* YourChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourChatsViewController.swift; sourceTree = "<group>"; };
 		EAE411C228EA3D3C007A68A3 /* PeronalChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeronalChats.swift; sourceTree = "<group>"; };
+		EAE9314228FCA60500521235 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EAE9314428FCAB4600521235 /* ProfileViewController+PickerImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+PickerImageController.swift"; sourceTree = "<group>"; };
 		EAE9EAEF28E290DF000DCF84 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UitextField.swift"; sourceTree = "<group>"; };
-		EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UitableView.swift"; sourceTree = "<group>"; };
 		EAFA718628F1ED9E005A3C98 /* PrivateChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatMessage.swift; sourceTree = "<group>"; };
@@ -169,7 +171,7 @@
 				EA52382228FB848500A21A59 /* AuthViewController */,
 				EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */,
 				EA5DFC9528F9871700E42D56 /* RoomsChat */,
-				EA847D4F28E0A1EA00E3A7AC /* ProfileViewController.swift */,
+				EAE9314628FCAB4B00521235 /* ProfileViewController */,
 				EA5DFC9428F9870600E42D56 /* PrivateChats */,
 			);
 			name = Views;
@@ -238,7 +240,7 @@
 				EAD4885A28D4AA1300EB9AEE /* Assets.xcassets */,
 				EAD4885C28D4AA1300EB9AEE /* LaunchScreen.storyboard */,
 				EAD4885F28D4AA1300EB9AEE /* Info.plist */,
-				EAEF1B8328D4DC54004B2489 /* GoogleService-Info.plist */,
+				EAE9314228FCA60500521235 /* GoogleService-Info.plist */,
 			);
 			path = RoomChatApp;
 			sourceTree = "<group>";
@@ -261,6 +263,15 @@
 				EA52382328FB8E7000A21A59 /* Helper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		EAE9314628FCAB4B00521235 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EA847D4F28E0A1EA00E3A7AC /* ProfileViewController.swift */,
+				EAE9314428FCAB4600521235 /* ProfileViewController+PickerImageController.swift */,
+			);
+			name = ProfileViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,10 +339,10 @@
 			files = (
 				EAD4885E28D4AA1300EB9AEE /* LaunchScreen.storyboard in Resources */,
 				EA85ED2628E612D900B03B2A /* RoomsTableViewCell.xib in Resources */,
-				EAEF1B8428D4DC54004B2489 /* GoogleService-Info.plist in Resources */,
 				EAD4885B28D4AA1300EB9AEE /* Assets.xcassets in Resources */,
 				EAC215D828FB654200CBA4AF /* UserTableViewCell.xib in Resources */,
 				EAD4885928D4AA1200EB9AEE /* Main.storyboard in Resources */,
+				EAE9314328FCA60500521235 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +399,7 @@
 				EAD1E75328D4B64D00F81C20 /* FormCollectionViewCell.swift in Sources */,
 				EA51CCF728DFC9EA00CEEE08 /* ChatViewController.swift in Sources */,
 				EA847D5428E0A72500E3A7AC /* ProfileTableViewCell.swift in Sources */,
+				EAE9314528FCAB4600521235 /* ProfileViewController+PickerImageController.swift in Sources */,
 				EAD4886728D4AE0300EB9AEE /* Extension+UiLable.swift in Sources */,
 				EA52382428FB8E7000A21A59 /* Helper.swift in Sources */,
 				EA847D5028E0A1EA00E3A7AC /* ProfileViewController.swift in Sources */,
@@ -568,7 +580,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -599,7 +611,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

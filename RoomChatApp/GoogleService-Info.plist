@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>932419296075-s3el39744lmgscf4ji9gkbev5jq0jghi.apps.googleusercontent.com</string>
+	<string>795965742759-tc47e74dc62i6e5ubt6la4jrrvl8ipts.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.932419296075-s3el39744lmgscf4ji9gkbev5jq0jghi</string>
+	<string>com.googleusercontent.apps.795965742759-tc47e74dc62i6e5ubt6la4jrrvl8ipts</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBGFRejeYvADBdSpumKVeLFxNcukrBYJpU</string>
+	<string>AIzaSyB6CznpSceVxGDhH8Oyv8uPxbMhvDry4xA</string>
 	<key>GCM_SENDER_ID</key>
-	<string>932419296075</string>
+	<string>795965742759</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>khaled2024.RoomChatApp</string>
 	<key>PROJECT_ID</key>
-	<string>chatomat-b9062</string>
+	<string>roomchatomat</string>
 	<key>STORAGE_BUCKET</key>
-	<string>chatomat-b9062.appspot.com</string>
+	<string>roomchatomat.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:932419296075:ios:29af9d7135cc019bb5e6ce</string>
+	<string>1:795965742759:ios:8ed5af0c372d3c744b4582</string>
 </dict>
 </plist>
