@@ -15,7 +15,7 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var chatTableView: UITableView!
     @IBOutlet weak var messageTF: UITextField!
     var room: Room?
-    var chatMessages = [Message]()
+    var chatMessages = [RoomMessage]()
     override func viewDidLoad() {
         super.viewDidLoad()
         title = room?.roomName
@@ -78,7 +78,7 @@ class ChatViewController: UIViewController {
         ref.child("rooms").child(roomId).child("messages").observe(.childAdded) { snapShot in
             if let dataArray = snapShot.value as? [String: Any]{
                 guard let senderName = dataArray["senderName"]as? String , let messageText = dataArray["text"]as? String, let userId = dataArray["senderId"]as? String else{return}
-                let message = Message(messageKey: snapShot.key, messageSender: senderName, messageText: messageText,userId: userId)
+                let message = RoomMessage(messageKey: snapShot.key, messageSender: senderName, messageText: messageText,userId: userId)
                 self.chatMessages.append(message)
                 DispatchQueue.main.async {
                     self.chatTableView.reloadData()

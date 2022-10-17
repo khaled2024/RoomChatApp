@@ -19,12 +19,9 @@ class UserTableViewCell: UITableViewCell {
         self.userProfileImage.contentMode = .scaleAspectFill
         userProfileImage.layer.masksToBounds = true
         self.userProfileImage.layer.cornerRadius = userProfileImage.frame.size.height / 2
-
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     func config(user: User){
@@ -34,5 +31,4 @@ class UserTableViewCell: UITableViewCell {
             self.userProfileImage.loadDataUsingCacheWithUrlString(urlString: profileImage)
         }
     }
-    
 }

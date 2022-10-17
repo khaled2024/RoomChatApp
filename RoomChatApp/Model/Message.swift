@@ -2,13 +2,13 @@
 //  Message.swift
 //  RoomChatApp
 //
-//  Created by KhaleD HuSsien on 25/09/2022.
+//  Created by KhaleD HuSsien on 17/10/2022.
 //
 
-import Foundation
+import UIKit
 struct Message{
-    var messageKey: String?
-    var messageSender: String?
-    var messageText: String?
-    var userId: String?
+    var fromId: String?
+    var text: String?
+    var timeStamp: NSNumber?
+    var toId: String?
 }

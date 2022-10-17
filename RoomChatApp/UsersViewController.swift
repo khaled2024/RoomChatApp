@@ -52,11 +52,12 @@ class UsersViewController: UIViewController {
             print(snapShot)
             if let dictionary = snapShot.value as? [String:AnyObject] {
                 if let email = dictionary["email"]as? String , let name = dictionary["name"]as?String , let imageURL = dictionary["profileImageURL"]as? String{
-                    let user = User(email: email, name: name,profileImageURL: imageURL)
+                    let toId = snapShot.key
+                    let user = User(id: toId,email: email, name: name,profileImageURL: imageURL)
                     self.users.append(user)
                     self.filteredUsers.append(user)
                     DispatchQueue.main.async {
-                        self.usersTableView.reloadWithAnimation()
+                        self.usersTableView.reloadData()
                     }
                 }
             }
@@ -151,6 +152,13 @@ extension UsersViewController: UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "UserChatViewController")as! UserChatViewController
+        let user = self.users[indexPath.row]
+        controller.user = user
+        controller.modalTransitionStyle = .flipHorizontal
+        self.navigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        
 //        let user = filteredUsers[indexPath.row]
         
 //        createPrivateChat(reciverName: user.name,userId: user.id) { success in

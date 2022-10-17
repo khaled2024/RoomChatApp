@@ -40,7 +40,7 @@ class ChatTableViewCell: UITableViewCell {
         
     }
     
-    func setMessageData(message: Message){
+    func setMessageData(message: RoomMessage){
         userNameLable.text = " \(message.messageSender!)"
         messageTextView.text = message.messageText
     }

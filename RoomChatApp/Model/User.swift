@@ -8,6 +8,7 @@
 import UIKit
 
 struct User{
+    var id: String?
     var email: String?
     var name: String?
     var profileImageURL: String?
