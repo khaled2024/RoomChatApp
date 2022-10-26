@@ -336,7 +336,8 @@
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type your message here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y3h-k9-BNt">
                                                 <rect key="frame" x="10" y="0.0" width="269" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -378,7 +379,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="fVa-kz-ak0">
-                                                    <rect key="frame" x="10" y="10" width="394" height="89"/>
+                                                    <rect key="frame" x="55" y="10" width="349" height="89"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABm-nH-ySh">
                                                             <rect key="frame" x="0.0" y="0.0" width="72.5" height="17"/>
@@ -410,18 +411,28 @@
                                                         </view>
                                                     </subviews>
                                                 </stackView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="htu-hb-onG">
+                                                    <rect key="frame" x="10" y="37" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="1Q5-Dh-K4y"/>
+                                                        <constraint firstAttribute="height" constant="35" id="Heh-eB-9I9"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="fVa-kz-ak0" secondAttribute="trailing" constant="10" id="BJG-E7-cEG"/>
+                                                <constraint firstItem="htu-hb-onG" firstAttribute="centerY" secondItem="LSN-PJ-ClD" secondAttribute="centerY" id="Hjv-qA-918"/>
+                                                <constraint firstItem="htu-hb-onG" firstAttribute="leading" secondItem="LSN-PJ-ClD" secondAttribute="leading" constant="10" id="RaW-ax-k2k"/>
                                                 <constraint firstAttribute="bottom" secondItem="fVa-kz-ak0" secondAttribute="bottom" constant="10" id="SGV-Fh-foW"/>
                                                 <constraint firstItem="fVa-kz-ak0" firstAttribute="top" secondItem="LSN-PJ-ClD" secondAttribute="top" constant="10" id="W3V-Ar-JLs"/>
-                                                <constraint firstAttribute="trailing" secondItem="fVa-kz-ak0" secondAttribute="trailing" constant="10" id="rww-js-CPn"/>
-                                                <constraint firstItem="fVa-kz-ak0" firstAttribute="leading" secondItem="LSN-PJ-ClD" secondAttribute="leading" constant="10" id="tZ5-jf-ZbJ"/>
+                                                <constraint firstItem="fVa-kz-ak0" firstAttribute="leading" secondItem="htu-hb-onG" secondAttribute="trailing" constant="10" id="yRP-Zl-3z9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="chatStack" destination="fVa-kz-ak0" id="etj-fH-Mfy"/>
                                             <outlet property="messageTextView" destination="WHV-a3-A8r" id="Uev-rF-hyH"/>
                                             <outlet property="messageView" destination="HPe-AD-8ob" id="OFb-5u-iUt"/>
+                                            <outlet property="userImage" destination="htu-hb-onG" id="QNm-5O-qqn"/>
                                             <outlet property="userNameLable" destination="ABm-nH-ySh" id="lko-14-J12"/>
                                         </connections>
                                     </tableViewCell>
@@ -582,7 +593,7 @@
                                 <rect key="frame" x="0.0" y="48" width="414" height="758"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ChatTableViewCell" rowHeight="109" id="ydQ-V0-z2y" customClass="ChatTableViewCell" customModule="RoomChatApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PrivateChatTableViewCell" rowHeight="109" id="ydQ-V0-z2y" customClass="PrivateChatTableViewCell" customModule="RoomChatApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="414" height="109"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ydQ-V0-z2y" id="g94-ht-2og">
@@ -661,7 +672,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VdY-ZH-x22" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3957" y="44"/>
+            <point key="canvasLocation" x="90" y="1462"/>
         </scene>
         <!--Setting-->
         <scene sceneID="elh-9a-x9h">

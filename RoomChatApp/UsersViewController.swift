@@ -27,14 +27,12 @@ class UsersViewController: UIViewController {
         configData()
     }
     override func viewDidAppear(_ animated: Bool){
-//        self.FilterChats()
         navigationController?.navigationBar.prefersLargeTitles = false
         tabBarController?.tabBar.isHidden = true
     }
     //MARK: - private function
     private func configData(){
         title = "Users"
-//            self.getUsers()
           fetchUsers()
         
         usersTableView.delegate = self
@@ -63,81 +61,6 @@ class UsersViewController: UIViewController {
             }
         }, withCancel: nil)
     }
-//    private func getUsers(){
-//        let ref = Database.database().reference()
-//        ref.child("users").observe(.value) {snapshot in
-//            if let dataArray = snapshot.value as? [String: Any]{
-//                self.usersId.append(contentsOf: dataArray.keys)
-//                if let index = self.usersId.firstIndex(of: self.currentUserid!){
-//                    self.usersId.remove(at: index)
-//                }
-//                print(self.usersId)
-//                self.getUsersNames()
-//            }
-//        }
-//    }
-//    private func getUsersNames(){
-//        for id in usersId {
-//            let ref = Database.database().reference()
-//            ref.child("users").child(id).child("userName").observeSingleEvent(of: .value) { [weak self] snapShot in
-//                if let userName = snapShot.value as? String {
-//                    self?.users.append(User(name: userName, id: id))
-//                    self?.filteredUsers.append(User(name: userName, id: id))
-//                    DispatchQueue.main.async {
-//                        self?.usersTableView.reloadWithAnimation()
-//                    }
-//                }
-//            }
-//        }
-//    }
-//    private func FilterChats(){
-//        guard let currentUserId = Auth.auth().currentUser?.uid else{return}
-//        let ref = Database.database().reference()
-//        for id in usersId {
-//            let chatName = "\(currentUserId)To\(id)"
-//            ref.child("privateChats").child(currentUserId).child(chatName).observe(.value) { snapShot in
-//                if let reciverUser = snapShot.value as? [String:Any]{
-//                    print("exist")
-//                    print(reciverUser.values)
-//                    if let index:Int = self.filteredUsers.firstIndex(where: {$0.id == id}) {
-//                        self.filteredUsers.remove(at: index)
-//                        self.users.remove(at: index)
-//                        DispatchQueue.main.async {
-//                            self.usersTableView.reloadWithAnimation()
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if users.count == 0 {
-//            usersTableView.isHidden = true
-//            nodataImageView.isHidden = false
-//            self.noDataLbl.isHidden = false
-//            UserDefaults.standard.set(true, forKey: "noUsers")
-//        }else{
-//            nodataImageView.isHidden = true
-//            self.noDataLbl.isHidden = true
-//            usersTableView.isHidden = false
-//            UserDefaults.standard.set(false, forKey: "noUsers")
-//        }
-//    }
-    private func createPrivateChat(reciverName: String,userId: String,completion: @escaping (Bool)->Void){
-        guard let currentUserId = Auth.auth().currentUser?.uid else{return}
-        let privateChatName = "\(currentUserId)To\(userId)"
-        self.privateChatID = privateChatName
-        let ref = Database.database().reference()
-        // create child called "privateChats" to put the chats name we will create and give a random key
-        let privateChats = ref.child("privateChats").child(currentUserId).child(privateChatName)
-        let dataArray: [String:Any] = ["chatName" : privateChatName, "Reciver":reciverName]
-        // here  set the value of new room name :)
-        privateChats.setValue(dataArray) { error, ref in
-            if error == nil {
-                completion(true)
-            }else{
-                completion(false)
-            }
-        }
-    }
 }
 //MARK: - UITableViewDelegate
 extension UsersViewController: UITableViewDelegate,UITableViewDataSource{
@@ -158,32 +81,7 @@ extension UsersViewController: UITableViewDelegate,UITableViewDataSource{
         controller.modalTransitionStyle = .flipHorizontal
         self.navigationController?.pushViewController(controller, animated: true)
         self.navigationController?.navigationBar.prefersLargeTitles = false
-        
-//        let user = filteredUsers[indexPath.row]
-        
-//        createPrivateChat(reciverName: user.name,userId: user.id) { success in
-//            if success {
-//                print("successfuly created private chat :)")
-//                let alert = UIAlertController(title: "Congratulations", message: "Your chat with name '\(user.name)' created Successfuly👌", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "OK", style: .default,handler: { _ in
-//                    if let index:Int = self.filteredUsers.firstIndex(where: {$0.id == user.id}) {
-//                        self.filteredUsers.remove(at: index)
-//                        DispatchQueue.main.async {
-//                            self.usersTableView.reloadData()
-//                        }
-//                    }
-//                }))
-//                self.present(alert, animated: true)
-////                let controller = self.storyboard?.instantiateViewController(withIdentifier: "UserChatViewController")as! UserChatViewController
-////                controller.title = user.name
-////                controller.user = user
-////                controller.privateChatID = self.privateChatID
-////                self.navigationController?.pushViewController(controller, animated: true)
-////                self.navigationController?.navigationBar.prefersLargeTitles = false
-//            }else{
-//                print("error of creating chat :(")
-//            }
-//        }
+
     }
 }
 //MARK: - searchbar

@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import FirebaseAuth
+import FirebaseDatabase
 class ChatTableViewCell: UITableViewCell {
     enum messageType {
         case incoming
@@ -24,15 +25,19 @@ class ChatTableViewCell: UITableViewCell {
         .systemIndigo,
         .systemYellow
     ]
+    @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var chatStack: UIStackView!
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageTextView: UITextView!
     @IBOutlet weak var userNameLable: UILabel!
     
+    
     static let identifier = String(describing: ChatTableViewCell.self)
     override func awakeFromNib() {
         super.awakeFromNib()
         messageView.layer.cornerRadius = 7
+        userImage.layer.cornerRadius = self.userImage.frame.size.height/2
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,18 +48,23 @@ class ChatTableViewCell: UITableViewCell {
     func setMessageData(message: RoomMessage){
         userNameLable.text = " \(message.messageSender!)"
         messageTextView.text = message.messageText
+        if let userImage = message.userImage {
+            self.userImage.loadDataUsingCacheWithUrlString(urlString: userImage)
+        }
     }
-    func setMessageDataForPrivateChat(message: PrivateChatMessage){
-        userNameLable.text = " \(message.senderrName)"
-        messageTextView.text = message.msg
-    }
-    func setBubbleType(type: messageType){
+
+    
+    func setBubbleTypeForRoomChat(type: messageType){
         if type == .incoming{
             chatStack.alignment = .leading
-            userNameLable.textColor = colors.randomElement()
+            userImage.isHidden = false
+//            userNameLable.textColor = colors.randomElement()
+            userNameLable.textColor = .darkText
             messageView.backgroundColor = .lightGray
             messageTextView.textColor = .black
         }else if type == .outgoing{
+            userImage.isHidden = true
+            userImage.image = UIImage()
             chatStack.alignment = .trailing
             userNameLable.text = "You"
             userNameLable.textColor = #colorLiteral(red: 0.1165452674, green: 0.4018504918, blue: 0.4115763307, alpha: 1)

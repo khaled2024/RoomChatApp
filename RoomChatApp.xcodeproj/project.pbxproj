@@ -11,6 +11,7 @@
 		EA51CCF728DFC9EA00CEEE08 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA51CCF628DFC9EA00CEEE08 /* ChatViewController.swift */; };
 		EA52382428FB8E7000A21A59 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA52382328FB8E7000A21A59 /* Helper.swift */; };
 		EA559D9828FB7505003004B0 /* AuthViewController+handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA559D9728FB7505003004B0 /* AuthViewController+handler.swift */; };
+		EA68ABB92908ADED008B90CE /* PrivateChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA68ABB82908ADED008B90CE /* PrivateChatTableViewCell.swift */; };
 		EA75FD4328FD5AE300EBE0D7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA75FD4228FD5AE300EBE0D7 /* Message.swift */; };
 		EA75FD4728FD730700EBE0D7 /* PrivateChatUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA75FD4528FD730700EBE0D7 /* PrivateChatUserTableViewCell.swift */; };
 		EA75FD4828FD730700EBE0D7 /* PrivateChatUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA75FD4628FD730700EBE0D7 /* PrivateChatUserTableViewCell.xib */; };
@@ -56,6 +57,7 @@
 		EA51CCF628DFC9EA00CEEE08 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		EA52382328FB8E7000A21A59 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		EA559D9728FB7505003004B0 /* AuthViewController+handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthViewController+handler.swift"; sourceTree = "<group>"; };
+		EA68ABB82908ADED008B90CE /* PrivateChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatTableViewCell.swift; sourceTree = "<group>"; };
 		EA75FD4228FD5AE300EBE0D7 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		EA75FD4528FD730700EBE0D7 /* PrivateChatUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatUserTableViewCell.swift; sourceTree = "<group>"; };
 		EA75FD4628FD730700EBE0D7 /* PrivateChatUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrivateChatUserTableViewCell.xib; sourceTree = "<group>"; };
@@ -141,6 +143,14 @@
 			name = AuthViewController;
 			sourceTree = "<group>";
 		};
+		EA5D09F029009C6E0035B0C9 /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */,
+			);
+			name = HomeVC;
+			sourceTree = "<group>";
+		};
 		EA5DFC9428F9870600E42D56 /* PrivateChats */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +174,7 @@
 			children = (
 				EAD1E75228D4B64D00F81C20 /* FormCollectionViewCell.swift */,
 				EA847D4B28E081F600E3A7AC /* ChatTableViewCell.swift */,
+				EA68ABB82908ADED008B90CE /* PrivateChatTableViewCell.swift */,
 				EA847D5328E0A72500E3A7AC /* ProfileTableViewCell.swift */,
 				EA85ED2728E612DE00B03B2A /* RoomsUITableViewCell */,
 				EAC215D428FB651700CBA4AF /* UsersUitableViewCell */,
@@ -175,8 +186,8 @@
 		EA5EEE3628D4E98E00192316 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA5D09F029009C6E0035B0C9 /* HomeVC */,
 				EA52382228FB848500A21A59 /* AuthViewController */,
-				EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */,
 				EA5DFC9528F9871700E42D56 /* RoomsChat */,
 				EAE9314628FCAB4B00521235 /* ProfileViewController */,
 				EA5DFC9428F9870600E42D56 /* PrivateChats */,
@@ -436,6 +447,7 @@
 				EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */,
 				EA847D4E28E085C200E3A7AC /* RoomMessage.swift in Sources */,
 				EA847D4C28E081F600E3A7AC /* ChatTableViewCell.swift in Sources */,
+				EA68ABB92908ADED008B90CE /* PrivateChatTableViewCell.swift in Sources */,
 				EAEF1B8228D4CFE3004B2489 /* Extension+UitextField.swift in Sources */,
 				EAD7677228FC198500951DCE /* Extension+UiimageView.swift in Sources */,
 				EADED58E28E94DAB004E1856 /* UserChatViewController.swift in Sources */,

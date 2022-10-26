@@ -78,14 +78,20 @@ class ChatViewController: UIViewController {
         ref.child("rooms").child(roomId).child("messages").observe(.childAdded) { snapShot in
             if let dataArray = snapShot.value as? [String: Any]{
                 guard let senderName = dataArray["senderName"]as? String , let messageText = dataArray["text"]as? String, let userId = dataArray["senderId"]as? String else{return}
-                let message = RoomMessage(messageKey: snapShot.key, messageSender: senderName, messageText: messageText,userId: userId)
-                self.chatMessages.append(message)
-                DispatchQueue.main.async {
-                    self.chatTableView.reloadData()
+                Database.database().reference().child("users").child(userId).observeSingleEvent(of: .value) { snapShot in
+                    print(snapShot)
+                    if let userData = snapShot.value as? [String:Any],let userImage = userData["profileImageURL"]as? String{
+                        let message = RoomMessage(messageKey: snapShot.key, messageSender: senderName, messageText: messageText,userId: userId,userImage: userImage)
+                        self.chatMessages.append(message)
+                        DispatchQueue.main.async {
+                            self.chatTableView.reloadData()
+                        }
+                    }
                 }
             }
         }
     }
+    
     //MARK: - actions
     @IBAction func sendBtnTapped(_ sender: UIButton) {
         guard let message = messageTF.text , !message.isEmpty else{
@@ -107,18 +113,16 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatMessages.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = chatMessages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell")as! ChatTableViewCell
         cell.setMessageData(message: message)
+        print(message.userImage!)
         if message.userId == Auth.auth().currentUser?.uid {
-            cell.setBubbleType(type: .outgoing)
+            cell.setBubbleTypeForRoomChat(type: .outgoing)
         }else{
-            cell.setBubbleType(type: .incoming)
+            cell.setBubbleTypeForRoomChat(type: .incoming)
         }
         return cell
     }
-    
-    
 }

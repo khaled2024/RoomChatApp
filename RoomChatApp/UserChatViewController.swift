@@ -8,7 +8,6 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-
 class UserChatViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var msgView: UIView!
     @IBOutlet weak var userChatTableView: UITableView!
@@ -18,32 +17,25 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
     var user: User?{
         didSet{
             navigationItem.title = user?.name
+            observeMessage()
         }
     }
-    var privateChat: PersonalChat?
-    var messages = [PrivateChatMessage]()
-    var privateChatID: String? = nil
-    var chat: PrivateChat?
+    var messages = [Message]()
+    
     
     //MARK: - life cycle
-    //    var userTitle: String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         setDesign()
         userChatTableView.delegate = self
         userChatTableView.dataSource = self
         self.msgTextField.delegate = self
-        //        print(user?.name ?? "" , user?.id ?? "")
-        //        print(self.privateChat)
-        //        print(self.privateChatID!)
         
     }
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.tintColor = .white
-        
-        observeMessage()
     }
     //MARK: - private functions
     private func setDesign(){
@@ -67,26 +59,28 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
     }
     /// observe messages
     func observeMessage(){
-        guard let privateChatName = chat?.chatId else{return}
-        guard let currentUserId = Auth.auth().currentUser?.uid else{return}
-        let ref = Database.database().reference()
-        ref.child("privateChats").child(currentUserId).child(privateChatName).child("Chat").child("Messages").observe(.childAdded) { snapShot in
-            if let dataArray = snapShot.value as? [String: Any]{
-                guard let messageText = dataArray["Msg"]as? String,
-                      let ReciverID = dataArray["ReciverID"]as? String,
-                      let ReciverName = dataArray["ReciverName"]as? String ,
-                      let SenderID = dataArray["SenderID"]as? String,
-                      let SenderName = dataArray["SenderName"]as? String  else{return}
-                
-                let message = PrivateChatMessage( msg: messageText, reciverId: ReciverID, reciverName: ReciverName, senderId: SenderID, senderrName: SenderName)
+        guard let currentid = Auth.auth().currentUser?.uid, let toID = user?.id else{return}
+        let ref = Database.database().reference().child("user-messages").child(currentid).child(toID)
+        ref.observe(.childAdded, with: { snapShot in
+            print(snapShot)
+            let messageID = snapShot.key
+            let messageRef = Database.database().reference().child("messages").child(messageID)
+            messageRef.observeSingleEvent(of: .value, with: { snapShot in
+                print(snapShot)
+                guard let dictinary = snapShot.value as? [String:Any] else{return}
+                let message = Message(fromId: dictinary["fromId"]as? String,
+                                      text: dictinary["text"]as? String,
+                                      timeStamp: dictinary["timeStamp"]as? NSNumber,
+                                      toId: dictinary["toId"]as? String)
                 self.messages.append(message)
                 DispatchQueue.main.async {
                     self.userChatTableView.reloadData()
                 }
-            }
-        }
+            }, withCancel: nil)
+        }, withCancel: nil)
     }
-    private func sendMsg(completion: @escaping (Bool)->Void){
+    /// send message
+    private func sendMsg(){
         let ref = Database.database().reference().child("messages")
         let refChild = ref.childByAutoId()
         if let text = self.msgTextField.text , text.isEmpty == false, let user = user, let toId = user.id, let fromId = Auth.auth().currentUser?.uid{
@@ -96,64 +90,32 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
                              "fromId":fromId,
                              "timeStamp":timeStamp] as? [AnyHashable : Any]{
                 refChild.updateChildValues(values) { error, ref in
-                    if error == nil{
-                        completion(true)
+                    if  error != nil{
+                        print(error ?? "error for update child ref of messages")
+                        print("didnt send")
                         return
-                    }else{
-                        completion(false)
                     }
+                    let messagesID = refChild.key
+                    let values = [messagesID:1]as? [AnyHashable:Any]
+                    // for user-messages
+                    let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId)
+                    userMessagesRef.updateChildValues(values!)
+                    // for recipent-messages
+                    let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId).child(fromId)
+                    recipientUserMessagesRef.updateChildValues(values!)
+                    self.msgTextField.text = ""
+                    print("sended")
                 }
             }
         }
-        
-        
-        
-        //        guard let currentUserId = Auth.auth().currentUser?.uid , let reciverName = self.chat?.reciver,let reciverID = chat?.chatId.substring(from: String.Index(encodedOffset: 30)) else{return}
-        //        print("reciver id is \(reciverID)")
-        //        //        guard let privateChatName = self.privateChat?.chatID else{return}
-        //        //         let privateChatName = "\(currentUserId)To\(user.id)"
-        //        guard let privateChatName = self.chat?.chatId else{return}
-        //        let ref = Database.database().reference()
-        //        let message = ref.child("privateChats").child(currentUserId).child(privateChatName).child("Chat")
-        //        getUserWithId(currentUserId) { userName in
-        //            if let userName = userName , let msg = self.msgTextField.text , !msg.isEmpty {
-        //                let dataArray: [String:Any] = ["SenderID":currentUserId,
-        //                                               "SenderName":userName,
-        //                                               "ReciverID":reciverID,
-        //                                               "ReciverName":reciverName,
-        //                                               "Msg":msg]
-        //                message.child("Messages").childByAutoId().setValue(dataArray) { error, ref in
-        //                    guard error == nil else{
-        //                        completion(false)
-        //                        return
-        //                    }
-        //                    completion(true)
-        //                }
-        //            }
-        //        }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        sendMsg { success in
-            if success{
-                self.msgTextField.text = ""
-                print("Sended")
-                return
-            }else{
-                print("Error for sending message")
-            }
-        }
+        sendMsg()
         return true
     }
     //MARK: - Action
     @IBAction func sendMsgBtn(_ sender: UIButton) {
-        sendMsg { success in
-            if success{
-                self.msgTextField.text = ""
-                print("Sended")
-            }else{
-                print("Error for sending message")
-            }
-        }
+        sendMsg()
     }
 }
 //MARK: - UITableViewDelegate
@@ -162,15 +124,14 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
         return messages.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ChatTableViewCell.identifier, for: indexPath)as! ChatTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: PrivateChatTableViewCell.identifier, for: indexPath)as! PrivateChatTableViewCell
         let message = messages[indexPath.row]
         cell.setMessageDataForPrivateChat(message: message)
-        if message.senderId == Auth.auth().currentUser?.uid {
-            cell.setBubbleType(type: .outgoing)
-        }else{
-            cell.setBubbleType(type: .incoming)
-        }
+        cell.messageTextView.text = message.text
         return cell
+    }
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.userChatTableView.invalidateIntrinsicContentSize()
     }
 }
 //MARK: - Comments

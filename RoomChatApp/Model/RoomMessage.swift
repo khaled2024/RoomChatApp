@@ -11,4 +11,5 @@ struct RoomMessage{
     var messageSender: String?
     var messageText: String?
     var userId: String?
+    var userImage: String?
 }
