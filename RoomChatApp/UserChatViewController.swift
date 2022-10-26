@@ -13,6 +13,7 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userChatTableView: UITableView!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var msgTextField: UITextField!
+    
     //MARK: - vars
     var user: User?{
         didSet{
@@ -21,8 +22,6 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
         }
     }
     var messages = [Message]()
-    
-    
     //MARK: - life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +48,9 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
     private func getUserWithId(_ id: String , completion: @escaping (_ userName: String?)-> Void){
         let ref = Database.database().reference()
         let user = ref.child("users").child(id)
-        user.child("userName").observeSingleEvent(of: .value) { snapShot in
-            if let userName = snapShot.value as? String{
-                completion(userName)
+        user.child("profileImageURL").observeSingleEvent(of: .value) { snapShot in
+            if let userImage = snapShot.value as? String{
+                completion(userImage)
             }else{
                 completion(nil)
             }
@@ -128,6 +127,9 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
         let message = messages[indexPath.row]
         cell.setMessageDataForPrivateChat(message: message)
         cell.messageTextView.text = message.text
+        if let user = self.user,let userImage = user.profileImageURL{
+            cell.userImage.loadDataUsingCacheWithUrlString(urlString: userImage)
+        }
         return cell
     }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
