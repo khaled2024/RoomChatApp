@@ -92,7 +92,10 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
                 }else if (dictinary["imageURL"] as? String) != nil{
                     let message = Message(fromId: dictinary["fromId"]as? String,
                                           timeStamp: dictinary["timeStamp"]as? NSNumber,
-                                          toId: dictinary["toId"]as? String,messageImageURL: dictinary["imageURL"]as? String)
+                                          toId: dictinary["toId"]as? String,
+                                          messageImageURL: dictinary["imageURL"]as? String,
+                                          imageWidth: dictinary["imageWidth"]as? NSNumber ,
+                                          imageHeight: dictinary["imageHeight"]as? NSNumber)
                     self.messages.append(message)
                 }
                 DispatchQueue.main.async {
@@ -150,17 +153,41 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PrivateChatTableViewCell.identifier, for: indexPath)as! PrivateChatTableViewCell
         let message = messages[indexPath.row]
-        cell.setMessageDataForPrivateChat(message: message)
+        cell.messageText.text = message.text
         if let text = message.text {
             cell.messageTextView.text = text
-        }
-        if let user = self.user,let userImage = user.profileImageURL{
+            cell.messageViewWidth.constant = estimateFrameForText(text: text).width + 32
+//            cell.messageTextWidth.constant = estimateFrameForText(text: text).width + 32
+            cell.messageImage.isHidden = true
+            cell.messageText.isHidden = false
+        }else if message.messageImageURL != nil{
+            cell.messageViewWidth.constant = 200
+            cell.messageImage.isHidden = false
+            cell.messageText.isHidden = true
+        }else if let user = self.user,let userImage = user.profileImageURL{
+            cell.messageText.text = nil
+            cell.messageImage.isHidden = false
+            cell.messageText.isHidden = true
             cell.userImage.loadDataUsingCacheWithUrlString(urlString: userImage)
         }
+        cell.setMessageDataForPrivateChat(message: message)
         return cell
     }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        var height:CGFloat = 80
+//        let message = messages[indexPath.row]
+//        if let imageWidth = message.imageWidth?.floatValue , let imageHeight = message.imageHeight?.floatValue {
+//            height = CGFloat(imageHeight/imageWidth)
+//        }
+//        return height
+//    }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         self.userChatTableView.invalidateIntrinsicContentSize()
+    }
+    private func estimateFrameForText(text: String) -> CGRect {
+        let size = CGSize(width: 200, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        return NSString(string: text).boundingRect(with: size, options:options,attributes: [NSAttributedString.Key.font:UIFont.systemFont(ofSize: 16)], context: nil)
     }
 }
 //MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
@@ -193,20 +220,22 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
                     print(error)
                 case .success(let imageURL):
                     print(imageURL)
-                    self.sendImageWithImageURL(imageURL: imageURL)
+                    self.sendImageWithImageURL(imageURL: imageURL,image: image)
                 }
             }
         }
     }
-    private func sendImageWithImageURL(imageURL: String){
+    private func sendImageWithImageURL(imageURL: String,image:UIImage){
         let ref = Database.database().reference().child("messages")
         let refChild = ref.childByAutoId()
         if let user = user, let toId = user.id, let fromId = Auth.auth().currentUser?.uid{
             let timeStamp: NSNumber = NSDate().timeIntervalSince1970 as NSNumber
-            if let values = ["imageURL": imageURL,
-                             "toId": toId,
+            if let values = ["toId": toId,
                              "fromId":fromId,
-                             "timeStamp":timeStamp] as? [AnyHashable : Any]{
+                             "timeStamp":timeStamp,
+                             "imageURL":imageURL,
+                             "imageWidth":image.size.width,
+                             "imageHeight":image.size.height] as? [AnyHashable : Any]{
                 refChild.updateChildValues(values) { error, ref in
                     if  error != nil{
                         print(error ?? "error for update child ref of messages")

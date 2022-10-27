@@ -55,6 +55,14 @@ class YourChatsViewController: UIViewController {
                     }
                     // to reload data
                     self?.attempReloadData()
+                }else if let fromId = dictionary["fromId"]as? String , let imageURL = dictionary["imageURL"]as? String , let timeStamp = dictionary["timeStamp"]as? NSNumber,let toId = dictionary["toId"]as? String,let imageWidth = dictionary["imageWidth"]as? NSNumber,let imageHeight = dictionary["imageHeight"]as? NSNumber{
+                    let message = Message(fromId: fromId, timeStamp: timeStamp, toId: toId,messageImageURL: imageURL,imageWidth: imageWidth,imageHeight: imageHeight)
+                    // here create a dic of id of the user we create a chat with ans the message that sended to him
+                    if let chatPartnerID = message.chatPartnerId(){
+                        self?.messagesDictionary[chatPartnerID] = message
+                    }
+                    // to reload data
+                    self?.attempReloadData()
                 }
             }
         }

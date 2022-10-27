@@ -13,6 +13,8 @@ struct Message{
     var timeStamp: NSNumber?
     var toId: String?
     var messageImageURL: String?
+    var imageWidth: NSNumber?
+    var imageHeight: NSNumber?
     
     func chatPartnerId()-> String?{
                 return fromId == Auth.auth().currentUser?.uid ? toId : fromId

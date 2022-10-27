@@ -631,10 +631,6 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Ic-Jz-d6S">
                                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="72"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="ag2-2W-i3h"/>
-                                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="cRL-Jx-OsA"/>
-                                                                    </constraints>
                                                                 </imageView>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="ii" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvp-ne-i5s">
                                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="72"/>
@@ -678,7 +674,9 @@
                                             <outlet property="messageImage" destination="1Ic-Jz-d6S" id="0de-xq-rlg"/>
                                             <outlet property="messageText" destination="nvp-ne-i5s" id="lN3-3K-G7d"/>
                                             <outlet property="messageTextView" destination="nvp-ne-i5s" id="Her-tF-YL1"/>
+                                            <outlet property="messageTextWidth" destination="yQR-9o-Zam" id="H3m-E6-3uu"/>
                                             <outlet property="messageView" destination="BnY-vj-tIi" id="We5-te-EkS"/>
+                                            <outlet property="messageViewWidth" destination="cUv-6b-t3L" id="EAz-xL-RVw"/>
                                             <outlet property="userImage" destination="YEk-pA-q7d" id="eEp-cz-XuV"/>
                                             <outlet property="userNameLable" destination="oaG-v2-jnY" id="8RS-HP-yoZ"/>
                                         </connections>

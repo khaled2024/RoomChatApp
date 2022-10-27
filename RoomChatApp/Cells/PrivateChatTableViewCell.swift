@@ -23,6 +23,9 @@ class PrivateChatTableViewCell: UITableViewCell {
     @IBOutlet weak var messageImage: UIImageView!
     @IBOutlet weak var userNameLable: UILabel!
     
+    @IBOutlet weak var messageTextWidth: NSLayoutConstraint!
+    @IBOutlet weak var messageViewWidth: NSLayoutConstraint!
+    
     static let identifier = String(describing: PrivateChatTableViewCell.self)
     
     override func awakeFromNib() {
