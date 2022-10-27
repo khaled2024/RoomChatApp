@@ -35,6 +35,7 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
         userChatTableView.delegate = self
         userChatTableView.dataSource = self
         self.msgTextField.delegate = self
+        setKeyboeadObserver()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +54,16 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
         picker.delegate = self
         present(picker, animated: true)
     }
+    private func setKeyboeadObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name:UIResponder.keyboardDidShowNotification, object: nil)
+    }
+    @objc func handleKeyboardDidShow(){
+        if self.messages.count > 0 {
+            let index = IndexPath(item: self.messages.count - 1, section: 0)
+            self.userChatTableView.scrollToRow(at: index, at: .bottom, animated: true)
+        }
+    }
+
     private func setDesign(){
         msgView.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
         sendBtn.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
@@ -100,6 +111,9 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
                 }
                 DispatchQueue.main.async {
                     self.userChatTableView.reloadData()
+                    // sroll to last msg
+                    let index = IndexPath(item: self.messages.count - 1, section: 0)
+                    self.userChatTableView.scrollToRow(at: index, at: .bottom, animated: true)
                 }
             }, withCancel: nil)
             
@@ -154,36 +168,37 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: PrivateChatTableViewCell.identifier, for: indexPath)as! PrivateChatTableViewCell
         let message = messages[indexPath.row]
         cell.messageText.text = message.text
+        if let user = self.user,let userImage = user.profileImageURL{
+            cell.userImage.loadDataUsingCacheWithUrlString(urlString: userImage)
+        }
         if let text = message.text {
             cell.messageTextView.text = text
-            cell.messageViewWidth.constant = estimateFrameForText(text: text).width + 32
-//            cell.messageTextWidth.constant = estimateFrameForText(text: text).width + 32
+            cell.messageViewWidth.constant = estimateFrameForText(text: text).width + 20
             cell.messageImage.isHidden = true
             cell.messageText.isHidden = false
         }else if message.messageImageURL != nil{
             cell.messageViewWidth.constant = 200
             cell.messageImage.isHidden = false
             cell.messageText.isHidden = true
-        }else if let user = self.user,let userImage = user.profileImageURL{
-            cell.messageText.text = nil
-            cell.messageImage.isHidden = false
-            cell.messageText.isHidden = true
-            cell.userImage.loadDataUsingCacheWithUrlString(urlString: userImage)
         }
         cell.setMessageDataForPrivateChat(message: message)
         return cell
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        var height:CGFloat = 80
-//        let message = messages[indexPath.row]
-//        if let imageWidth = message.imageWidth?.floatValue , let imageHeight = message.imageHeight?.floatValue {
-//            height = CGFloat(imageHeight/imageWidth)
-//        }
-//        return height
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height:CGFloat = 100
+        let message = messages[indexPath.row]
+        if let text = message.text{
+            height = estimateFrameForText(text: text).height + 60
+        }else if let imageWidth = message.imageWidth?.floatValue , let imageHeight = message.imageHeight?.floatValue {
+            print(imageWidth , imageHeight)
+            height = CGFloat(imageHeight/imageWidth * 200)
+        }
+        return height
+    }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         self.userChatTableView.invalidateIntrinsicContentSize()
     }
+    // func for EstimateFrameForText
     private func estimateFrameForText(text: String) -> CGRect {
         let size = CGSize(width: 200, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)

@@ -85,6 +85,9 @@ class ChatViewController: UIViewController {
                         self.chatMessages.append(message)
                         DispatchQueue.main.async {
                             self.chatTableView.reloadData()
+                            // sroll to last msg
+                            let index = IndexPath(item: self.chatMessages.count - 1, section: 0)
+                            self.chatTableView.scrollToRow(at: index, at: .bottom, animated: true)
                         }
                     }
                 }

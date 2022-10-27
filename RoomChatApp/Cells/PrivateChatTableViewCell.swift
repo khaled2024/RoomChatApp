@@ -33,6 +33,7 @@ class PrivateChatTableViewCell: UITableViewCell {
         messageView.layer.cornerRadius = 7
         messageImage.layer.cornerRadius = 20
         userImage.layer.cornerRadius = self.userImage.frame.size.height/2
+        messageText.isEditable = false
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
