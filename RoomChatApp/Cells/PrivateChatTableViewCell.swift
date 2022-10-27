@@ -15,7 +15,7 @@ enum messageType {
     
 }
 class PrivateChatTableViewCell: UITableViewCell {
-    @IBOutlet weak var messageText: UITextView!
+    //MARK: - vars& outlets
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var chatStack: UIStackView!
     @IBOutlet weak var messageView: UIView!
@@ -26,25 +26,35 @@ class PrivateChatTableViewCell: UITableViewCell {
     @IBOutlet weak var messageTextWidth: NSLayoutConstraint!
     @IBOutlet weak var messageViewWidth: NSLayoutConstraint!
     
+    var userChatVC: UserChatViewController?
     static let identifier = String(describing: PrivateChatTableViewCell.self)
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        messageView.layer.cornerRadius = 7
+        messageView.layer.cornerRadius = 12
         messageImage.layer.cornerRadius = 20
+        messageImage.clipsToBounds = true
         userImage.layer.cornerRadius = self.userImage.frame.size.height/2
-        messageText.isEditable = false
+        messageTextView.isEditable = false
+        messageImage.isUserInteractionEnabled = true
+        messageImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomImage)))
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
+    }
+    @objc func handleZoomImage(tapGesture: UITapGestureRecognizer){
+        print("zoom image")
+        // dont perform a lot of login inside view class
+        if let imageView = tapGesture.view as? UIImageView{
+            userChatVC?.performZoomInForStartingImageView(startingImageView: imageView)
+        }
     }
     func setMessageDataForPrivateChat(message: Message){
         guard let currentId = Auth.auth().currentUser?.uid else{return}
         if message.fromId == currentId {
             setBubbleType(type: .outgoing)
             userNameLable.text = "You"
-            messageTextView.text = message.text
+            //            messageTextView.text = message.text
         }else{
             setBubbleType(type: .incoming)
             guard let chatPartnerID = message.chatPartnerId() else{return}
@@ -52,7 +62,7 @@ class PrivateChatTableViewCell: UITableViewCell {
                 if let value = snapShat.value as?[String:Any],let name = value["name"]as? String{
                     DispatchQueue.main.async {
                         self.userNameLable.text = name
-                        self.messageTextView.text = message.text
+                        //                        self.messageTextView.text = message.text
                     }
                 }
             }
@@ -64,7 +74,7 @@ class PrivateChatTableViewCell: UITableViewCell {
         }else{
             messageImage.isHidden = true
         }
-
+        
     }
     func setBubbleType(type: messageType){
         if type == .incoming{

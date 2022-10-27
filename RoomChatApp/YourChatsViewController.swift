@@ -135,7 +135,5 @@ extension YourChatsViewController: UITableViewDelegate,UITableViewDataSource{
             let user = User(id: chatPartnerId, email: dictinary["email"]as? String, name: dictinary["name"]as? String, profileImageURL: dictinary["profileImageURL"]as? String)
             controller.user = user
         }, withCancel: nil)
-        
-        
     }
 }

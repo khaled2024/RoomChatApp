@@ -94,7 +94,6 @@ class ChatViewController: UIViewController {
             }
         }
     }
-    
     //MARK: - actions
     @IBAction func sendBtnTapped(_ sender: UIButton) {
         guard let message = messageTF.text , !message.isEmpty else{
@@ -120,7 +119,6 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
         let message = chatMessages[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatTableViewCell")as! ChatTableViewCell
         cell.setMessageData(message: message)
-        print(message.userImage!)
         if message.userId == Auth.auth().currentUser?.uid {
             cell.setBubbleTypeForRoomChat(type: .outgoing)
         }else{

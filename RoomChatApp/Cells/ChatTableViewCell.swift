@@ -35,25 +35,21 @@ class ChatTableViewCell: UITableViewCell {
     static let identifier = String(describing: ChatTableViewCell.self)
     override func awakeFromNib() {
         super.awakeFromNib()
-        messageView.layer.cornerRadius = 7
+        messageView.layer.cornerRadius = 12
         userImage.layer.cornerRadius = self.userImage.frame.size.height/2
-
     }
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
     }
     
     func setMessageData(message: RoomMessage){
-        userNameLable.text = " \(message.messageSender!)"
-        messageTextView.text = message.messageText
         if let userImage = message.userImage {
             self.userImage.loadDataUsingCacheWithUrlString(urlString: userImage)
         }
+        userNameLable.text = " \(message.messageSender!)"
+        messageTextView.text = message.messageText
     }
-
-    
     func setBubbleTypeForRoomChat(type: messageType){
         if type == .incoming{
             chatStack.alignment = .leading

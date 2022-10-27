@@ -8,6 +8,8 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import MobileCoreServices
+import AVFoundation
 import JGProgressHUD
 class UserChatViewController: UIViewController, UITextFieldDelegate {
     
@@ -18,7 +20,9 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var msgTextField: UITextField!
     
     let spinner = JGProgressHUD(style: .light)
-    
+    var startingFram: CGRect?
+    var blackgroundView: UIView?
+    var startingImageView: UIImageView?
     //MARK: - vars
     var user: User?{
         didSet{
@@ -51,6 +55,7 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
     @objc func handlePickImage(){
         let picker = UIImagePickerController()
         picker.allowsEditing = true
+        picker.mediaTypes = [kUTTypeImage as String , kUTTypeMovie as String]
         picker.delegate = self
         present(picker, animated: true)
     }
@@ -63,7 +68,7 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
             self.userChatTableView.scrollToRow(at: index, at: .bottom, animated: true)
         }
     }
-
+    
     private func setDesign(){
         msgView.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
         sendBtn.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
@@ -166,26 +171,30 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PrivateChatTableViewCell.identifier, for: indexPath)as! PrivateChatTableViewCell
+        // like delegate
+        cell.userChatVC = self
         let message = messages[indexPath.row]
-        cell.messageText.text = message.text
-        if let user = self.user,let userImage = user.profileImageURL{
+        // user image
+        if let user = self.user,
+           let userImage = user.profileImageURL{
             cell.userImage.loadDataUsingCacheWithUrlString(urlString: userImage)
         }
+        // check between if message have text or image
         if let text = message.text {
             cell.messageTextView.text = text
             cell.messageViewWidth.constant = estimateFrameForText(text: text).width + 20
             cell.messageImage.isHidden = true
-            cell.messageText.isHidden = false
+            cell.messageTextView.isHidden = false
         }else if message.messageImageURL != nil{
             cell.messageViewWidth.constant = 200
             cell.messageImage.isHidden = false
-            cell.messageText.isHidden = true
+            cell.messageTextView.isHidden = true
         }
         cell.setMessageDataForPrivateChat(message: message)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height:CGFloat = 100
+        var height:CGFloat = 200
         let message = messages[indexPath.row]
         if let text = message.text{
             height = estimateFrameForText(text: text).height + 60
@@ -194,6 +203,9 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
             height = CGFloat(imageHeight/imageWidth * 200)
         }
         return height
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         self.userChatTableView.invalidateIntrinsicContentSize()
@@ -272,6 +284,58 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
             }
         }
         
+    }
+}
+//MARK: - extensions custom zooming logic
+extension UserChatViewController{
+    func performZoomInForStartingImageView(startingImageView:UIImageView){
+        print("performing zoom in logic")
+        self.startingImageView = startingImageView
+        self.startingImageView?.isHidden = true
+        //perform the fram of image
+        startingFram = startingImageView.superview?.window?.convert(startingImageView.frame, from: startingImageView.superview)
+        print(startingFram!)
+        // craeting a black color behind the image
+        let zoomingImageView = UIImageView(frame: startingFram!)
+        zoomingImageView.backgroundColor = .systemBlue
+        zoomingImageView.image = startingImageView.image
+        zoomingImageView.isUserInteractionEnabled = true
+        //zoom out
+        zoomingImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+        
+        if let keyWindow =  UIApplication.shared.keyWindow{
+            blackgroundView = UIView(frame: keyWindow.frame)
+            blackgroundView?.backgroundColor = UIColor.black
+            blackgroundView?.alpha = 0
+            keyWindow.addSubview(blackgroundView!)
+            keyWindow.addSubview(zoomingImageView)
+            // animate the image
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.blackgroundView?.alpha = 1
+                self.msgView.alpha = 0
+                
+                let height = self.startingFram!.height / self.startingFram!.width * keyWindow.frame.width
+                zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: height)
+                zoomingImageView.center = keyWindow.center
+            }, completion: nil)
+        }
+    }
+    @objc func handleZoomOut(tapGesture: UITapGestureRecognizer){
+        // zoom out
+        print("zooming out :(")
+        if let zoomOutImageView = tapGesture.view{
+            // need to animate back the fram
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut) {
+                zoomOutImageView.layer.cornerRadius = 20
+                zoomOutImageView.clipsToBounds = true
+                zoomOutImageView.frame = self.startingFram!
+                self.blackgroundView?.alpha = 0
+                self.msgView.alpha = 1
+            } completion: { (completed: Bool) in
+                zoomOutImageView.removeFromSuperview()
+                self.startingImageView?.isHidden = false
+            }
+        }
     }
 }
 //MARK: - Comments
