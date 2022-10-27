@@ -15,23 +15,25 @@ enum messageType {
     
 }
 class PrivateChatTableViewCell: UITableViewCell {
+    @IBOutlet weak var messageText: UITextView!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var chatStack: UIStackView!
     @IBOutlet weak var messageView: UIView!
     @IBOutlet weak var messageTextView: UITextView!
+    @IBOutlet weak var messageImage: UIImageView!
     @IBOutlet weak var userNameLable: UILabel!
+    
     static let identifier = String(describing: PrivateChatTableViewCell.self)
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         messageView.layer.cornerRadius = 7
+        messageImage.layer.cornerRadius = 20
         userImage.layer.cornerRadius = self.userImage.frame.size.height/2
-
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
     func setMessageDataForPrivateChat(message: Message){
         guard let currentId = Auth.auth().currentUser?.uid else{return}
@@ -50,8 +52,15 @@ class PrivateChatTableViewCell: UITableViewCell {
                     }
                 }
             }
-            
         }
+        if let messageImageURL = message.messageImageURL {
+            self.messageImage.loadDataUsingCacheWithUrlString(urlString: messageImageURL)
+            messageImage.isHidden = false
+            messageView.backgroundColor = UIColor.clear
+        }else{
+            messageImage.isHidden = true
+        }
+
     }
     func setBubbleType(type: messageType){
         if type == .incoming{
@@ -69,5 +78,4 @@ class PrivateChatTableViewCell: UITableViewCell {
             messageTextView.textColor = .white
         }
     }
-
 }

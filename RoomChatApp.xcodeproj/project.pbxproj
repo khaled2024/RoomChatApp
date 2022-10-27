@@ -155,8 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				EA85ED2828E6211700B03B2A /* UsersViewController.swift */,
-				EADED58D28E94DAB004E1856 /* UserChatViewController.swift */,
 				EAE411C028EA3C82007A68A3 /* YourChatsViewController.swift */,
+				EADED58D28E94DAB004E1856 /* UserChatViewController.swift */,
 			);
 			name = PrivateChats;
 			sourceTree = "<group>";

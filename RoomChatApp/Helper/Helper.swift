@@ -34,9 +34,27 @@ class Helper{
                 let urlString = url.absoluteString
                 print("downloaded url \(urlString)")
                 completion(.success(urlString))
-                
             }
         }
-        
+    }
+    func uploadImageMessage(with data: Data , fileName: String , completion: @escaping UploadPictureCompletion){
+        storage.child("message_images").child(fileName).putData(data, metadata: nil) { metaData, error in
+            guard error == nil else{
+                // failed
+                print("failed to upload message picture to firebase storage")
+                completion(.failure(StorageError.failedToUpload))
+                return
+            }
+            self.storage.child("message_images/\(fileName)").downloadURL { url, error in
+                guard let url = url else {
+                    print("failed to get reference from url")
+                    completion(.failure(StorageError.failedToGetReference))
+                    return
+                }
+                let urlString = url.absoluteString
+                print("downloaded url \(urlString)")
+                completion(.success(urlString))
+            }
+        }
     }
 }

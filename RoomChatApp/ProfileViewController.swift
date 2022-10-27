@@ -55,8 +55,8 @@ class ProfileViewController: UIViewController {
                 self.userName = name
                 self.email = email
                 self.configProfileImage(with: profileImageURL)
-                }
             }
+        }
         }
     }
     private func configProfileImage(with urlString: String){
