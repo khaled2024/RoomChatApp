@@ -17,11 +17,12 @@ class YourChatsViewController: UIViewController {
     var timer = Timer()
     override func viewDidLoad() {
         super.viewDidLoad()
+        yourChatsTableView.allowsMultipleSelectionDuringEditing = true
+        
         yourChatsTableView.delegate = self
         yourChatsTableView.dataSource = self
         yourChatsTableView.register(UINib(nibName: PrivateChatUserTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: PrivateChatUserTableViewCell.identifier)
         observeUserMessages()
-        //        observeMessage()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +40,11 @@ class YourChatsViewController: UIViewController {
                 let messageID = snapShot.key
                 self.fetchMessagesFrom(messageID: messageID)
             }, withCancel: nil)
+        }, withCancel: nil)
+        // for remove
+        ref.observe(.childRemoved, with: { snapShot in
+            self.messagesDictionary.removeValue(forKey: snapShot.key)
+            self.attempReloadData()
         }, withCancel: nil)
     }
     private func fetchMessagesFrom(messageID: String){
@@ -136,4 +142,40 @@ extension YourChatsViewController: UITableViewDelegate,UITableViewDataSource{
             controller.user = user
         }, withCancel: nil)
     }
+    // editing cell
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        
+    }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // delete action
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, sourceView, completionHandler) in
+            guard let uid = Auth.auth().currentUser?.uid else{return}
+            let message = self.messages[indexPath.row]
+            if let chatPartner = message.chatPartnerId(){
+                Database.database().reference().child("user-messages").child(uid).child(chatPartner).removeValue { error, ref in
+                    if error != nil{
+                        print(error)
+                        return
+                    }
+                    // this s the correct way
+                    self.messagesDictionary.removeValue(forKey: chatPartner)
+                    self.attempReloadData()
+                    
+                    // this is one way to delete but not safe ...
+                    //     self.messages.remove(at: indexPath.row)
+                    //     self.yourChatsTableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+            completionHandler(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash")
+        let swipeConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        return swipeConfiguration
+    }
+    
 }

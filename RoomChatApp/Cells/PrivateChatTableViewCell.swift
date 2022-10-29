@@ -27,16 +27,20 @@ class PrivateChatTableViewCell: UITableViewCell {
     @IBOutlet weak var messageTextWidth: NSLayoutConstraint!
     @IBOutlet weak var messageViewWidth: NSLayoutConstraint!
     
+    @IBOutlet weak var activityIndicatorPlay: UIActivityIndicatorView!
+    // vars
     var userChatVC: UserChatViewController?
     var message: Message?
     var playerLayer: AVPlayerLayer?
     var player: AVPlayer?
     static let identifier = String(describing: PrivateChatTableViewCell.self)
+    //MARK: - override Func
     override func awakeFromNib() {
         super.awakeFromNib()
         userImage.layer.cornerRadius = self.userImage.frame.size.height/2
         messageTextView.isEditable = false
         messageImage.isUserInteractionEnabled = true
+        activityIndicatorPlay.hidesWhenStopped = true
         // add target for
         messageImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomImage)))
         playBtn.addTarget(self, action: #selector(handlePlayBtn), for: .touchUpInside)
@@ -48,6 +52,8 @@ class PrivateChatTableViewCell: UITableViewCell {
         super.prepareForReuse()
         self.playerLayer?.removeFromSuperlayer()
         player?.pause()
+        self.activityIndicatorPlay.stopAnimating()
+        playBtn.isHidden = false
     }
     //MARK: - private func & objc func
     @objc func handlePlayBtn(){
@@ -60,6 +66,8 @@ class PrivateChatTableViewCell: UITableViewCell {
             playerLayer?.frame = messageView.bounds
             self.messageView.layer.addSublayer(playerLayer!)
             player?.play()
+            self.activityIndicatorPlay.startAnimating()
+            playBtn.isHidden = true
         }
     }
     @objc func handleZoomImage(tapGesture: UITapGestureRecognizer){
@@ -74,7 +82,6 @@ class PrivateChatTableViewCell: UITableViewCell {
     }
     func setMessageDataForPrivateChat(message: Message){
         guard let currentId = Auth.auth().currentUser?.uid else{return}
-        
         if message.fromId == currentId {
             setBubbleType(type: .outgoing)
             userNameLable.text = "You"
