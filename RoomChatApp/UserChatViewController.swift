@@ -200,14 +200,15 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
             cell.messageImage.isHidden = false
             cell.messageTextView.isHidden = true
         }else if message.videoURL != nil{
-            cell.messageImage.isHidden = true
+            cell.messageViewWidth.constant = 200
+            cell.messageImage.isHidden = false
             cell.messageTextView.isHidden = true
         }
         cell.setMessageDataForPrivateChat(message: message)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height:CGFloat = 200
+        var height:CGFloat = 300
         let message = messages[indexPath.row]
         if let text = message.text{
             height = estimateFrameForText(text: text).height + 60
@@ -245,22 +246,84 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
         self.spinner.show(in: view)
         dismiss(animated: true)
     }
-    //MARK: - private func For image picker
+    //MARK: - Private func For image picker
+    // for video :)
+    // #1
     private func handleVideoUrl(url: URL){
-        // for video :)
         Helper.shared.upload(file: url) { result in
             switch result{
             case.failure(let error):
                 print(error)
             case .success(let urlString):
                 print(urlString)
-                self.sendVideoWithURL(urlString: urlString)
+                if let thumbnailImage = self.thumbnailImageForVideoURL(fileUrl: url) {
+                    print("upload thumbnail image ")
+                    if let imageData = thumbnailImage.jpegData(compressionQuality: 0.2){
+                        let fileName = NSUUID().uuidString
+                        Helper.shared.uploadImageMessage(with: imageData, fileName: fileName) { result in
+                            switch result{
+                            case.failure(let error):
+                                print(error)
+                            case .success(let imageURL):
+                                print(imageURL)
+                                self.sendVideoWithURLAndThumbnail(urlString: urlString,thumbnailImage: thumbnailImage,imageURL: imageURL)
+                            }
+                        }
+                    }
+                }
                 self.spinner.dismiss(animated: true)
             }
         }
     }
+    // #2
+    private func thumbnailImageForVideoURL(fileUrl:URL)->UIImage?{
+        let asset = AVAsset(url: fileUrl)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        do {
+            let cgThumbnailImage = try imageGenerator.copyCGImage(at: CMTimeMake(value: 1, timescale: 60), actualTime: nil)
+            return UIImage(cgImage: cgThumbnailImage)
+        }catch let error{
+            print(error)
+        }
+        return nil
+    }
+    // #3
+    private func sendVideoWithURLAndThumbnail(urlString: String,thumbnailImage: UIImage,imageURL:String){
+        let ref = Database.database().reference().child("messages")
+        let refChild = ref.childByAutoId()
+        if let user = user, let toId = user.id, let fromId = Auth.auth().currentUser?.uid{
+            let timeStamp: NSNumber = NSDate().timeIntervalSince1970 as NSNumber
+            if let values = ["toId": toId,
+                             "fromId":fromId,
+                             "timeStamp":timeStamp,
+                             "imageURL":imageURL,
+                             "imageWidth":thumbnailImage.size.width,
+                             "imageHeight":thumbnailImage.size.height,
+                             "videoURL":urlString] as? [AnyHashable : Any]{
+                refChild.updateChildValues(values) { error, ref in
+                    if  error != nil{
+                        print(error ?? "error for update child ref of messages")
+                        print("didnt send")
+                        return
+                    }
+                    let messagesID = refChild.key
+                    let values = [messagesID:1]as? [AnyHashable:Any]
+                    // for user-messages
+                    let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId)
+                    userMessagesRef.updateChildValues(values!)
+                    // for recipent-messages
+                    let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId).child(fromId)
+                    recipientUserMessagesRef.updateChildValues(values!)
+                    self.msgTextField.text = ""
+                    print("sended")
+                    self.spinner.dismiss(animated: true)
+                }
+            }
+        }
+    }
+    //For image :)
+    // #1
     private func handleImageSelectedFromInfoDic(info:[UIImagePickerController.InfoKey:Any]){
-        //for image :)
         var selectedImage: UIImage?
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage]as? UIImage{
             selectedImage = editedImage
@@ -273,6 +336,7 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
             uploadImageToFirebase(image: selectedImage)
         }
     }
+    // #2
     private func uploadImageToFirebase(image: UIImage){
         print("upload image ")
         if let imageData = image.jpegData(compressionQuality: 0.2){
@@ -288,6 +352,7 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
             }
         }
     }
+    // #3
     private func sendImageWithImageURL(imageURL: String,image:UIImage){
         let ref = Database.database().reference().child("messages")
         let refChild = ref.childByAutoId()
@@ -319,37 +384,6 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
                 }
             }
         }
-        
-    }
-    private func sendVideoWithURL(urlString: String){
-        let ref = Database.database().reference().child("messages")
-        let refChild = ref.childByAutoId()
-        if let user = user, let toId = user.id, let fromId = Auth.auth().currentUser?.uid{
-            let timeStamp: NSNumber = NSDate().timeIntervalSince1970 as NSNumber
-            if let values = ["toId": toId,
-                             "fromId":fromId,
-                             "timeStamp":timeStamp,
-                             "videoURL":urlString] as? [AnyHashable : Any]{
-                refChild.updateChildValues(values) { error, ref in
-                    if  error != nil{
-                        print(error ?? "error for update child ref of messages")
-                        print("didnt send")
-                        return
-                    }
-                    let messagesID = refChild.key
-                    let values = [messagesID:1]as? [AnyHashable:Any]
-                    // for user-messages
-                    let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId)
-                    userMessagesRef.updateChildValues(values!)
-                    // for recipent-messages
-                    let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId).child(fromId)
-                    recipientUserMessagesRef.updateChildValues(values!)
-                    self.msgTextField.text = ""
-                    print("sended")
-                    self.spinner.dismiss(animated: true)
-                }
-            }
-        }
     }
 }
 //MARK: - extensions custom zooming logic
@@ -360,7 +394,7 @@ extension UserChatViewController{
         self.startingImageView?.isHidden = true
         //perform the fram of image
         startingFram = startingImageView.superview?.window?.convert(startingImageView.frame, from: startingImageView.superview)
-//        print(startingFram!)
+        //        print(startingFram!)
         // craeting a black color behind the image
         let zoomingImageView = UIImageView(frame: startingFram!)
         zoomingImageView.backgroundColor = .systemBlue

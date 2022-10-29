@@ -61,10 +61,10 @@ class Helper{
     }
     //MARK: - Upload video
     public func upload(file: URL, completion: @escaping UploadPictureAndVideoCompletion) {
-        let name = "\(Int(Date().timeIntervalSince1970)).mp4"
+        let name = NSUUID().uuidString + ".mov"
         do {
             let data = try Data(contentsOf: file)
-            let storageRef = Storage.storage().reference().child("Videos").child(name)
+            let storageRef = Storage.storage().reference().child("messages-videos").child(name)
             if let uploadData = data as Data? {
                 let metaData = StorageMetadata()
                 metaData.contentType = "video/mp4"

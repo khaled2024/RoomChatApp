@@ -32,6 +32,7 @@ class PrivateChatTableViewCell: UITableViewCell {
         super.awakeFromNib()
         messageView.layer.cornerRadius = 12
         messageImage.layer.cornerRadius = 20
+        
         messageImage.clipsToBounds = true
         userImage.layer.cornerRadius = self.userImage.frame.size.height/2
         messageTextView.isEditable = false
