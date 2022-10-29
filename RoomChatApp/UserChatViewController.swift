@@ -206,8 +206,6 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
         cell.playBtn.isHidden = message.videoURL == nil
         if message.videoURL != nil {
             cell.messageImage.contentMode = .scaleAspectFit
-            cell.messageView.layer.cornerRadius = 12
-            cell.messageImage.layer.cornerRadius = 20
         }else{
             cell.messageImage.contentMode = .scaleToFill
             cell.messageView.layer.cornerRadius = 12
@@ -217,7 +215,7 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height:CGFloat = 150
+        var height:CGFloat = 220
         let message = messages[indexPath.row]
         if let text = message.text{
             height = estimateFrameForText(text: text).height + 60
