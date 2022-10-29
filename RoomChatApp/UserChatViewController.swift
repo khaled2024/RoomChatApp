@@ -109,7 +109,7 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
                                           timeStamp: dictinary["timeStamp"]as? NSNumber,
                                           toId: dictinary["toId"]as? String)
                     self.messages.append(message)
-                }else if (dictinary["imageURL"] as? String) != nil{
+                }else if (dictinary["imageURL"] as? String != nil) && (dictinary["videoURL"] as? String == nil){
                     let message = Message(fromId: dictinary["fromId"]as? String,
                                           timeStamp: dictinary["timeStamp"]as? NSNumber,
                                           toId: dictinary["toId"]as? String,
@@ -121,6 +121,7 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
                     let message = Message(fromId: dictinary["fromId"]as? String,
                                           timeStamp: dictinary["timeStamp"]as? NSNumber,
                                           toId: dictinary["toId"]as? String,
+                                          messageImageURL: dictinary["imageURL"]as? String,
                                           videoURL: dictinary["videoURL"]as? String)
                     self.messages.append(message)
                 }
@@ -129,6 +130,7 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
                     // sroll to last msg
                     let index = IndexPath(item: self.messages.count - 1, section: 0)
                     self.userChatTableView.scrollToRow(at: index, at: .bottom, animated: true)
+                    print(self.messages)
                 }
             }, withCancel: nil)
             
@@ -181,15 +183,16 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PrivateChatTableViewCell.identifier, for: indexPath)as! PrivateChatTableViewCell
-        // like delegate
+        // like delegate for Zooming ImageView
         cell.userChatVC = self
         let message = messages[indexPath.row]
-        // user image
+        cell.message = message
+        // User image
         if let user = self.user,
            let userImage = user.profileImageURL{
             cell.userImage.loadDataUsingCacheWithUrlString(urlString: userImage)
         }
-        // check between if message have text or image
+        // Check Between if message have a text or image or video :)
         if let text = message.text {
             cell.messageTextView.text = text
             cell.messageViewWidth.constant = estimateFrameForText(text: text).width + 20
@@ -199,16 +202,22 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
             cell.messageViewWidth.constant = 200
             cell.messageImage.isHidden = false
             cell.messageTextView.isHidden = true
-        }else if message.videoURL != nil{
-            cell.messageViewWidth.constant = 200
-            cell.messageImage.isHidden = false
-            cell.messageTextView.isHidden = true
+        }
+        cell.playBtn.isHidden = message.videoURL == nil
+        if message.videoURL != nil {
+            cell.messageImage.contentMode = .scaleAspectFit
+            cell.messageView.layer.cornerRadius = 12
+            cell.messageImage.layer.cornerRadius = 20
+        }else{
+            cell.messageImage.contentMode = .scaleToFill
+            cell.messageView.layer.cornerRadius = 12
+            cell.messageImage.layer.cornerRadius = 20
         }
         cell.setMessageDataForPrivateChat(message: message)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height:CGFloat = 300
+        var height:CGFloat = 150
         let message = messages[indexPath.row]
         if let text = message.text{
             height = estimateFrameForText(text: text).height + 60
@@ -216,6 +225,7 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
             print(imageWidth , imageHeight)
             height = CGFloat(imageHeight/imageWidth * 200)
         }
+        print(height)
         return height
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -238,7 +248,7 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let videoURL = info[UIImagePickerController.InfoKey.mediaURL]as? URL {
-            print(videoURL)
+            print("videoURL: \(videoURL)")
             handleVideoUrl(url: videoURL)
         }else{
             self.handleImageSelectedFromInfoDic(info: info)
@@ -247,7 +257,8 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
         dismiss(animated: true)
     }
     //MARK: - Private func For image picker
-    // for video :)
+    
+    //MARK: - for video :)
     // #1
     private func handleVideoUrl(url: URL){
         Helper.shared.upload(file: url) { result in
@@ -257,7 +268,7 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
             case .success(let urlString):
                 print(urlString)
                 if let thumbnailImage = self.thumbnailImageForVideoURL(fileUrl: url) {
-                    print("upload thumbnail image ")
+                    print("upload thumbnail image: \(thumbnailImage)")
                     if let imageData = thumbnailImage.jpegData(compressionQuality: 0.2){
                         let fileName = NSUUID().uuidString
                         Helper.shared.uploadImageMessage(with: imageData, fileName: fileName) { result in
@@ -311,6 +322,7 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
                     // for user-messages
                     let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId)
                     userMessagesRef.updateChildValues(values!)
+                    print(userMessagesRef)
                     // for recipent-messages
                     let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId).child(fromId)
                     recipientUserMessagesRef.updateChildValues(values!)
@@ -321,7 +333,7 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
             }
         }
     }
-    //For image :)
+    //MARK: -  For image :)
     // #1
     private func handleImageSelectedFromInfoDic(info:[UIImagePickerController.InfoKey:Any]){
         var selectedImage: UIImage?

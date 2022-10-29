@@ -8,11 +8,11 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import AVFoundation
 
 enum messageType {
     case incoming
     case outgoing
-    
 }
 class PrivateChatTableViewCell: UITableViewCell {
     //MARK: - vars& outlets
@@ -23,35 +23,58 @@ class PrivateChatTableViewCell: UITableViewCell {
     @IBOutlet weak var messageImage: UIImageView!
     @IBOutlet weak var userNameLable: UILabel!
     
+    @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var messageTextWidth: NSLayoutConstraint!
     @IBOutlet weak var messageViewWidth: NSLayoutConstraint!
     
     var userChatVC: UserChatViewController?
+    var message: Message?
+    var playerLayer: AVPlayerLayer?
+    var player: AVPlayer?
     static let identifier = String(describing: PrivateChatTableViewCell.self)
     override func awakeFromNib() {
         super.awakeFromNib()
-        messageView.layer.cornerRadius = 12
-        messageImage.layer.cornerRadius = 20
-        
-        messageImage.clipsToBounds = true
         userImage.layer.cornerRadius = self.userImage.frame.size.height/2
         messageTextView.isEditable = false
         messageImage.isUserInteractionEnabled = true
+        // add target for
         messageImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomImage)))
+        playBtn.addTarget(self, action: #selector(handlePlayBtn), for: .touchUpInside)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+    }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.playerLayer?.removeFromSuperlayer()
+        player?.pause()
+    }
+    //MARK: - private func & objc func
+    @objc func handlePlayBtn(){
+        print("play")
+        if let message = message,
+           let messageURl = message.videoURL,
+           let videoURL = URL(string: messageURl) {
+            player = AVPlayer(url: videoURL)
+            playerLayer = AVPlayerLayer(player: player)
+            playerLayer?.frame = messageView.bounds
+            self.messageView.layer.addSublayer(playerLayer!)
+            player?.play()
+        }
     }
     @objc func handleZoomImage(tapGesture: UITapGestureRecognizer){
         print("zoom image")
         // dont perform a lot of login inside view class
+        if message?.videoURL != nil{
+            return
+        }
         if let imageView = tapGesture.view as? UIImageView{
             userChatVC?.performZoomInForStartingImageView(startingImageView: imageView)
         }
     }
     func setMessageDataForPrivateChat(message: Message){
         guard let currentId = Auth.auth().currentUser?.uid else{return}
+        
         if message.fromId == currentId {
             setBubbleType(type: .outgoing)
             userNameLable.text = "You"

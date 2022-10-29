@@ -623,7 +623,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaG-v2-jnY">
                                                             <rect key="frame" x="0.0" y="0.0" width="72.5" height="20"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="xtX-xT-GHr"/>
+                                                                <constraint firstAttribute="height" constant="20" id="Pu9-mO-LFb"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                             <color key="textColor" red="0.20392158630000001" green="0.39607840779999998" blue="0.40784314269999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -645,11 +645,22 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Hj-Ds-RGs">
+                                                                    <rect key="frame" x="75" y="9.5" width="50" height="50"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="50" id="GNg-38-6u0"/>
+                                                                        <constraint firstAttribute="width" constant="50" id="xGB-IR-sYo"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.96862745289999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="play.fill" catalog="system"/>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" red="0.20392158630000001" green="0.39607840779999998" blue="0.40784314269999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
                                                                 <constraint firstItem="nvp-ne-i5s" firstAttribute="top" secondItem="BnY-vj-tIi" secondAttribute="top" id="0Zf-Dy-gd4"/>
                                                                 <constraint firstAttribute="bottom" secondItem="1Ic-Jz-d6S" secondAttribute="bottom" id="Iek-VX-kn1"/>
+                                                                <constraint firstItem="7Hj-Ds-RGs" firstAttribute="centerY" secondItem="BnY-vj-tIi" secondAttribute="centerY" id="Pf2-ed-Y8r"/>
                                                                 <constraint firstAttribute="trailing" secondItem="1Ic-Jz-d6S" secondAttribute="trailing" id="VEE-Ox-rGZ"/>
                                                                 <constraint firstAttribute="trailing" secondItem="nvp-ne-i5s" secondAttribute="trailing" id="bJE-3T-sJg"/>
                                                                 <constraint firstAttribute="width" constant="200" id="cUv-6b-t3L"/>
@@ -658,6 +669,7 @@
                                                                 <constraint firstAttribute="height" relation="lessThanOrEqual" constant="100" id="jKe-sV-Tab"/>
                                                                 <constraint firstItem="1Ic-Jz-d6S" firstAttribute="leading" secondItem="BnY-vj-tIi" secondAttribute="leading" id="oGh-ly-Qoo"/>
                                                                 <constraint firstItem="1Ic-Jz-d6S" firstAttribute="top" secondItem="BnY-vj-tIi" secondAttribute="top" id="oiR-Hq-whZ"/>
+                                                                <constraint firstItem="7Hj-Ds-RGs" firstAttribute="centerX" secondItem="BnY-vj-tIi" secondAttribute="centerX" id="pCb-hA-kz9"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
@@ -682,6 +694,7 @@
                                             <outlet property="messageTextWidth" destination="yQR-9o-Zam" id="H3m-E6-3uu"/>
                                             <outlet property="messageView" destination="BnY-vj-tIi" id="We5-te-EkS"/>
                                             <outlet property="messageViewWidth" destination="cUv-6b-t3L" id="EAz-xL-RVw"/>
+                                            <outlet property="playBtn" destination="7Hj-Ds-RGs" id="AzD-6M-Kv2"/>
                                             <outlet property="userImage" destination="YEk-pA-q7d" id="eEp-cz-XuV"/>
                                             <outlet property="userNameLable" destination="oaG-v2-jnY" id="8RS-HP-yoZ"/>
                                         </connections>
@@ -911,6 +924,7 @@
         <image name="person.fill.badge.plus" catalog="system" width="128" height="125"/>
         <image name="person.line.dotted.person.fill" catalog="system" width="128" height="58"/>
         <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="play.fill" catalog="system" width="117" height="128"/>
         <image name="send" width="20" height="20"/>
         <image name="user" width="170.66667175292969" height="170.66667175292969"/>
         <namedColor name="mainColor">
