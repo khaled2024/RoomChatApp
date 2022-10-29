@@ -11,6 +11,8 @@ import FirebaseDatabase
 import MobileCoreServices
 import AVFoundation
 import JGProgressHUD
+import FirebaseStorage
+
 class UserChatViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var pickPhotoImageView: UIImageView!
@@ -55,10 +57,12 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
     @objc func handlePickImage(){
         let picker = UIImagePickerController()
         picker.allowsEditing = true
+        // to make picker have videos type :)
         picker.mediaTypes = [kUTTypeImage as String , kUTTypeMovie as String]
         picker.delegate = self
         present(picker, animated: true)
     }
+    /// For keyboard observer
     private func setKeyboeadObserver(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name:UIResponder.keyboardDidShowNotification, object: nil)
     }
@@ -112,6 +116,12 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
                                           messageImageURL: dictinary["imageURL"]as? String,
                                           imageWidth: dictinary["imageWidth"]as? NSNumber ,
                                           imageHeight: dictinary["imageHeight"]as? NSNumber)
+                    self.messages.append(message)
+                }else if (dictinary["videoURL"] as? String) != nil{
+                    let message = Message(fromId: dictinary["fromId"]as? String,
+                                          timeStamp: dictinary["timeStamp"]as? NSNumber,
+                                          toId: dictinary["toId"]as? String,
+                                          videoURL: dictinary["videoURL"]as? String)
                     self.messages.append(message)
                 }
                 DispatchQueue.main.async {
@@ -189,6 +199,9 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
             cell.messageViewWidth.constant = 200
             cell.messageImage.isHidden = false
             cell.messageTextView.isHidden = true
+        }else if message.videoURL != nil{
+            cell.messageImage.isHidden = true
+            cell.messageTextView.isHidden = true
         }
         cell.setMessageDataForPrivateChat(message: message)
         return cell
@@ -223,6 +236,31 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
         picker.dismiss(animated: true,completion: nil)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let videoURL = info[UIImagePickerController.InfoKey.mediaURL]as? URL {
+            print(videoURL)
+            handleVideoUrl(url: videoURL)
+        }else{
+            self.handleImageSelectedFromInfoDic(info: info)
+        }
+        self.spinner.show(in: view)
+        dismiss(animated: true)
+    }
+    //MARK: - private func For image picker
+    private func handleVideoUrl(url: URL){
+        // for video :)
+        Helper.shared.upload(file: url) { result in
+            switch result{
+            case.failure(let error):
+                print(error)
+            case .success(let urlString):
+                print(urlString)
+                self.sendVideoWithURL(urlString: urlString)
+                self.spinner.dismiss(animated: true)
+            }
+        }
+    }
+    private func handleImageSelectedFromInfoDic(info:[UIImagePickerController.InfoKey:Any]){
+        //for image :)
         var selectedImage: UIImage?
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage]as? UIImage{
             selectedImage = editedImage
@@ -234,8 +272,6 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
         if let selectedImage = selectedImage {
             uploadImageToFirebase(image: selectedImage)
         }
-        self.spinner.show(in: view)
-        dismiss(animated: true)
     }
     private func uploadImageToFirebase(image: UIImage){
         print("upload image ")
@@ -285,6 +321,36 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
         }
         
     }
+    private func sendVideoWithURL(urlString: String){
+        let ref = Database.database().reference().child("messages")
+        let refChild = ref.childByAutoId()
+        if let user = user, let toId = user.id, let fromId = Auth.auth().currentUser?.uid{
+            let timeStamp: NSNumber = NSDate().timeIntervalSince1970 as NSNumber
+            if let values = ["toId": toId,
+                             "fromId":fromId,
+                             "timeStamp":timeStamp,
+                             "videoURL":urlString] as? [AnyHashable : Any]{
+                refChild.updateChildValues(values) { error, ref in
+                    if  error != nil{
+                        print(error ?? "error for update child ref of messages")
+                        print("didnt send")
+                        return
+                    }
+                    let messagesID = refChild.key
+                    let values = [messagesID:1]as? [AnyHashable:Any]
+                    // for user-messages
+                    let userMessagesRef = Database.database().reference().child("user-messages").child(fromId).child(toId)
+                    userMessagesRef.updateChildValues(values!)
+                    // for recipent-messages
+                    let recipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId).child(fromId)
+                    recipientUserMessagesRef.updateChildValues(values!)
+                    self.msgTextField.text = ""
+                    print("sended")
+                    self.spinner.dismiss(animated: true)
+                }
+            }
+        }
+    }
 }
 //MARK: - extensions custom zooming logic
 extension UserChatViewController{
@@ -294,7 +360,7 @@ extension UserChatViewController{
         self.startingImageView?.isHidden = true
         //perform the fram of image
         startingFram = startingImageView.superview?.window?.convert(startingImageView.frame, from: startingImageView.superview)
-        print(startingFram!)
+//        print(startingFram!)
         // craeting a black color behind the image
         let zoomingImageView = UIImageView(frame: startingFram!)
         zoomingImageView.backgroundColor = .systemBlue

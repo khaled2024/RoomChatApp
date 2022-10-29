@@ -54,7 +54,6 @@ class PrivateChatTableViewCell: UITableViewCell {
         if message.fromId == currentId {
             setBubbleType(type: .outgoing)
             userNameLable.text = "You"
-            //            messageTextView.text = message.text
         }else{
             setBubbleType(type: .incoming)
             guard let chatPartnerID = message.chatPartnerId() else{return}
@@ -62,7 +61,6 @@ class PrivateChatTableViewCell: UITableViewCell {
                 if let value = snapShat.value as?[String:Any],let name = value["name"]as? String{
                     DispatchQueue.main.async {
                         self.userNameLable.text = name
-                        //                        self.messageTextView.text = message.text
                     }
                 }
             }
@@ -74,7 +72,6 @@ class PrivateChatTableViewCell: UITableViewCell {
         }else{
             messageImage.isHidden = true
         }
-        
     }
     func setBubbleType(type: messageType){
         if type == .incoming{

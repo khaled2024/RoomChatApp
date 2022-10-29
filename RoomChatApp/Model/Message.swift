@@ -15,6 +15,7 @@ struct Message{
     var messageImageURL: String?
     var imageWidth: NSNumber?
     var imageHeight: NSNumber?
+    var videoURL: String?
     
     func chatPartnerId()-> String?{
                 return fromId == Auth.auth().currentUser?.uid ? toId : fromId
