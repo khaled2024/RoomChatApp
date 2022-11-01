@@ -221,7 +221,7 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
             height = estimateFrameForText(text: text).height + 60
         }else if let imageWidth = message.imageWidth?.floatValue , let imageHeight = message.imageHeight?.floatValue {
             print(imageWidth , imageHeight)
-            height = CGFloat(imageHeight/imageWidth * 200)
+            height = CGFloat(imageHeight/imageWidth * 220)
         }
         print(height)
         return height
