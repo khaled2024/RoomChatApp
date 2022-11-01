@@ -22,7 +22,6 @@
 		EA85ED2528E612D900B03B2A /* RoomsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85ED2328E612D900B03B2A /* RoomsTableViewCell.swift */; };
 		EA85ED2628E612D900B03B2A /* RoomsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA85ED2428E612D900B03B2A /* RoomsTableViewCell.xib */; };
 		EA85ED2928E6211700B03B2A /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA85ED2828E6211700B03B2A /* UsersViewController.swift */; };
-		EA8F4C9728FAB394008744FD /* PrivateChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F4C9628FAB394008744FD /* PrivateChat.swift */; };
 		EAA399AD28DE65130033B90A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA399AC28DE65130033B90A /* Room.swift */; };
 		EAC215D728FB654200CBA4AF /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC215D528FB654200CBA4AF /* UserTableViewCell.swift */; };
 		EAC215D828FB654200CBA4AF /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC215D628FB654200CBA4AF /* UserTableViewCell.xib */; };
@@ -45,7 +44,6 @@
 		EAEF1B8228D4CFE3004B2489 /* Extension+UitextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */; };
 		EAF0477028DA222F0041B4F1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */; };
 		EAF0477228DA313F0041B4F1 /* Extension+UitableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */; };
-		EAFA718728F1ED9F005A3C98 /* PrivateChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFA718628F1ED9E005A3C98 /* PrivateChatMessage.swift */; };
 		FEBEA7D06CD2CAA70F88F078 /* Pods_RoomChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70792813B0B5B00949747713 /* Pods_RoomChatApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +66,6 @@
 		EA85ED2328E612D900B03B2A /* RoomsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsTableViewCell.swift; sourceTree = "<group>"; };
 		EA85ED2428E612D900B03B2A /* RoomsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomsTableViewCell.xib; sourceTree = "<group>"; };
 		EA85ED2828E6211700B03B2A /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
-		EA8F4C9628FAB394008744FD /* PrivateChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChat.swift; sourceTree = "<group>"; };
 		EAA399AC28DE65130033B90A /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		EAC215D528FB654200CBA4AF /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		EAC215D628FB654200CBA4AF /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
@@ -93,7 +90,6 @@
 		EAEF1B8128D4CFE3004B2489 /* Extension+UitextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UitextField.swift"; sourceTree = "<group>"; };
 		EAF0476F28DA222F0041B4F1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EAF0477128DA313F0041B4F1 /* Extension+UitableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UitableView.swift"; sourceTree = "<group>"; };
-		EAFA718628F1ED9E005A3C98 /* PrivateChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateChatMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,8 +218,6 @@
 				EAE9EAEF28E290DF000DCF84 /* Setting.swift */,
 				EA75FD4228FD5AE300EBE0D7 /* Message.swift */,
 				EAE411C228EA3D3C007A68A3 /* PeronalChats.swift */,
-				EAFA718628F1ED9E005A3C98 /* PrivateChatMessage.swift */,
-				EA8F4C9628FAB394008744FD /* PrivateChat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,7 +343,6 @@
 			);
 			mainGroup = EAD4884528D4AA1200EB9AEE;
 			packageReferences = (
-				EA52382128FB807200A21A59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = EAD4884F28D4AA1200EB9AEE /* Products */;
 			projectDirPath = "";
@@ -442,7 +435,6 @@
 				EAA399AD28DE65130033B90A /* Room.swift in Sources */,
 				EAD4885628D4AA1200EB9AEE /* AuthViewController.swift in Sources */,
 				EAC215D728FB654200CBA4AF /* UserTableViewCell.swift in Sources */,
-				EAFA718728F1ED9F005A3C98 /* PrivateChatMessage.swift in Sources */,
 				EAD4885228D4AA1200EB9AEE /* AppDelegate.swift in Sources */,
 				EAD4885428D4AA1200EB9AEE /* SceneDelegate.swift in Sources */,
 				EA847D4E28E085C200E3A7AC /* RoomMessage.swift in Sources */,
@@ -455,7 +447,6 @@
 				EACBC9A028E6357F00428BBA /* User.swift in Sources */,
 				EA75FD4328FD5AE300EBE0D7 /* Message.swift in Sources */,
 				EA559D9828FB7505003004B0 /* AuthViewController+handler.swift in Sources */,
-				EA8F4C9728FAB394008744FD /* PrivateChat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,17 +670,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		EA52382128FB807200A21A59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = EAD4884628D4AA1200EB9AEE /* Project object */;
 }
