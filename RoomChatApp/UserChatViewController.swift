@@ -215,7 +215,7 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height:CGFloat = 220
+        var height:CGFloat = 230
         let message = messages[indexPath.row]
         if let text = message.text{
             height = estimateFrameForText(text: text).height + 60
