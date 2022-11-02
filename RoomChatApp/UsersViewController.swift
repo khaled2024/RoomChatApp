@@ -33,7 +33,7 @@ class UsersViewController: UIViewController {
     //MARK: - private function
     private func configData(){
         title = "Users"
-          fetchUsers()
+        fetchUsers()
         
         usersTableView.delegate = self
         usersTableView.dataSource = self
@@ -83,7 +83,7 @@ extension UsersViewController: UITableViewDelegate,UITableViewDataSource{
         controller.modalTransitionStyle = .flipHorizontal
         self.navigationController?.pushViewController(controller, animated: true)
         self.navigationController?.navigationBar.prefersLargeTitles = false
-
+        
     }
 }
 //MARK: - searchbar

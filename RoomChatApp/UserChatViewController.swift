@@ -228,7 +228,7 @@ extension UserChatViewController: UITableViewDelegate, UITableViewDataSource{
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         self.userChatTableView.invalidateIntrinsicContentSize()
     }
-   
+    
     // func for EstimateFrameForText
     private func estimateFrameForText(text: String) -> CGRect {
         let size = CGSize(width: 200, height: 1000)

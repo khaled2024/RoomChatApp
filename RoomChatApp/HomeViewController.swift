@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         configDesign()
-
+        
     }
     //الفانكشن دي بتشتغل كل مره الفيو بيظهر عكس ال view will appear
     override func viewDidAppear(_ animated: Bool) {

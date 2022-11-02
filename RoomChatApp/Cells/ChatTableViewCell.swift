@@ -67,7 +67,7 @@ class ChatTableViewCell: UITableViewCell {
         if let messageImageURL = message.messageImageURL {
             self.messageImageView.loadDataUsingCacheWithUrlString(urlString: messageImageURL)
             messageImageView.isHidden = false
-            messageView.backgroundColor = UIColor.white
+            messageView.backgroundColor = UIColor.clear
         }else{
             messageImageView.isHidden = true
             messageTextView.text = message.messageText
@@ -78,7 +78,6 @@ class ChatTableViewCell: UITableViewCell {
         if type == .incoming{
             chatStack.alignment = .leading
             userImage.isHidden = false
-//    userNameLable.textColor = colors.randomElement()
             userNameLable.textColor = .darkText
             messageView.backgroundColor = .lightGray
             messageTextView.textColor = .black
