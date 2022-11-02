@@ -12,4 +12,7 @@ struct RoomMessage{
     var messageText: String?
     var userId: String?
     var userImage: String?
+    var messageImageURL: String?
+    var imageWidth: NSNumber?
+    var imageHeight: NSNumber?
 }

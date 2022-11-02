@@ -20,7 +20,7 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userChatTableView: UITableView!
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var msgTextField: UITextField!
-    
+    //MARK: - vars
     let spinner = JGProgressHUD(style: .light)
     var startingFram: CGRect?
     var blackgroundView: UIView?
@@ -42,7 +42,6 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
         userChatTableView.dataSource = self
         self.msgTextField.delegate = self
         setKeyboeadObserver()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -72,14 +71,12 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
             self.userChatTableView.scrollToRow(at: index, at: .bottom, animated: true)
         }
     }
-    
     private func setDesign(){
         msgView.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
         sendBtn.addLayer(cornerRadius: 15, shadowColor: .gray, shadowOffsetWidth: 4, shadowOffsetHeight: 3, shadowOpacity: 0.5)
         
         msgTextField.changePlaceholderColor(text: "Type your message here.")
     }
-    
     ///get user with id
     private func getUserWithId(_ id: String , completion: @escaping (_ userName: String?)-> Void){
         let ref = Database.database().reference()
@@ -135,7 +132,6 @@ class UserChatViewController: UIViewController, UITextFieldDelegate {
             }, withCancel: nil)
             
         }, withCancel: nil)
-        
     }
     /// send message
     private func sendMsg(){
@@ -255,8 +251,6 @@ extension UserChatViewController: UIImagePickerControllerDelegate , UINavigation
         self.spinner.show(in: view)
         dismiss(animated: true)
     }
-    //MARK: - Private func For image picker
-    
     //MARK: - for video :)
     // #1
     private func handleVideoUrl(url: URL){

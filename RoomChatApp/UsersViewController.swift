@@ -28,7 +28,7 @@ class UsersViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool){
         navigationController?.navigationBar.prefersLargeTitles = false
-        tabBarController?.tabBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
     }
     //MARK: - private function
     private func configData(){
