@@ -298,15 +298,7 @@
                             <constraint firstAttribute="bottom" secondItem="Irn-PS-w6e" secondAttribute="bottom" id="x0M-d6-6ZG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Chats" id="MpY-gn-qWt">
-                        <barButtonItem key="rightBarButtonItem" id="jNX-0B-qeh">
-                            <imageReference key="image" image="person.fill.badge.plus" catalog="system" symbolScale="large"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="newFriendBtnTapped:" destination="2uK-vL-wcE" id="0EL-7h-gX9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Chats" id="MpY-gn-qWt"/>
                     <connections>
                         <outlet property="createRoomBtn" destination="auS-nM-Imb" id="V0r-Vf-Pgp"/>
                         <outlet property="createRoomStack" destination="Ywl-Wq-ey0" id="eBB-bC-5pC"/>
@@ -845,7 +837,15 @@
                             <constraint firstItem="5yb-df-OXP" firstAttribute="trailing" secondItem="r8M-vm-EZV" secondAttribute="trailing" id="hNS-X3-uji"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Your Chats" largeTitleDisplayMode="always" id="C2J-yL-jc3"/>
+                    <navigationItem key="navigationItem" title="Your Chats" largeTitleDisplayMode="always" id="C2J-yL-jc3">
+                        <barButtonItem key="rightBarButtonItem" id="jNX-0B-qeh">
+                            <imageReference key="image" image="person.fill.badge.plus" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="newFriendBtnTapped:" destination="fLa-vj-ZTK" id="bGq-9c-k9k"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="yourChatsTableView" destination="5yb-df-OXP" id="Gwi-15-tjT"/>
                     </connections>

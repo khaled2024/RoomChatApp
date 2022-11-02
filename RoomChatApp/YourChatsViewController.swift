@@ -111,6 +111,11 @@ class YourChatsViewController: UIViewController {
             }
         }, withCancel: nil)
     }
+    //MARK: - Actions
+    @IBAction func newFriendBtnTapped(_ sender: UIBarButtonItem) {
+        let controller = storyboard?.instantiateViewController(withIdentifier: "UsersViewController")as! UsersViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
 //MARK: - UITableViewDelegate,UITableViewDataSource
 extension YourChatsViewController: UITableViewDelegate,UITableViewDataSource{
@@ -158,7 +163,7 @@ extension YourChatsViewController: UITableViewDelegate,UITableViewDataSource{
             if let chatPartner = message.chatPartnerId(){
                 Database.database().reference().child("user-messages").child(uid).child(chatPartner).removeValue { error, ref in
                     if error != nil{
-                        print(error)
+                        print(error ?? "error for deleting row")
                         return
                     }
                     // this s the correct way
