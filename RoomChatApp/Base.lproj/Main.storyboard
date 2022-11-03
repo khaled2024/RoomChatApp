@@ -398,8 +398,8 @@
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F2E-dm-WuP">
                                                                     <rect key="frame" x="0.0" y="0.0" width="200" height="69"/>
                                                                 </imageView>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHV-a3-A8r">
-                                                                    <rect key="frame" x="7" y="0.0" width="186" height="69"/>
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHV-a3-A8r">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="69"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="IuY-bg-P3I"/>
@@ -413,10 +413,10 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="F2E-dm-WuP" secondAttribute="bottom" id="2BV-6k-deW"/>
                                                                 <constraint firstAttribute="width" constant="200" id="5h5-NM-pMn"/>
-                                                                <constraint firstAttribute="trailing" secondItem="WHV-a3-A8r" secondAttribute="trailing" constant="7" id="5oK-xo-cZ0"/>
+                                                                <constraint firstAttribute="trailing" secondItem="WHV-a3-A8r" secondAttribute="trailing" id="5oK-xo-cZ0"/>
                                                                 <constraint firstAttribute="bottom" secondItem="WHV-a3-A8r" secondAttribute="bottom" id="DI5-zF-Iqh"/>
                                                                 <constraint firstItem="F2E-dm-WuP" firstAttribute="leading" secondItem="HPe-AD-8ob" secondAttribute="leading" id="ECI-nj-nAm"/>
-                                                                <constraint firstItem="WHV-a3-A8r" firstAttribute="leading" secondItem="HPe-AD-8ob" secondAttribute="leading" constant="7" id="Jkj-kW-yvS"/>
+                                                                <constraint firstItem="WHV-a3-A8r" firstAttribute="leading" secondItem="HPe-AD-8ob" secondAttribute="leading" id="Jkj-kW-yvS"/>
                                                                 <constraint firstItem="WHV-a3-A8r" firstAttribute="top" secondItem="HPe-AD-8ob" secondAttribute="top" id="QWH-9R-xxa"/>
                                                                 <constraint firstItem="F2E-dm-WuP" firstAttribute="top" secondItem="HPe-AD-8ob" secondAttribute="top" id="l0h-wc-0iA"/>
                                                                 <constraint firstAttribute="trailing" secondItem="F2E-dm-WuP" secondAttribute="trailing" id="s3Y-Nf-PeZ"/>

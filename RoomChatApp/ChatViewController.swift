@@ -151,7 +151,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
             cell.messageImageView.isHidden = true
             cell.messageTextView.isHidden = false
             cell.messageTextView.text = text
-            cell.messageViewWidth.constant = estimateFrameForText(text: text).width + 30
+            cell.messageViewWidth.constant = estimateFrameForText(text: text).width + 20
             cell.messageView.layer.cornerRadius = 12
         }else if message.messageImageURL != nil{
             cell.messageViewWidth.constant = 200
@@ -164,7 +164,7 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height:CGFloat = 230
+        var height:CGFloat = 220
         let message = chatMessages[indexPath.row]
         if let text = message.messageText{
             height = estimateFrameForText(text: text).height + 60
@@ -181,7 +181,6 @@ extension ChatViewController: UITableViewDelegate,UITableViewDataSource{
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         self.chatTableView.invalidateIntrinsicContentSize()
     }
-    
     // func for EstimateFrameForText
     private func estimateFrameForText(text: String) -> CGRect {
         let size = CGSize(width: 200, height: 1000)
